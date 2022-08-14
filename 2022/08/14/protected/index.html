@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。 封裝的方法共有三種，分別為：public, private, protected.  這三種方法的說明如下：public:完全公開的方法，內外皆可存取。 1234class Company  def finance  #public狀態的方法  en">
+    <meta name="description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="封裝：public &#x2F; private &#x2F; protected">
 <meta property="og:url" content="https://wl02599509.github.io/2022/08/14/protected/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。 封裝的方法共有三種，分別為：public, private, protected.  這三種方法的說明如下：public:完全公開的方法，內外皆可存取。 1234class Company  def finance  #public狀態的方法  en">
+<meta property="og:description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-14T08:57:52.000Z">
-<meta property="article:modified_time" content="2022-08-14T09:25:34.682Z">
+<meta property="article:modified_time" content="2022-08-14T09:44:36.756Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 16:57:52 / Modified: 17:25:34" itemprop="dateCreated datePublished" datetime="2022-08-14T16:57:52+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-14 16:57:52 / Modified: 17:44:36" itemprop="dateCreated datePublished" datetime="2022-08-14T16:57:52+08:00">2022-08-14</time>
     </span>
 
   
@@ -251,6 +251,8 @@
         <h1 id="封裝的用意"><a href="#封裝的用意" class="headerlink" title="封裝的用意"></a>封裝的用意</h1><p>存取控制的作用。</p>
 <p>讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。</p>
 <p>藉此希望使用者只能夠使用某些功能、某些方法。</p>
+<span id="more"></span>
+
 <h1 id="封裝的方法"><a href="#封裝的方法" class="headerlink" title="封裝的方法"></a>封裝的方法</h1><p>共有三種，分別為：public, private, protected. </p>
 <h1 id="這三種方法的說明如下："><a href="#這三種方法的說明如下：" class="headerlink" title="這三種方法的說明如下："></a>這三種方法的說明如下：</h1><h2 id="public"><a href="#public" class="headerlink" title="public:"></a>public:</h2><p>完全公開的方法，內外皆可存取。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span>  <span class="comment">#public狀態的方法</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
