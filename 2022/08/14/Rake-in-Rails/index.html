@@ -20,28 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="意義MVC是一套網頁開發的架構流程，代表著從前端到後端的各自分工。">
+    <meta name="description" content="將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：1234567namespace :user do  desc &quot;建立使用者&quot;  task :init &#x3D;&gt; :environment do # 讓 rake 可以引入所有 rails 的東西（ model, migration 等等）      User.create(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/MVC/index.html">
+<meta property="og:title" content="Rake&#x2F;in&#x2F;Rails">
+<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/Rake-in-Rails/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="意義MVC是一套網頁開發的架構流程，代表著從前端到後端的各自分工。">
+<meta property="og:description" content="將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：1234567namespace :user do  desc &quot;建立使用者&quot;  task :init &#x3D;&gt; :environment do # 讓 rake 可以引入所有 rails 的東西（ model, migration 等等）      User.create(">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T12:07:09.000Z">
-<meta property="article:modified_time" content="2022-08-14T12:10:30.862Z">
+<meta property="article:published_time" content="2022-08-14T12:57:37.000Z">
+<meta property="article:modified_time" content="2022-08-14T13:00:29.699Z">
 <meta property="article:author" content="Mike">
+<meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="Rails">
+<meta property="article:tag" content="Rake">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/MVC/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/Rake-in-Rails/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/MVC/","path":"2022/08/14/MVC/","title":"MVC"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/Rake-in-Rails/","path":"2022/08/14/Rake-in-Rails/","title":"Rake/in/Rails"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>MVC | Mike Code</title>
+<title>Rake/in/Rails | Mike Code</title>
   
 
 
@@ -126,7 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%84%8F%E7%BE%A9"><span class="nav-number">1.</span> <span class="nav-text">意義</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#M-Model"><span class="nav-number">2.</span> <span class="nav-text">M: Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#V-View"><span class="nav-number">3.</span> <span class="nav-text">V: View</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Controller"><span class="nav-number">4.</span> <span class="nav-text">C: Controller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Routes"><span class="nav-number">5.</span> <span class="nav-text">Routes</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%87-Rails-%E7%92%B0%E5%A2%83%E5%B8%B6%E5%85%A5-rake-%E8%A3%A1%EF%BC%8C%E8%AE%93-rake-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8-Rails-%E7%9A%84%E5%85%83%E7%B4%A0%EF%BC%8C%E5%83%8F%E6%98%AF-Model%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%8F%E9%81%8E%E5%9B%9E%E5%9C%88%EF%BC%8C%E4%B8%80%E5%80%8B%E6%8C%87%E4%BB%A4%EF%BC%8C%E7%94%A2%E7%94%9F%E5%A4%9A%E7%AD%86%E8%B3%87%E6%96%99%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">透過回圈，一個指令，產生多筆資料：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E8%A4%87%E9%9B%9C%E7%9A%84%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">更複雜的：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -214,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/MVC/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Rake-in-Rails/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Users/mike/Desktop/Blog/Hexo/pictures/self">
@@ -227,12 +229,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="MVC | Mike Code">
+      <meta itemprop="name" content="Rake/in/Rails | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MVC<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-MVC.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          Rake/in/Rails<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-Rake-in-Rails.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -244,7 +246,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 20:07:09 / Modified: 20:10:30" itemprop="dateCreated datePublished" datetime="2022-08-14T20:07:09+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-14 20:57:37 / Modified: 21:00:29" itemprop="dateCreated datePublished" datetime="2022-08-14T20:57:37+08:00">2022-08-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -252,12 +254,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rials/" itemprop="url" rel="index"><span itemprop="name">Rials</span></a>
+          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/MVC/" class="post-meta-item leancloud_visitors" data-flag-title="MVC" title="Views">
+    <span id="/2022/08/14/Rake-in-Rails/" class="post-meta-item leancloud_visitors" data-flag-title="Rake/in/Rails" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -272,8 +274,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/MVC/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/MVC/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/08/14/Rake-in-Rails/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Rake-in-Rails/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -287,24 +289,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="意義"><a href="#意義" class="headerlink" title="意義"></a>意義</h1><p>MVC是一套網頁開發的架構流程，代表著從前端到後端的各自分工。</p>
+        <h1 id="將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model："><a href="#將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model：" class="headerlink" title="將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model："></a>將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace <span class="symbol">:user</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">&quot;建立使用者&quot;</span></span><br><span class="line">  task <span class="symbol">:init</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span> <span class="comment"># 讓 rake 可以引入所有 rails 的東西（ model, migration 等等）  </span></span><br><span class="line">    User.create(<span class="symbol">email:</span> Faker::Internet.email ,<span class="symbol">password:</span> <span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">    puts <span class="string">&quot;user created&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<hr>
-<h1 id="M-Model"><a href="#M-Model" class="headerlink" title="M: Model"></a>M: Model</h1><p>model 為一個虛擬的資料庫，但並非真實的資料庫，真正的資料庫還是得由正統的資料庫程式來扮演。在 Rails 裡，建立 model 能夠產生資料表 tables 的文字描述檔，接著透過 rails db:migrate 將資料表具象化後，就能將 tables 轉化成真正的資料庫並儲存資料了。</p>
-<p>model 所扮演的角色是 controller 與資料庫之間的橋樑，將 controller 的 action 需要的資料，透過 model 以 SQL 語法轉譯向資料庫搜尋並提取資料，再把資料丟給 controller，或是將 controller 從 view 得到的資料，丟給 model，model 會再將 controller 給過來的資料，自行透過 SQL 語法，把資料儲存進資料庫裡。</p>
-<p>由於 model 是負責與資料庫進行聯繫的地方，所以資料的驗證，主要是寫在 model 上，在 rails 裡，則是在 model 新增 validates 方法。</p>
-<p>另外，多個 model 建立的 tables 們能夠透過primary_key, foreign_key 或是 belongs_to &#x2F; has_one &#x2F; has_many，將彼此的資料產生關聯。</p>
-<p>腦的角色：所有的資料驗證都放在 model 內，包含商業邏輯，因為 model 就像大腦，負責處理「知不知道」的事情，比方說某個資料的處理需要先驗證 user 存不存在或是params 與資料庫有沒有吻合，這些都是跟大腦判斷有關的事情。</p>
-<hr>
-<h1 id="V-View"><a href="#V-View" class="headerlink" title="V: View"></a>V: View</h1><p>view 的功能主要是呈現出 controller 裡與 view 相對應的 action 所取得的資料在畫面上，或是將使用者於前端輸入的資料，送到 controller 進行後續處理。</p>
-<p>通常不會在 view 裡進行任何的邏輯運算或是主動向任何地方討資料，view 唯一只需要做的就是呈現收到的資料或是將被給予的資料丟給 controller。</p>
-<p>眼的角色：view 主要就是負責視覺，觀看，閱讀。</p>
-<hr>
-<h1 id="C-Controller"><a href="#C-Controller" class="headerlink" title="C: Controller"></a>C: Controller</h1><p>controller 可以算是整個架構的手腳，工具人的概念。controller 裡有很多 action。當 controller 收到請求觸發 action 時，就會開始執行 action 裡的 code，並在需要資料的時候，向 model 請求，取得資料後，再丟給 view。很顯然，controller 主要是負責資料運算與搬運。</p>
-<p>手腳的角色：controller 就是負責所有的動作，所以裡面的 methods 才會叫 action，這個資料我要、這個資料我不要（白名單），這個資料拿給 model，這個資料拿給 view。所以 controller 通常不會太肥大，而 model 則會比較肥大。</p>
-<hr>
-<h1 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h1><p>在 rails 裡，多了一個像是地圖導覽的東西叫 routes，專門建立該用什麼方法執行網址路徑，而網址路徑會去呼叫相對應的 controller 及 action，進而呈現 MVC 的循環。</p>
 
+<p>如果沒有導入環境給 rake ，rake 就找不到 User ，就沒辦法 new 了。</p>
+<p>終端機輸入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake user:init</span><br></pre></td></tr></table></figure>
+
+<h1 id="透過回圈，一個指令，產生多筆資料："><a href="#透過回圈，一個指令，產生多筆資料：" class="headerlink" title="透過回圈，一個指令，產生多筆資料："></a>透過回圈，一個指令，產生多筆資料：</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">namespace <span class="symbol">:user</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">&quot;建立使用者&quot;</span></span><br><span class="line">  task <span class="symbol">:init</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span> </span><br><span class="line">    <span class="number">5</span>.times &#123;</span><br><span class="line">      user = User.create(<span class="symbol">email:</span> Faker::Internet.email ,<span class="symbol">password:</span> <span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">      puts <span class="string">&quot;user: <span class="subst">#&#123;user.email&#125;</span> created!&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="更複雜的："><a href="#更複雜的：" class="headerlink" title="更複雜的："></a>更複雜的：</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">namespace <span class="symbol">:blog</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">&quot;建立初始資料&quot;</span></span><br><span class="line">  task <span class="symbol">:init</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># init user &amp; articles</span></span><br><span class="line">    <span class="number">5</span>.times &#123;</span><br><span class="line">      u = User.create(<span class="symbol">email:</span> Faker::Internet.email, <span class="symbol">password:</span> <span class="string">&quot;123456&quot;</span>)</span><br><span class="line">      blog = u.create_blog(</span><br><span class="line">        <span class="symbol">handler:</span> Faker::Name.unique.name.downcase.gsub(<span class="string">&quot; &quot;</span>, <span class="string">&quot;_&quot;</span>).delete(<span class="string">&quot;.&quot;</span>),</span><br><span class="line">        <span class="symbol">title:</span> Faker::Lorem.sentence,</span><br><span class="line">        <span class="symbol">description:</span> Faker::Lorem.paragraphs(<span class="symbol">number:</span> <span class="number">2</span>).join</span><br><span class="line">      )</span><br><span class="line">      puts <span class="string">&quot;blog <span class="subst">#&#123;blog.handler&#125;</span> created&quot;</span></span><br><span class="line">      <span class="number">10</span>.times &#123;</span><br><span class="line">        article = u.articles.create(</span><br><span class="line">          <span class="symbol">title:</span> Faker::Lorem.sentence,</span><br><span class="line">          <span class="symbol">content:</span> Faker::Lorem.paragraphs(<span class="symbol">number:</span> <span class="number">5</span>).join</span><br><span class="line">        )</span><br><span class="line">        puts <span class="string">&quot;  title: <span class="subst">#&#123;article.title&#125;</span> created&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">      puts <span class="string">&quot;user: <span class="subst">#&#123;u.email&#125;</span> created!&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -313,20 +307,22 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
               <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
+              <a href="/tags/Rake/" rel="tag"><i class="fa fa-tag"></i> Rake</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/14/&:%20and%20&.%20in%20Ruby/" rel="prev" title="The special methods for Ruby -> &(:) and &.">
-                  <i class="fa fa-chevron-left"></i> The special methods for Ruby -> &(:) and &.
+                <a href="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/" rel="prev" title="樂觀鎖 vs 悲觀鎖">
+                  <i class="fa fa-chevron-left"></i> 樂觀鎖 vs 悲觀鎖
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/14/ActiveModel-ForbiddenAttributesError/" rel="next" title="ActiveModel::ForbiddenAttributesError">
-                  ActiveModel::ForbiddenAttributesError <i class="fa fa-chevron-right"></i>
+                <a href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" rel="next" title="ViewHelper-form_tag/form_for/form_with">
+                  ViewHelper-form_tag/form_for/form_with <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
