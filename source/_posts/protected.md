@@ -2,6 +2,7 @@
 layout: 
 title: 封裝：public / private / protected
 date: 2022-08-14 16:57:52
+categories: Ruby
 tags: Ruby
 ---
 # 封裝的用意
