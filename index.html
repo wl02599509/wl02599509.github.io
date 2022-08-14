@@ -145,6 +145,16 @@
   </div>
 
 
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      web
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com" rel="noopener" target="_blank">Title</a>
+        </li>
+    </ul>
+  </div>
 
         </div>
       </div>
@@ -196,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/protected/" class="post-title-link" itemprop="url">protected</a>
+          <a href="/2022/08/14/protected/" class="post-title-link" itemprop="url">封裝：public / private / protected</a>
         </h2>
 
         <div class="post-meta-container">
@@ -208,11 +218,11 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 16:57:52 / Modified: 17:01:18" itemprop="dateCreated datePublished" datetime="2022-08-14T16:57:52+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-14 16:57:52 / Modified: 17:03:20" itemprop="dateCreated datePublished" datetime="2022-08-14T16:57:52+08:00">2022-08-14</time>
     </span>
 
   
-    <span id="/2022/08/14/protected/" class="post-meta-item leancloud_visitors" data-flag-title="protected" title="Views">
+    <span id="/2022/08/14/protected/" class="post-meta-item leancloud_visitors" data-flag-title="封裝：public / private / protected" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -235,12 +245,14 @@
 <h1 id="這三種方法的說明如下："><a href="#這三種方法的說明如下：" class="headerlink" title="這三種方法的說明如下："></a>這三種方法的說明如下：</h1><h2 id="public"><a href="#public" class="headerlink" title="public:"></a>public:</h2><p>完全公開的方法，內外皆可存取。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span>  <span class="comment">#public狀態的方法</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
+<hr>
 <h2 id="private"><a href="#private" class="headerlink" title="private:"></a>private:</h2><p>對外限制，不能有特定的receiver，故僅能在類別方法裡使用，且不能有 receiver。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span></span><br><span class="line">    money <span class="comment">#成功</span></span><br><span class="line">    <span class="variable language_">self</span>.money <span class="comment">#失敗</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private    <span class="comment">#對外限制的私人方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Mike = Company.new</span><br><span class="line">Mike.finance</span><br><span class="line">Mike.money <span class="comment">#失敗</span></span><br><span class="line">money <span class="comment">#失敗</span></span><br><span class="line">Mike.send (<span class="symbol">:money</span>) <span class="comment">#成功  #在Mike物件上呼叫send公開方法，對Mike send money訊息</span></span><br><span class="line">而private以下的方法皆會變成private狀態，直到遇見public。</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  private</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">documents</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  public</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">staff</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>所以一般大眾寫法是先將public的方法寫在前面，後面再使用private設定其他成私人的方法。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">staff</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">marketing</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">documents</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
+<hr>
 <h2 id="protected"><a href="#protected" class="headerlink" title="protected :"></a>protected :</h2><p>對外有限制，不能有receiver，但在class裡面則可有receiver也可以沒有receiver。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span></span><br><span class="line">  money <span class="comment">#成功</span></span><br><span class="line">  <span class="variable language_">self</span>.money <span class="comment">#成功</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  protected</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Mike = Company.new</span><br><span class="line">Mike.finance</span><br><span class="line">Mike.money <span class="comment">#失敗</span></span><br></pre></td></tr></table></figure>
 
