@@ -1,5 +1,5 @@
 ---
-title: ViewHelper-form_tag/form_for/form_with
+title: ViewHelper - form_tag / form_for / form_with
 date: 2022-08-14 21:01:32
 categories: Rails
 tags:
