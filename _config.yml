@@ -97,12 +97,12 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: 
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repo: https://github.com/wl02599509/wl02599509.github.io
-  branch: gp-pages 
+  branch: gp-pages 2
   message: "First Commit"
