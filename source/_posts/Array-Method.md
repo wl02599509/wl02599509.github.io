@@ -1,8 +1,12 @@
 ---
 title: Array_Method
 date: 2022-08-14 15:52:33
-tags:
+tags: Ruby, Array
 ---
+在學習程式語言時，操縱陣列是非常頻繁的一件事情，因為資料的貯存與提取，不外乎就是 Array, Hash 的型態來處理。
+
+本篇將整理陣列中常使用的 Methods，也算是筆記整理的一個篇章。
+<!-- more -->
 
 # 基本常用
 ```ruby
