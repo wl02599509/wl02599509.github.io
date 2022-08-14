@@ -3,7 +3,6 @@ title: 搜尋大對決 Find, Find_by, Where
 date: 2022-08-14 20:21:25
 categories:
 - Rails
-- Data Base
 tags:
 - Rails
 - SQL
