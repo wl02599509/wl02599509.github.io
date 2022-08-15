@@ -20,30 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言在練習model的關聯時，User has one Store; Store has many Products; Product has many Stores，發現Store與Product之間的關聯有異常，因為Product.new後，無法把Product的實體指定給Store，但Store確實是有save，有確實存在的。">
+    <meta name="description" content="前言GitHub 是業界中廣為人知的版本控制網站，它是使用 Rails 建構（一定要提一下ＸＤ）。 只要輕輕地使用 git 指令，便能將檔案推上網站，或是從網站上拉下來。 等等，一下 GitHub 一下 git，有什麼差嗎，為什麼會用兩個不同的詞？ 就讓我們繼續看下去。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="model 關聯的失敗異常">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/index.html">
+<meta property="og:title" content="GitHub, Git 分清楚了嗎？（上）">
+<meta property="og:url" content="https://wl02599509.github.io/2022/08/15/GitHub/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前言在練習model的關聯時，User has one Store; Store has many Products; Product has many Stores，發現Store與Product之間的關聯有異常，因為Product.new後，無法把Product的實體指定給Store，但Store確實是有save，有確實存在的。">
+<meta property="og:description" content="前言GitHub 是業界中廣為人知的版本控制網站，它是使用 Rails 建構（一定要提一下ＸＤ）。 只要輕輕地使用 git 指令，便能將檔案推上網站，或是從網站上拉下來。 等等，一下 GitHub 一下 git，有什麼差嗎，為什麼會用兩個不同的詞？ 就讓我們繼續看下去。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T11:31:56.000Z">
-<meta property="article:modified_time" content="2022-08-14T11:41:05.086Z">
+<meta property="article:published_time" content="2022-08-15T09:08:14.000Z">
+<meta property="article:modified_time" content="2022-08-15T13:52:40.073Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Rails">
-<meta property="article:tag" content="Problems">
-<meta property="article:tag" content="Model">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/08/15/GitHub/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/","path":"2022/08/14/model關聯的失敗異常/","title":"model 關聯的失敗異常"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/15/GitHub/","path":"2022/08/15/GitHub/","title":"GitHub, Git 分清楚了嗎？（上）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>model 關聯的失敗異常 | Mike Code</title>
+<title>GitHub, Git 分清楚了嗎？（上） | Mike Code</title>
   
 
 
@@ -128,7 +127,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">問題如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BC%E7%8F%BE%E5%95%8F%E9%A1%8C%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">發現問題：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">解決方法：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub-vs-Git"><span class="nav-number">2.</span> <span class="nav-text">GitHub vs Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub"><span class="nav-number">3.</span> <span class="nav-text">GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#count-contributions"><span class="nav-number">3.1.</span> <span class="nav-text">count contributions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fork"><span class="nav-number">3.2.</span> <span class="nav-text">Fork</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync-fork"><span class="nav-number">3.3.</span> <span class="nav-text">Sync fork</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull-requests"><span class="nav-number">3.4.</span> <span class="nav-text">Pull requests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Profile"><span class="nav-number">3.5.</span> <span class="nav-text">Self-Profile</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/15/GitHub/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -229,12 +228,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="model 關聯的失敗異常 | Mike Code">
+      <meta itemprop="name" content="GitHub, Git 分清楚了嗎？（上） | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          model 關聯的失敗異常<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          GitHub, Git 分清楚了嗎？（上）<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-15-GitHub.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -246,7 +245,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 19:31:56 / Modified: 19:41:05" itemprop="dateCreated datePublished" datetime="2022-08-14T19:31:56+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-15 17:08:14 / Modified: 21:52:40" itemprop="dateCreated datePublished" datetime="2022-08-15T17:08:14+08:00">2022-08-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,12 +253,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+          <a href="/categories/GitHub/" itemprop="url" rel="index"><span itemprop="name">GitHub</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/" class="post-meta-item leancloud_visitors" data-flag-title="model 關聯的失敗異常" title="Views">
+    <span id="/2022/08/15/GitHub/" class="post-meta-item leancloud_visitors" data-flag-title="GitHub, Git 分清楚了嗎？（上）" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -274,8 +273,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/model關聯的失敗異常/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/08/15/GitHub/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/15/GitHub/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -289,40 +288,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在練習model的關聯時，User has one Store; Store has many Products; Product has many Stores，發現Store與Product之間的關聯有異常，因為Product.new後，無法把Product的實體指定給Store，但Store確實是有save，有確實存在的。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>GitHub 是業界中廣為人知的版本控制網站，它是使用 Rails 建構（一定要提一下ＸＤ）。</p>
+<p>只要輕輕地使用 git 指令，便能將檔案推上網站，或是從網站上拉下來。</p>
+<p>等等，一下 GitHub 一下 git，有什麼差嗎，為什麼會用兩個不同的詞？</p>
+<p>就讓我們繼續看下去。</p>
 <span id="more"></span>
 <hr>
-<h1 id="問題如下："><a href="#問題如下：" class="headerlink" title="問題如下："></a>問題如下：</h1><ol>
-<li><p>p1 &#x3D; Product.new(name:”衛生紙”) 接著執行 p1.stores &#x3D; s1 卻出現 undefined method “each”的錯誤訊息。</p>
-</li>
-<li><p>反過來執行 s1.products &#x3D; p1 也是出現 undefined method “each”的錯誤訊息。</p>
-</li>
-<li><p>我用 s1.products.build(name:”衛生紙”) 再用 s1.save去存，結果出現 Products is invalid 的錯誤訊息。</p>
-</li>
-<li><p>我用 s1.products &lt;&lt; p1 結果出現 Validation failed: Store must exist的錯誤訊息，但從最上面 Store.all可以確定Store是有存在的。</p>
-</li>
-</ol>
-<h2 id="發現問題："><a href="#發現問題：" class="headerlink" title="發現問題："></a>發現問題：</h2><p>後來依照龍哥的為自己學Ruby裡的Model關聯性單元中，依序照著老師建立model並於rails c裡執行指令，確認都正常Store與Product間都沒問題，所以確認不是windows的問題。</p>
-<p>於是比對了我的跟龍哥的schema與migration後，發現了不一樣的地方(如圖schema與圖migration)。</p>
-<p>所以可能就是因為我在建立Product model時用 store:references，產生了null:false，而老師是用store_id:integer，導致我product的store_id在nil的情況下，無法把Product.new的實體指定到store上。</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/1a52c0de-b7e7-49c3-82b8-a759f5e1f977.png">https://images.vocus.cc/1a52c0de-b7e7-49c3-82b8-a759f5e1f977.png</a></img></p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/29278c25-2002-48b2-85fb-a2fda1fe025c.png">https://images.vocus.cc/29278c25-2002-48b2-85fb-a2fda1fe025c.png</a></img></p>
-<h2 id="解決方法："><a href="#解決方法：" class="headerlink" title="解決方法："></a>解決方法：</h2><ol>
-<li><p>就是要讓Product沒有null:false的限制。</p>
-</li>
-<li><p>強制給實體掛上store_id：</p>
-</li>
-</ol>
-<p>我們先把User &#x2F; Store &#x2F; Product都先建立出實體，並先把User跟Store先存好。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">u1=<span class="title class_">User</span>.new(<span class="symbol">name:</span><span class="string">&quot;美國&quot;</span>)</span><br><span class="line">u1.save</span><br><span class="line">s1=<span class="title class_">Store</span>.new(<span class="symbol">title:</span><span class="string">&quot;costco&quot;</span>)</span><br><span class="line">u1.store = s1</span><br></pre></td></tr></table></figure>
-
-<p>接下來處理Product:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p1=<span class="title class_">Product</span>.new(<span class="symbol">name:</span><span class="string">&quot;衛生紙&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>重點來了，先把store的id塞給product:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p1.store_id = s1.id</span><br></pre></td></tr></table></figure>
-<p>打p1確認一下</p>
-<p>這時可以得知，p1已經有store_id了，所以上述問題皆沒問題。</p>
+<h1 id="GitHub-vs-Git"><a href="#GitHub-vs-Git" class="headerlink" title="GitHub vs Git"></a>GitHub vs Git</h1><p>如前言所說，GitHub 是版本控制網站，是一個網站，但 git 是一套工具，兩者大相徑庭，但又不能說完全沾不上邊，不然怎麼會都有個 git 字呢？</p>
+<p>git 這套工具有很多簡單好用的指令，讓我們能妥善管理檔案 <strong>(git add &#x2F; git commit)</strong>，而 GitHub 這個版本控制網站，則是要透過 git 指令，將受管理的檔案們，上傳 <strong>(git push)</strong> 到 GitHub 上面的 <strong>Repositories</strong>。</p>
+<p>這樣看來，兩者便是彼此獨立的個體，但有著密不可分卻的關係。</p>
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><p>經由上述說明，感覺 GitHub 只是一個放置檔案的平台而爾，但其實網站本身的功能非常多且強大。</p>
+<h2 id="count-contributions"><a href="#count-contributions" class="headerlink" title="count contributions"></a>count contributions</h2><p>只要我們將檔案推上（git push）GitHub，個人首頁下的小小灰色格子就會變成綠色。</p>
+<p>該上傳檔案什麼時候被 git commit，那麼，什麼時候的灰色格子變成綠色，所以你在 2022.12.31 23:47 對Ａ檔案 commit，然後在 2023.01.01 00:01 推到 GitHub 上，那變成綠色的格子就會是 2022.12.31 唷，<strong>不會跟你一起跨年唷～</strong></p>
+<p>至於綠色的深淺，會依照 commit 的數量決定。</p>
+<h2 id="Fork"><a href="#Fork" class="headerlink" title="Fork"></a>Fork</h2><p>這個功能可以讓我們把其他用戶的 repository 分享到自己的 Repositories 裡。</p>
+<h2 id="Sync-fork"><a href="#Sync-fork" class="headerlink" title="Sync fork"></a>Sync fork</h2><p>當我們把別人的 repository 抓過來後，對方在自己的 GitHub 上更新了該 repository，我們可以在自己 GitHub 的該 repository 的 &lt;&gt; Code 頁面，按下 Sync fork，讓自己這邊能同步更新一次對方檔案的進度。</p>
+<h2 id="Pull-requests"><a href="#Pull-requests" class="headerlink" title="Pull requests"></a>Pull requests</h2><p>當我們把對方的repository Fork 過來並進行修改時，可以使用 Pull requests，像對方發出請求，請求對方將自己修改的部分，納入對方的 repository。</p>
+<p>這個功能常常在團隊開發時會使用到，而且可以設定要有多少人 approve 更動的部分後，才能 pull。</p>
+<p>另外，如果多人對同個檔案做了不同的修改，而發送 Pull requests 時，第二個以後的 request，都有可能會因為內容衝突導致無法 pull。</p>
+<p>舉例來說:</p>
+<p>如果 A, B, C 都對 Wubay 這個 repository 的 index.html 進行修改並送出 Pull requests，C 的 requests 先被接受，其後的 A 跟 B 就有可能會因為內容有衝突導致無法 pull 的狀況。</p>
+<p>如此，就要退回 A 跟 B 的 requests，並請他們重寫（可憐）。</p>
+<h2 id="Self-Profile"><a href="#Self-Profile" class="headerlink" title="Self-Profile"></a>Self-Profile</h2><p>只要新增一個名稱與自己帳號一樣的 repository，並勾選 <strong>Add a README file</strong>，就能在自己的 Overview 上產生一個大欄位，讓你可以在上面打上一些自我介紹等資訊。</p>
+<p>這部分的編輯，因為是 Markdown 文檔，所以可以了解一下 Markdown 的 語法。</p>
+<hr>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>本篇介紹了 GitHub 的功能，我想大家應該多少對 GitHub 有點認識了，下一篇會介紹 Git，兩篇讀完後，應該更能理解雙方的差異。</p>
 
     </div>
 
@@ -332,23 +322,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
-              <a href="/tags/Problems/" rel="tag"><i class="fa fa-tag"></i> Problems</a>
-              <a href="/tags/Model/" rel="tag"><i class="fa fa-tag"></i> Model</a>
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/" rel="prev" title="node & nodejs導致rails專案建立失敗">
-                  <i class="fa fa-chevron-left"></i> node & nodejs導致rails專案建立失敗
+                <a href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" rel="prev" title="ViewHelper - form_tag / form_for / form_with">
+                  <i class="fa fa-chevron-left"></i> ViewHelper - form_tag / form_for / form_with
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/" rel="next" title="Code 創作心法：SLR">
-                  Code 創作心法：SLR <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
