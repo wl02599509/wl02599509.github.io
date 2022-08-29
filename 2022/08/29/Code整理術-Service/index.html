@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言當我們在寫專案時，有很多的功能會寫在各自的 MVC 裡。 但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？Service通常這類功能，像是金流串接，需要將參數加密後發 request 到金流廠商，接著再接收金流廠商發過來的 request 並解碼，再回傳相關資料。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code整理術:Service">
+<meta property="og:url" content="https://wl02599509.github.io/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言當我們在寫專案時，有很多的功能會寫在各自的 MVC 裡。 但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？Service通常這類功能，像是金流串接，需要將參數加密後發 request 到金流廠商，接著再接收金流廠商發過來的 request 並解碼，再回傳相關資料。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-29T03:34:45.000Z">
+<meta property="article:modified_time" content="2022-08-29T05:22:57.095Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="Ruby">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/","path":"2022/08/29/Code整理術-Service/","title":"Code整理術:Service"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Code整理術:Service | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%86%E7%95%B6%E9%80%99%E9%A0%85%E5%8A%9F%E8%83%BD%E6%98%AF-CRUD-%E4%BB%A5%E5%A4%96%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E6%88%91%E5%80%91%E7%A9%B6%E7%AB%9F%E8%A6%81%E6%8A%8A%E5%AE%83%E5%AF%AB%E5%9C%A8%E5%93%AA%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service"><span class="nav-number">2.</span> <span class="nav-text">Service</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%92%E6%84%8F%E5%A4%96%EF%BC%8C%E9%80%99%E6%99%82%E6%9C%83%E9%A1%AF%E7%A4%BA-%E6%89%BE%E4%B8%8D%E5%88%B0%E5%B8%B8%E6%95%B8-Payment-EcpayRequest-%E7%9A%84%E9%8C%AF%E8%AA%A4%E3%80%82"><span class="nav-number">2.1.</span> <span class="nav-text">沒意外，這時會顯示 找不到常數 Payment::EcpayRequest 的錯誤。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">解決辦法</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Code整理術:Service | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Code整理術:Service<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-29-Code%E6%95%B4%E7%90%86%E8%A1%93-Service.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-29 11:34:45 / Modified: 13:22:57" itemprop="dateCreated datePublished" datetime="2022-08-29T11:34:45+08:00">2022-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/" class="post-meta-item leancloud_visitors" data-flag-title="Code整理術:Service" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/29/Code整理術-Service/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>當我們在寫專案時，有很多的功能會寫在各自的 MVC 裡。</p>
+<h2 id="但當這項功能是-CRUD-以外的功能，我們究竟要把它寫在哪呢？"><a href="#但當這項功能是-CRUD-以外的功能，我們究竟要把它寫在哪呢？" class="headerlink" title="但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？"></a>但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？</h2><h1 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h1><p>通常這類功能，像是金流串接，需要將參數加密後發 request 到金流廠商，接著再接收金流廠商發過來的 request 並解碼，再回傳相關資料。</p>
+<span id="more"></span>
+<p>這樣的 code 寫在哪比較合理？</p>
+<p>看起來 model 是一個選項，但你要選擇哪個 model? 新增一個 model 來做這件事情似乎也有點奇怪。</p>
+<p>所以我們可以把這類的功能整理到 app&#x2F;service&#x2F;payment 裡。</p>
+<p>也就是在 app 底下新增 service 與 payment 資料夾，並在底下建立 xxxx.rb，並在這建立一個 PORO 底下則開始寫功能的 code:<br>(以下為串接綠界金流的 code )</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> Payment</span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">EcpayRequest</span></span><br><span class="line">    <span class="keyword">require</span> <span class="string">&#x27;uri&#x27;</span></span><br><span class="line">    <span class="keyword">require</span> <span class="string">&#x27;openssl&#x27;</span></span><br><span class="line">    <span class="keyword">require</span> <span class="string">&#x27;CGI&#x27;</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">initialize</span>(<span class="params">merchant_trade_date, </span></span><br><span class="line"><span class="params">                   merchant_trade_no, </span></span><br><span class="line"><span class="params">                   title, </span></span><br><span class="line"><span class="params">                   pirce</span>)</span><br><span class="line">  </span><br><span class="line">      <span class="variable">@params</span> = &#123;</span><br><span class="line">        <span class="string">&quot;TradeDesc&quot;</span>: <span class="string">&quot;專案贊助交易&quot;</span>, </span><br><span class="line">        <span class="string">&quot;PaymentType&quot;</span>: <span class="string">&quot;aio&quot;</span>, </span><br><span class="line">        <span class="string">&quot;MerchantTradeDate&quot;</span>: merchant_trade_date, </span><br><span class="line">        <span class="string">&quot;MerchantTradeNo&quot;</span>: merchant_trade_no, </span><br><span class="line">        <span class="string">&quot;MerchantID&quot;</span>: <span class="number">3002607</span>, </span><br><span class="line">        <span class="string">&quot;ReturnURL&quot;</span>: <span class="string">&quot;https://f25a-103-3-192-33.jp.ngrok.io/payment/returnpage&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ItemName&quot;</span>: title </span><br><span class="line">        <span class="string">&quot;TotalAmount&quot;</span>: price, </span><br><span class="line">        <span class="string">&quot;ChoosePayment&quot;</span>: <span class="string">&quot;ALL&quot;</span>, </span><br><span class="line">        <span class="string">&quot;IgnorePayment&quot;</span>: <span class="string">&quot;WebATM#ATM#CVS#BARCODE&quot;</span>,</span><br><span class="line">        <span class="string">&quot;EncryptType&quot;</span>: <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">perform</span>(<span class="params">params</span>)</span><br><span class="line">      encrypt(params)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">    private</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">params</span>) </span><br><span class="line">      <span class="comment"># 1.由A到Z的順序並轉換為 query string</span></span><br><span class="line">      order_query_string = <span class="variable constant_">URI</span>.encode_www_form(params.to_a.sort!)</span><br><span class="line">      <span class="comment"># 2.前後加 Key 跟 IV</span></span><br><span class="line">      key_vi = <span class="string">&quot;HashKey=pwFHCqoQZGmho4w6&amp;&quot;</span> + order_query_string + <span class="string">&quot;&amp;HashIV=EkRm7iFT261dpevs&quot;</span></span><br><span class="line">      <span class="comment"># 3.進行 URL encode 並轉小寫</span></span><br><span class="line">      url_encode = (<span class="variable constant_">CGI</span>.escape key_vi).downcase.gsub!(<span class="regexp">/%25/</span>, <span class="string">&#x27;%&#x27;</span>).gsub!(<span class="regexp">/%2b/</span>, <span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">      <span class="comment"># 4.sha256加密轉大寫</span></span><br><span class="line">      encrypted_result = Digest::<span class="variable constant_">SHA256</span>.hexdigest(url_encode).upcase</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">request</span></span><br><span class="line">      <span class="comment">#尚未</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>這時就可以使用類別來做事：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Payment::EcpayRequest</span><br></pre></td></tr></table></figure>
+
+<h2 id="沒意外，這時會顯示-找不到常數-Payment-EcpayRequest-的錯誤。"><a href="#沒意外，這時會顯示-找不到常數-Payment-EcpayRequest-的錯誤。" class="headerlink" title="沒意外，這時會顯示 找不到常數 Payment::EcpayRequest 的錯誤。"></a>沒意外，這時會顯示 找不到常數 Payment::EcpayRequest 的錯誤。</h2><h1 id="解決辦法"><a href="#解決辦法" class="headerlink" title="解決辦法"></a>解決辦法</h1><p>會出現該訊息是因為，Rails 抓不到這個 class，所以要把 config&#x2F;application.rb 大概第 21 行程式碼打開：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.eager_load_paths &lt;&lt; Rails.root.join(<span class="string">&quot;extras&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>這樣 Rails 在 load 的時候，就會抓到了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/" rel="prev" title="GitHub, Git 分清楚了嗎？（下）">
+                  <i class="fa fa-chevron-left"></i> GitHub, Git 分清楚了嗎？（下）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
