@@ -81,7 +81,7 @@ Payment::EcpayRequest
 
 # 解決辦法
 
-會出現該訊息是因為，Rails 抓不到這個 class，所以要把 config/application 大概第 21 行程式碼打開：
+會出現該訊息是因為，Rails 抓不到這個 class，所以要把 config/application.rb 大概第 21 行程式碼打開：
 ```ruby
 config.eager_load_paths << Rails.root.join("extras")
 ```
