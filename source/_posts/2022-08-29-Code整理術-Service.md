@@ -1,5 +1,5 @@
 ---
-title: Code 整理術: Service
+title: Code整理術:Service
 date: 2022-08-29 11:34:45
 category: Ruby
 tags: Ruby
@@ -8,11 +8,11 @@ tags: Ruby
 當我們在寫專案時，有很多的功能會寫在各自的 MVC 裡。
 
 但當這項功能是 CRUD 以外的功能，我們究竟要把它寫在哪呢？
-
+---
 # Service
 
 通常這類功能，像是金流串接，需要將參數加密後發 request 到金流廠商，接著再接收金流廠商發過來的 request 並解碼，再回傳相關資料。
-
+<!-- more -->
 這樣的 code 寫在哪比較合理？
 
 看起來 model 是一個選項，但你要選擇哪個 model? 新增一個 model 來做這件事情似乎也有點奇怪。
@@ -78,7 +78,7 @@ Payment::EcpayRequest
 ```
 
 沒意外，這時會顯示 找不到常數 Payment::EcpayRequest 的錯誤。
-
+---
 # 解決辦法
 
 會出現該訊息是因為，Rails 抓不到這個 class，所以要把 config/application.rb 大概第 21 行程式碼打開：
