@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。  一個樂團代表一個專案，這個樂團(專案)的目的就是要在演唱會上演奏歌曲。一個樂團裡會有鼓手、Bass手、吉他手、主唱，這每一個樂手代表著一個又一個的方">
+    <meta name="description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IT邦鐵人賽Day3-測試類型(二)">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。  一個樂團代表一個專案，這個樂團(專案)的目的就是要在演唱會上演奏歌曲。一個樂團裡會有鼓手、Bass手、吉他手、主唱，這每一個樂手代表著一個又一個的方">
+<meta property="og:description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-02T16:08:26.000Z">
-<meta property="article:modified_time" content="2022-09-02T16:09:56.233Z">
+<meta property="article:modified_time" content="2022-09-02T16:12:37.187Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
@@ -245,7 +245,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-03 00:08:26 / Modified: 00:09:56" itemprop="dateCreated datePublished" datetime="2022-09-03T00:08:26+08:00">2022-09-03</time>
+      <time title="Created: 2022-09-03 00:08:26 / Modified: 00:12:37" itemprop="dateCreated datePublished" datetime="2022-09-03T00:08:26+08:00">2022-09-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,6 +289,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 <strong>Evanescence - Bring me to life</strong> 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。</p>
+<span id="more"></span>
 <hr>
 <p>一個樂團代表一個專案，這個樂團(專案)的目的就是要在演唱會上演奏歌曲。一個樂團裡會有鼓手、Bass手、吉他手、主唱，這每一個樂手代表著一個又一個的方法、類別等最小單位，他們的樂譜代表 code，所以樂手 (功能)  會依照樂譜 (code) 彈奏出音樂 (執行後的結果)，當所有樂手組合起來彈奏出各自的音樂，就是演奏出一首歌 (一個完整的專案)。</p>
 <hr>
