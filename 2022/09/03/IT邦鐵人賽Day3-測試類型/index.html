@@ -20,30 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言在第一次建立rails專案時，通常都會遇到不少問題，像我是使用windows系統，所以也經歷了一些麻煩。如果各位第一次建立rails專案就可以看到下圖綠色字體的成功字樣，那真的如天選之人般幸運阿~">
-<meta property="og:type" content="article">
-<meta property="og:title" content="node &amp; nodejs導致rails專案建立失敗">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="IT邦鐵人賽Day3-測試類型(二)">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前言在第一次建立rails專案時，通常都會遇到不少問題，像我是使用windows系統，所以也經歷了一些麻煩。如果各位第一次建立rails專案就可以看到下圖綠色字體的成功字樣，那真的如天選之人般幸運阿~">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T11:15:08.000Z">
-<meta property="article:modified_time" content="2022-08-14T11:30:35.133Z">
+<meta property="article:published_time" content="2022-09-02T16:08:26.000Z">
+<meta property="article:modified_time" content="2022-09-02T16:08:52.496Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Rails">
-<meta property="article:tag" content="Problems">
-<meta property="article:tag" content="Installation">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Test Automation">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/","path":"2022/08/14/node & nodejs導致rails專案建立失敗/","title":"node & nodejs導致rails專案建立失敗"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/","path":"2022/09/03/IT邦鐵人賽Day3-測試類型/","title":"IT邦鐵人賽Day3-測試類型(二)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>node & nodejs導致rails專案建立失敗 | Mike Code</title>
+<title>IT邦鐵人賽Day3-測試類型(二) | Mike Code</title>
   
 
 
@@ -115,7 +112,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -128,7 +125,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%8B%80%E6%B3%81"><span class="nav-number">2.</span> <span class="nav-text">遇到狀況</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">解決辦法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%86%E6%88%91%E6%9C%89%E9%81%87%E5%88%B0%E6%96%B0%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">但我有遇到新的問題：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95-1"><span class="nav-number">3.1.</span> <span class="nav-text">解決辦法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.1.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,7 +212,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -229,12 +225,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="node & nodejs導致rails專案建立失敗 | Mike Code">
+      <meta itemprop="name" content="IT邦鐵人賽Day3-測試類型(二) | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          node & nodejs導致rails專案建立失敗<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT邦鐵人賽Day3-測試類型(二)<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-03-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -246,7 +242,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 19:15:08 / Modified: 19:30:35" itemprop="dateCreated datePublished" datetime="2022-08-14T19:15:08+08:00">2022-08-14</time>
+      <time title="Created: 2022-09-03 00:08:26 / Modified: 00:08:52" itemprop="dateCreated datePublished" datetime="2022-09-03T00:08:26+08:00">2022-09-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,12 +250,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/" class="post-meta-item leancloud_visitors" data-flag-title="node & nodejs導致rails專案建立失敗" title="Views">
+    <span id="/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day3-測試類型(二)" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -274,8 +270,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/node & nodejs導致rails專案建立失敗/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/03/IT邦鐵人賽Day3-測試類型/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -289,44 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在第一次建立rails專案時，通常都會遇到不少問題，像我是使用windows系統，所以也經歷了一些麻煩。如果各位第一次建立rails專案就可以看到下圖綠色字體的成功字樣，那真的如天選之人般幸運阿~</p>
-<span id="more"></span>
-
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/85a5e902-1254-4734-8521-5eadc45ad863.jpg">https://images.vocus.cc/85a5e902-1254-4734-8521-5eadc45ad863.jpg</a></img></p>
-<p>如果你跟我一樣注定要經歷windows系統的苦痛，就請繼續看下去吧QQ</p>
-<hr>
-<h1 id="遇到狀況"><a href="#遇到狀況" class="headerlink" title="遇到狀況"></a>遇到狀況</h1><p>以下是我在建立rails專案時，所遇到的狀況：</p>
-<p>$ rails new “project’s name” 建立新專案，出現了「Node.js not installed. Please download and install Node.js」的錯誤訊息。</p>
-<p>(記得：錯誤訊息不能忽略，否則會影響到日後的操作。)</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/11a096eb-00b0-4751-8775-df259a6a5a98.jpg">https://images.vocus.cc/11a096eb-00b0-4751-8775-df259a6a5a98.jpg</a></img></p>
-<h2 id="解決辦法"><a href="#解決辦法" class="headerlink" title="解決辦法"></a>解決辦法</h2><p>這時只要按照後面給的網址下載node跟nodejs就好。</p>
-<p>進入該網址後，往下拉點入install on windows subsystem for linux (wsl)，這是為了讓你在你的終端機上進行安裝。</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/0be7c56b-aba9-4256-aa93-91f61911f608.jpg">https://images.vocus.cc/0be7c56b-aba9-4256-aa93-91f61911f608.jpg</a></img></p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/ddfca0e3-ad87-4da0-aa49-c464e83ef3d6.jpg">https://images.vocus.cc/ddfca0e3-ad87-4da0-aa49-c464e83ef3d6.jpg</a><img></p>
-<p>點進去後，往下拉到下圖的標題，開始按照步驟執行即可完成。</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/38342a17-8f73-45c2-baed-02aed737d521.jpg">https://images.vocus.cc/38342a17-8f73-45c2-baed-02aed737d521.jpg</a></img></p>
-<p>完成以上node跟nodejs安裝後，回到終端機上輸入rails new的指令建立專案應該就沒問題了。</p>
-<hr>
-<h1 id="但我有遇到新的問題："><a href="#但我有遇到新的問題：" class="headerlink" title="但我有遇到新的問題："></a>但我有遇到新的問題：</h1><p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/5ad84922-fa56-41d0-b271-c768508bd975.jpg">https://images.vocus.cc/5ad84922-fa56-41d0-b271-c768508bd975.jpg</a></img></p>
-<p>系統在建立rails專案過程中，在安裝 webpacker 時發生失敗，其中「nod的’GLIBC_2.28’ not found」的問題，找了很多網站但還是找不到解決方法。</p>
-<p>然而下面一行的「Webpacker 的安裝需要nodejs為10.17.0版本以上才能執行，而目前系統使用的是8.10.0版本」。<br>(這部分不知道各位是不是都顯示8.10.0，但沒關係，因為你會看到這則Webpacker的錯誤訊息，就代表你的nodejs版本就是不符合他nodejs需要10.17.0版本以上的需求)</p>
-<p>這個部分的問題，我嘗試了好幾遍後發現，只需要解決nodejs版本的問題就能夠順利建立專案(也就是不再有任何錯誤訊息，包含’GLIBC_2.28’ not found)。</p>
-<p>如果你在這時輸入指令確認版本 $ node -v 及 $ nodejs -v，可能會發現前者給你的訊息是剛剛看到的’GLIBC_2.28’ not found，後者給你的訊息則是v8.10.0(也就是剛剛webpacker的錯誤訊息指出你nodejs正在使用的版本)。</p>
-<h2 id="解決辦法-1"><a href="#解決辦法-1" class="headerlink" title="解決辦法"></a>解決辦法</h2><p>那我們先把終端機關掉，重新開一個新的終端機，接著輸入指令$ nvm use –lts 將系統使用的node版本變成最新版本，輸入後便會看到系統說，正在使用 XXXX版(剛剛安裝的最新版)。</p>
-<p>這時你在輸入指令確認版本 $ node -v 及 $ nodejs -v，前者不再出現’GLIBC_2.28’ not found，而會出現 XXXX版，而nodejs還是顯示使用8.10.0版本。</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/5be5cad6-16d2-41be-aecc-a3bc99e52990.jpg">https://images.vocus.cc/5be5cad6-16d2-41be-aecc-a3bc99e52990.jpg</a></img></p>
-<p>確定了node -v 有出現最新版本，你就可以輸入rails new建立專案，此時應該就可以成功了。<br>但是使用 nvm use –lts 只是讓你變更當前使用的版本，所以你重開終端機，版本會回到原來的舊版本!!!</p>
-<p>因此建議使用nvm alias default <version> 將預設版本變更成最新版本，往後建立專案就不必再遇到同樣的問題。</p>
-<p>#設定v16.15.0為預設版本      #nvm alias default v16.15.0</p>
-<p>即便你現在變更當前版本讓你可以順利建立專案，日後再啟動 rails server 時，會因為你當前使用的node版本太老舊(因預設是舊的)，而產生以下狀況：</p>
-<p><img><a target="_blank" rel="noopener" href="https://images.vocus.cc/6d41b45f-b44a-4a5d-a923-87ff69bad155.jpg">https://images.vocus.cc/6d41b45f-b44a-4a5d-a923-87ff69bad155.jpg</a></img></p>
-<p>所以建議更改node的預設版本，才能徹底解決問題。</p>
-<hr>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>另外推薦這位KEN 陳建權大大寫的關於使用 NVM 管理 Node.js 版本文章。</p>
-<p>因為上述的問題，會導向NVM &#x2F; NODE &#x2F; NODE.JS 這些背景知識，而該文章有簡單介紹NVM是什麼，以及相關的設定變更指令。我覺得非常清楚好懂，對新手非常友善。</p>
-<p>如果你有遇到其他問題<del>希望你能分享上來一起想辦法</del></p>
-<p>希望這篇文章能夠幫助到各位閱讀者，祝大家順利~</p>
-
+        
     </div>
 
     
@@ -335,23 +294,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
-              <a href="/tags/Problems/" rel="tag"><i class="fa fa-tag"></i> Problems</a>
-              <a href="/tags/Installation/" rel="tag"><i class="fa fa-tag"></i> Installation</a>
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/14/protected/" rel="prev" title="封裝：public / private / protected">
-                  <i class="fa fa-chevron-left"></i> 封裝：public / private / protected
+                <a href="/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/" rel="prev" title="IT邦鐵人賽Day2-測試的類型">
+                  <i class="fa fa-chevron-left"></i> IT邦鐵人賽Day2-測試的類型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/" rel="next" title="model 關聯的失敗異常">
-                  model 關聯的失敗異常 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
