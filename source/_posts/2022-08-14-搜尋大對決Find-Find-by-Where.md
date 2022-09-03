@@ -14,7 +14,7 @@ tags:
 
 # Find
 
-輸入一個 id 參數後，尋找相對應的一筆資料。
+輸入一個 id 參數（只接受id）後，尋找相對應的一筆資料。
 
 ```ruby
 @article = Article.find(params[:id])
@@ -59,12 +59,30 @@ https://images.vocus.cc/3217ab9b-fc4c-465f-aec6-1c910990d19f.png
 
 輸入一個或多個參數後，找到相對應的多筆資料。
 
-```ruby
-@article = Article.where(params[:id])
-```
 這個 where 就是 SQL 語法的 where，所以參數也能使用 SQL 語法。
 
 此外，參數也可以是 String / Array / Hash 當搜尋條件。
+
+```ruby
+Follow.where(user_id: current_user.id, followable_id: params[:id], followable_type: "Project" )
+```
+
+```
+#<ActiveRecord::Relation [#<Follow id: 2, follow: true, followable_id: 8, followable_type: "Project", created_at: "2022-09-03 08:40:14.738219000 +0000", updated_at: "2022-09-03 08:40:14.738219000 +0000", user_id: 1>]>
+```
+
+使用 where 得到的結果是一個陣列裡面含有符合 where 條件的所有物件 ( Array with many objects )，也就是說，結果會是一個集合而不是一個資料，所以在取用時必須以陣列的方式取用。
+
+以上述 code 為例：
+```ruby
+result = Follow.where(user_id: current_user.id, followable_id: params[:id], followable_type: "Project" )
+
+result.first
+-> 
+<Follow id: 16, follow: true, followable_id: 7, followable_type: "Project", created_at: "2022-09-03 13:58:19.096192000 +0000", updated_at: "2022-09-03 13:58:19.096192000 +0000", user_id: 5>
+
+result.first.follow
+-> 'true'
 
 ---
 
