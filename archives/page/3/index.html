@@ -20,29 +20,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言在介紹什麼是樂觀鎖、什麼是悲觀鎖之前，我們先來了解一下，這兩個鎖是應用在什麼地方？  資料庫資料庫是用來處理資料的讀取與寫入，而資料庫的交易行為 (transaction) 必須符合 ACID，其中的 I 為 Isolation，指的是資料庫在對同個資料同時進行多筆交易時，必須避免產生資料的不一致。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="樂觀鎖 vs 悲觀鎖">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Mike Code">
+<meta property="og:url" content="https://wl02599509.github.io/archives/page/3/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前言在介紹什麼是樂觀鎖、什麼是悲觀鎖之前，我們先來了解一下，這兩個鎖是應用在什麼地方？  資料庫資料庫是用來處理資料的讀取與寫入，而資料庫的交易行為 (transaction) 必須符合 ACID，其中的 I 為 Isolation，指的是資料庫在對同個資料同時進行多筆交易時，必須避免產生資料的不一致。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T12:53:13.000Z">
-<meta property="article:modified_time" content="2022-08-14T12:56:56.784Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Data Base">
-<meta property="article:tag" content="transaction">
+<meta property="article:tag" content="Ruby">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/">
+<link rel="canonical" href="https://wl02599509.github.io/archives/page/3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/","path":"2022/08/14/樂觀鎖vs悲觀鎖/","title":"樂觀鎖 vs 悲觀鎖"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"archives/page/3/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>樂觀鎖 vs 悲觀鎖 | Mike Code</title>
+<title>Archive | Mike Code</title>
   
 
 
@@ -72,7 +67,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Mike Code</p>
+      <h1 class="site-title">Mike Code</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -114,7 +109,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -127,7 +122,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">2.</span> <span class="nav-text">資料庫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%82%B2%E8%A7%80%E9%8E%96"><span class="nav-number">3.</span> <span class="nav-text">悲觀鎖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%82%E8%A7%80%E9%8E%96"><span class="nav-number">4.</span> <span class="nav-text">樂觀鎖</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -204,145 +198,53 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner archive posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <span class="collection-header">Um..! 21 posts in total. Keep on posting.</span>
+      </div>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="樂觀鎖 vs 悲觀鎖 | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          樂觀鎖 vs 悲觀鎖<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
       
-
-      <time title="Created: 2022-08-14 20:53:13 / Modified: 20:56:56" itemprop="dateCreated datePublished" datetime="2022-08-14T20:53:13+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Base/" itemprop="url" rel="index"><span itemprop="name">Data Base</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/" class="post-meta-item leancloud_visitors" data-flag-title="樂觀鎖 vs 悲觀鎖" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/樂觀鎖vs悲觀鎖/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在介紹什麼是樂觀鎖、什麼是悲觀鎖之前，我們先來了解一下，這兩個鎖是應用在什麼地方？</p>
-<hr>
-<h1 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h1><p>資料庫是用來處理資料的讀取與寫入，而資料庫的交易行為 (transaction) 必須符合 ACID，其中的 I 為 Isolation，指的是資料庫在對同個資料同時進行多筆交易時，必須避免產生資料的不一致。</p>
-<span id="more"></span>
-
-<p>白話的意思是，當大家在搶購五月天演唱會的門票時，其中有一萬個人同一時間點選了 A 區第 B 排的序號 5 的座位，資料庫不能讓這一萬個人全部都買到票，只能有一位幸運兒得到，也就是只能有一位使用者能成功將其資訊寫入資料庫。</p>
-<p>為了達成這件萬中選一的情況，就必須使用到「鎖」的概念。</p>
-<hr>
-<h1 id="悲觀鎖"><a href="#悲觀鎖" class="headerlink" title="悲觀鎖"></a>悲觀鎖</h1><p>從字面上來想，可以很清楚的知道，這個鎖是用悲觀來看待資料的寫入。基於對事件的不信任，所採取的行為。</p>
-<p>悲觀鎖的概念是，眾多行為裡，只有一個行為能被接受，其餘的行為必須等待前面的行為結束。</p>
-<p>像是，學校老師在所有學生同時發問時，很難完整接收到大家的問題，為了避免這樣的狀況發生，我想老師一定會要求學生「一個一個」發問，小明問完，小美才能接著問，小美問完，小華才能繼續問，直到所有問題都問完，或是老師要下班離開了。這樣的操作就是<strong>悲觀鎖</strong>的概念。</p>
-<p>在資料庫的 Isolation，就是悲觀鎖的概念，為的就是避免在眾多使用者同時對同一筆資料進行任何改動的操作(資料爭用激烈)時，導致資料或數據的不一致。</p>
-<hr>
-<h1 id="樂觀鎖"><a href="#樂觀鎖" class="headerlink" title="樂觀鎖"></a>樂觀鎖</h1><p>樂觀鎖就是跟悲觀鎖相反的概念，它不會對任何的 transaction 進行限制，所以通常會是在「資料爭用」狀況小、使用者們的操作對彼此的影響小的時候採用樂觀鎖。</p>
-
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-08-14T15:52:33+08:00"
+              content="2022-08-14">
+          08-14
+        </time>
+      </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Data-Base/" rel="tag"><i class="fa fa-tag"></i> Data Base</a>
-              <a href="/tags/transaction/" rel="tag"><i class="fa fa-tag"></i> transaction</a>
-          </div>
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/08/14/Array-Method/" itemprop="url">
+            <span itemprop="name">Array_Method</span>
+          </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/08/14/Redirect-to-Render-RenderPartial/" rel="prev" title="Redirect_to / Render / Render Partial">
-                  <i class="fa fa-chevron-left"></i> Redirect_to / Render / Render Partial
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/08/14/Rake-in-Rails/" rel="next" title="Rake/in/Rails">
-                  Rake/in/Rails <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
 
-
-
-
-
-    
-  <div class="comments" id="disqus_thread">
-    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
   </div>
   
+  
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 </div>
   </main>
 
