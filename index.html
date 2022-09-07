@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,234 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" class="post-title-link" itemprop="url">IT邦鐵人賽Day7-RSpec執行的實例與含義</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-09-07 23:36:23 / Modified: 23:57:51" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
+    </span>
+
+  
+    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day7-RSpec執行的實例與含義" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day6-規格與第一個紅燈/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在前天講了TDD的概念與流程，昨天也安裝好Ruby語言跟RSpec測試框架，接下來要開始慢慢帶入測試的模樣，讓我們來看看測試流程到底長什麼樣子，測試到底是在測什麼，要寫什麼code。先別急，我們今天先講個測試之前需要的「<strong>規格</strong>」。</p>
+<h1 id="什麼是規格？"><a href="#什麼是規格？" class="headerlink" title="什麼是規格？"></a>什麼是規格？</h1><p>其實規格就是規範，範本的概念，用來描述標的物的形式，像是產品規格，設計規格。舉個例子，假如今天公司要你研發一台冷氣機，那是不是要先把藍圖畫出來，它的外型長什麼樣子，壓縮機要用哪種？往復式、渦卷式、螺旋式、迴轉式及離心式？有了這些構思藍圖，再開始一步步的把東西做出來，總不可能要你研發，你都不用想冷氣的外型，構造，內部元件等結構，然後就可以直接憑空做出一台冷氣機吧！</p>
+<p>那測試的規格就是以測試內容為標的物所製作出來的文字描述。這是為了方便我們清楚知道，我們到底要做什麼。</p>
+<p>在我們開始寫測試之前，我們要先了解目標專案的需求，然後思考這些需求如何達成，需要的介面是什麼，然後把想到的可能，寫在規格上。</p>
+<h1 id="範例說明"><a href="#範例說明" class="headerlink" title="範例說明"></a>範例說明</h1><p>今天客戶想要一個行動支付的軟體，我們就要思考，行動支付會有什麼功能，這些功能會如何運作。行動支付不外乎主要有扣款跟轉帳功能。</p>
+<p>其中的扣款功能，規格可以這樣寫：<br>軟體錢包原本有50元，扣款10元後，錢包顯示40元。<br>軟體錢包原本有50元，扣款100元後失敗，錢包仍顯示50元。</p>
+<p>如果客戶還想要有將錢存至錢包的存錢功能，規格可以這樣寫：<br>軟體錢包原本有28元，按下存入，輸入12元後，錢包顯示40元。</p>
+<p>像這樣就是規格的呈現，把情境與需求一一列出來，便可清楚知道，要測什麼，情境有哪些。如上可知，現在總共要做兩個不同的功能，那我們可以再整理得更清楚些：</p>
+<p>扣款功能：<br>軟體錢包原本有50元，扣款10元後，錢包顯示40元。<br>軟體錢包原本有50元，扣款100元後失敗，錢包仍顯示50元。</p>
+<p>存錢功能：<br>軟體錢包原本有28元，按下存入，輸入12元後，錢包顯示40元。</p>
+<p>試著把它寫進 RSpec：<br>我們先找一個喜歡的目錄，在終端機輸入 rspec –init，系統會自動建立 RSpec 的資料夾，並在 spec 裡建立檔案 mobile_wallet_spec.rb。</p>
+<p>這個檔名主要是專案名稱再加上 _spec 或 _test ，代表這個檔案是用來進行某某專案的測試檔，而後面的 .rb 就是程式語言 Ruby。</p>
+<p>（檔名可以隨便取叫123abc，但你應該會比較希望看到檔名就知道它是什麼吧？所以取名要取得有意義。）</p>
+<p>接著在測試檔案撰寫：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg"></p>
+<p>如此一來，是不是就能很清楚的知道這個測試需要做什麼，這就是規格。所以有句話是這麼說的：「寫測試就是在寫規格」。</p>
+<p>有了規格後，便能開始撰寫測試需要的 code。</p>
+<p>不過先別急著寫，我們來看看，這時候 run 測試會發生什麼事情，在終端機上輸入指令 rspec .&#x2F;mobile_wallet_spec.rb：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220906/20149089oraCq0JhlH.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20220906/20149089oraCq0JhlH.jpg"></p>
+<p>這時候會出現異常訊息是正常的，因為我們才剛做完測試的規格，並還沒有把實際的內容填上，所以執行測試一定是失敗(紅燈)的。</p>
+<p>NameError: uninitialized constant MobileWallet<br>意思就是我們還沒有 MobileWallet 的常數類別，這是理所當然的，畢竟我們根本還沒開始寫實作的 code。</p>
+<h1 id="關於紅燈"><a href="#關於紅燈" class="headerlink" title="關於紅燈"></a>關於紅燈</h1><p>千萬不要覺得紅燈是壞事，如果今天在做測試，從頭到尾都綠燈，那不是很可怕嗎？天底下真的有這麼順利的事情？</p>
+<p>所以通常都會先讓測試跑出紅燈，或是在測試綠燈之後，故意把驗證寫錯，看看會不會如預期亮紅燈，以此確認測試是正常的。</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>那今天就介紹規格，明天再來講解，寫完規格後要幹嘛？我們下回見～</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 6 - 規格與第一個紅燈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-06 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-06T23:36:23+08:00">2022-09-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-07 23:57:53" itemprop="dateModified" datetime="2022-09-07T23:57:53+08:00">2022-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 6 - 規格與第一個紅燈" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/06/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。</p>
+<p>接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1050,221 +1278,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/ViewHelper-form-tag-form-for-form-with/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-title-link" itemprop="url">ViewHelper - form_tag / form_for / form_with</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-14 21:01:32 / Modified: 21:29:41" itemprop="dateCreated datePublished" datetime="2022-08-14T21:01:32+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-meta-item leancloud_visitors" data-flag-title="ViewHelper - form_tag / form_for / form_with" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/ViewHelper-form-tag-form-for-form-with/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Rail 的 MVC 架構中，M 是負責驗證與邏輯、以及轉譯向資料庫溝通的角色; C 是負責資料的搬運，搬往 M 或 V; V 則是負責畫面的呈現、及使用者與資料的互動，並將請求送往C，接著得到 C 送回來的資料。</p>
-<p>那關於資料的傳輸，一定是要先有個表單，Rails 提供了三個方法，依照需求使用，不過用過之後，通常就會知道哪個最好用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Rake-in-Rails/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/Rake-in-Rails/" class="post-title-link" itemprop="url">Rake/in/Rails</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-14 20:57:37 / Modified: 21:00:29" itemprop="dateCreated datePublished" datetime="2022-08-14T20:57:37+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/08/14/Rake-in-Rails/" class="post-meta-item leancloud_visitors" data-flag-title="Rake/in/Rails" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/08/14/Rake-in-Rails/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Rake-in-Rails/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model："><a href="#將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model：" class="headerlink" title="將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model："></a>將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace <span class="symbol">:user</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">&quot;建立使用者&quot;</span></span><br><span class="line">  task <span class="symbol">:init</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span> <span class="comment"># 讓 rake 可以引入所有 rails 的東西（ model, migration 等等）  </span></span><br><span class="line">    User.create(<span class="symbol">email:</span> Faker::Internet.email ,<span class="symbol">password:</span> <span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">    puts <span class="string">&quot;user created&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/14/Rake-in-Rails/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
