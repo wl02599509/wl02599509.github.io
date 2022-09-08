@@ -23,7 +23,7 @@
     <meta name="description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/index.html">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/index.html">
 <meta property="og:site_name" content="Mike Code">
 <meta property="og:description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”">
 <meta property="og:locale" content="en_US">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089mEXxVHZJiL.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089wy1m60pf9f.png">
 <meta property="article:published_time" content="2022-09-07T16:17:08.000Z">
-<meta property="article:modified_time" content="2022-09-08T02:49:03.397Z">
+<meta property="article:modified_time" content="2022-09-08T02:58:08.545Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
@@ -44,11 +44,11 @@
 <meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/","path":"2022/09/08/IT邦鐵人賽Day8-RSpec的第一個綠燈/","title":"IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/","path":"2022/09/08/IT 邦鐵人賽Day8-RSpec的第一個綠燈/","title":"IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈 | Mike Code</title>
@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -242,7 +242,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-08-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-08-IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -254,7 +254,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-08 00:17:08 / Modified: 10:49:03" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
+      <time title="Created: 2022-09-08 00:17:08 / Modified: 10:58:08" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
     </span>
 
   
-    <span id="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈" title="Views">
+    <span id="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -282,8 +282,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/08/IT邦鐵人賽Day8-RSpec的第一個綠燈/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/08/IT 邦鐵人賽Day8-RSpec的第一個綠燈/" itemprop="commentCount"></span>
     </a>
   </span>
   
