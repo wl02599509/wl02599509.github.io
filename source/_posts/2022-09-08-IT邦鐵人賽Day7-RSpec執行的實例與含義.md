@@ -1,6 +1,6 @@
 ---
-title: IT 邦鐵人賽 Day 6 - 規格與第一個紅燈
-date: 2022-09-06 23:36:23
+title: IT邦鐵人賽Day7-RSpec執行的實例與含義
+date: 2022-09-07 23:36:23
 category: iThome
 tags: 
 - iThome
@@ -13,6 +13,7 @@ tags:
 接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。
 
 <!--more-->
+---
 
 那我們繼續將昨天錯誤訊息所說缺少的 MobileWallet 的常數類別與測試需要的 examples 做出來。
 
