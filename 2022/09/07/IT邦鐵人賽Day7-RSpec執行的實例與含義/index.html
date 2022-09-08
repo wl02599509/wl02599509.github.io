@@ -22,16 +22,16 @@
 
     <meta name="description" content="昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。 接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day 6 - 規格與第一個紅燈">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/index.html">
+<meta property="og:title" content="IT邦鐵人賽Day7-RSpec執行的實例與含義">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/index.html">
 <meta property="og:site_name" content="Mike Code">
 <meta property="og:description" content="昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。 接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089wK3wrbA6VE.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089IIafu1zWgC.png">
-<meta property="article:published_time" content="2022-09-06T15:36:23.000Z">
-<meta property="article:modified_time" content="2022-09-07T15:57:53.082Z">
+<meta property="article:published_time" content="2022-09-07T15:36:23.000Z">
+<meta property="article:modified_time" content="2022-09-08T02:46:02.615Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
@@ -41,14 +41,14 @@
 <meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/","path":"2022/09/06/IT邦鐵人賽Day7-RSpec執行的實例與含義/","title":"IT 邦鐵人賽 Day 6 - 規格與第一個紅燈"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/","path":"2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/","title":"IT邦鐵人賽Day7-RSpec執行的實例與含義"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day 6 - 規格與第一個紅燈 | Mike Code</title>
+<title>IT邦鐵人賽Day7-RSpec執行的實例與含義 | Mike Code</title>
   
 
 
@@ -221,7 +221,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -234,12 +234,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day 6 - 規格與第一個紅燈 | Mike Code">
+      <meta itemprop="name" content="IT邦鐵人賽Day7-RSpec執行的實例與含義 | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 6 - 規格與第一個紅燈<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-07-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT邦鐵人賽Day7-RSpec執行的實例與含義<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-07-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -250,14 +250,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-09-06 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-06T23:36:23+08:00">2022-09-06</time>
+      <time title="Created: 2022-09-07 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-07 23:57:53" itemprop="dateModified" datetime="2022-09-07T23:57:53+08:00">2022-09-07</time>
+      <time title="Modified: 2022-09-08 10:46:02" itemprop="dateModified" datetime="2022-09-08T10:46:02+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
     </span>
 
   
-    <span id="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 6 - 規格與第一個紅燈" title="Views">
+    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day7-RSpec執行的實例與含義" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -285,8 +285,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/06/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
     </a>
   </span>
   

@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元” 在開始寫之前，我們必須先想一下，這整個功能裡面，需要哪些變數，要叫什麼名字，需要什麼方法，那方法又要叫什麼名字（取名才是最難的…）。 類別名稱已經確定是 MobileWallet">
+    <meta name="description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元” 在開始寫之前，我們必須先想一下，這整個功能裡面，需要哪些變數，要叫什麼名字，需要什麼方法，那方法又要叫什麼名字（取名才是最難的…）。 類別名稱已經確定是 MobileWallet">
+<meta property="og:description" content="現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089f9p8WbJsBA.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089mEXxVHZJiL.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220908/20149089wy1m60pf9f.png">
 <meta property="article:published_time" content="2022-09-07T16:17:08.000Z">
-<meta property="article:modified_time" content="2022-09-07T16:18:18.711Z">
+<meta property="article:modified_time" content="2022-09-08T02:44:20.832Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
@@ -254,7 +254,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-08 00:17:08 / Modified: 00:18:18" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
+      <time title="Created: 2022-09-08 00:17:08 / Modified: 10:44:20" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,6 +298,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”</p>
+<span id="more"></span>
+
 <p>在開始寫之前，我們必須先想一下，這整個功能裡面，需要哪些變數，要叫什麼名字，需要什麼方法，那方法又要叫什麼名字（取名才是最難的…）。</p>
 <p>類別名稱已經確定是 MobileWallet 了，類別產出的實體就取名為 wallet 吧，那扣款所需要的扣錢方法就取名為 cost (簡單明瞭)，最後我們還需要一個方法來得知扣款後還會有多少錢，所以這個方法就叫 total 吧！</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png"></p>

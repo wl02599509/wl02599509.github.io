@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-08 00:17:08 / Modified: 00:18:18" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
+      <time title="Created: 2022-09-08 00:17:08 / Modified: 10:44:20" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,29 +282,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”</p>
-<p>在開始寫之前，我們必須先想一下，這整個功能裡面，需要哪些變數，要叫什麼名字，需要什麼方法，那方法又要叫什麼名字（取名才是最難的…）。</p>
-<p>類別名稱已經確定是 MobileWallet 了，類別產出的實體就取名為 wallet 吧，那扣款所需要的扣錢方法就取名為 cost (簡單明瞭)，最後我們還需要一個方法來得知扣款後還會有多少錢，所以這個方法就叫 total 吧！</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089hvPKFxzVQG.png"></p>
-<p>上圖為我們在測試規格的檔案裡 (mobile_wallet_spec.rb) 把 code 補上的樣子。這段 code 就是用來表示，這項受測功能要如何被測試。在終端機打上執行測試的 rspec 指令後，它就會照上面打的code去run測試：</p>
-<ol>
-<li>將 new 的實體 wallet 產出後，隨即帶入引數 50 </li>
-<li>呼叫 cost 方法，把引數 10 帶進去來計算</li>
-<li>期望 wallet.total 的值是 40<br>只要測試符合期望，wallet.total 的回傳值為 40 時，測試就會成功，反之就是失敗。</li>
-</ol>
-<p>那我們先來執行一次 rspec 看看會出現什麼訊息？</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089f9p8WbJsBA.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089f9p8WbJsBA.png"><br><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089jiQU4MRcbM.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089jiQU4MRcbM.png"></p>
-<p>Pending 的部分先略過不看，因為其他兩個還沒做，所以會出現 Pending 是正常的。</p>
-<p>我們先看最上面的 F**，意思是第一個 example 所寫的 code 有問題，什麼樣的問題呢？</p>
-<p>看錯誤訊息1) 的部分可以知道，我的 new 方法後面帶入引數，代表我應該是有個帶參數的 initialize 方法。因為我們現在只有寫測試規格的code，還沒把被拿來進行測試的 code 寫出來，所以會出現錯誤是正常的。</p>
-<p>那我們連 cost 跟 total 方法都沒寫，為什麼錯誤訊息只有提到 new 而已？<br>因為RSpec在run規格的code時，執行第一步 wallet &#x3D; MobileWallet.new(50) 就已經失敗了，所以就沒有繼續測下去，錯誤訊息當然只提到 new 的部分而已。</p>
-<p>我們繼續把 code 補上：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089mEXxVHZJiL.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089mEXxVHZJiL.png"></p>
-<p>完成後，執行一下 rspec .&#x2F;mobile_wallet_spec.rb 應該就會顯示非常乾淨的訊息：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220908/20149089wy1m60pf9f.png" alt="https://ithelp.ithome.com.tw/upload/images/20220908/20149089wy1m60pf9f.png"></p>
-<p>首先，看到最上面顯示 .** ，那就代表第一個規格測試已經通過囉，剩下兩個仍然為 Pending 狀態的規格還在等著我們完成它們。</p>
-<p>到這裡不知道大家有沒有發現，一開始我們還沒有寫實際的 code ，竟然就先把實際內容的方法名稱( cost, total )都先想好了，隨後再補上它們實際的 code，這就像先取小孩名( cost, total )再生小孩( 寫出 initialize, cost, total 的code )。其實這也是寫測試的困難之一，要預先想好介面，再逐一建立 code。</p>
-<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>明天我們就直接把所有的 code 寫完，那大家也可以先嘗試看看如何完成這個測試。自己動手做，然後自己測試看看，如果失敗就看一下終端機出現的訊息，看能不能找出解決方法。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -444,7 +429,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -462,7 +447,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 6 - 規格與第一個紅燈</a>
+          <a href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-title-link" itemprop="url">IT邦鐵人賽Day7-RSpec執行的實例與含義</a>
         </h2>
 
         <div class="post-meta-container">
@@ -473,14 +458,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-09-06 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-06T23:36:23+08:00">2022-09-06</time>
+      <time title="Created: 2022-09-07 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-07 23:57:53" itemprop="dateModified" datetime="2022-09-07T23:57:53+08:00">2022-09-07</time>
+      <time title="Modified: 2022-09-08 10:46:02" itemprop="dateModified" datetime="2022-09-08T10:46:02+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -493,7 +478,7 @@
     </span>
 
   
-    <span id="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 6 - 規格與第一個紅燈" title="Views">
+    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day7-RSpec執行的實例與含義" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -508,8 +493,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/06/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -527,7 +512,7 @@
 <p>接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#more" rel="contents">
+              <a class="btn" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
