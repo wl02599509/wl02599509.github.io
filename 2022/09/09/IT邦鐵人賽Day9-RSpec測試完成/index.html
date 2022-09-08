@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。 好啦，我們的主題是測試，那就不説太多主題以外的東西，直接進行這篇要做的事情，把剩下的code都全部補上。 實作先將 mobile_wall">
+    <meta name="description" content="不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="9-RSpec測試完成">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/index.html">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。 好啦，我們的主題是測試，那就不説太多主題以外的東西，直接進行這篇要做的事情，把剩下的code都全部補上。 實作先將 mobile_wall">
+<meta property="og:description" content="不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220909/201490897eSLHgMJdM.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220909/20149089vHdW0A0jTr.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220909/20149089IMwIDin9zE.png">
 <meta property="article:published_time" content="2022-09-08T16:16:26.000Z">
-<meta property="article:modified_time" content="2022-09-08T16:16:59.569Z">
+<meta property="article:modified_time" content="2022-09-08T16:20:13.975Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
@@ -45,11 +45,11 @@
 <meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/","path":"2022/09/09/9-RSpec測試完成/","title":"9-RSpec測試完成"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/","path":"2022/09/09/IT邦鐵人賽Day9-RSpec測試完成/","title":"9-RSpec測試完成"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>9-RSpec測試完成 | Mike Code</title>
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -243,7 +243,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          9-RSpec測試完成<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-09-9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          9-RSpec測試完成<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-09-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -255,7 +255,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-09 00:16:26 / Modified: 00:16:59" itemprop="dateCreated datePublished" datetime="2022-09-09T00:16:26+08:00">2022-09-09</time>
+      <time title="Created: 2022-09-09 00:16:26 / Modified: 00:20:13" itemprop="dateCreated datePublished" datetime="2022-09-09T00:16:26+08:00">2022-09-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
     </span>
 
   
-    <span id="/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="9-RSpec測試完成" title="Views">
+    <span id="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="9-RSpec測試完成" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -283,8 +283,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/09/9-RSpec測試完成/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/09/IT邦鐵人賽Day9-RSpec測試完成/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -299,6 +299,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。</p>
+<span id="more"></span>
+
 <p>好啦，我們的主題是測試，那就不説太多主題以外的東西，直接進行這篇要做的事情，把剩下的code都全部補上。</p>
 <h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>先將 mobile_wallet_spec.rb 的第二個規格測試需要的 code 完成：</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png"></p>

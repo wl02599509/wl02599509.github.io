@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-title-link" itemprop="url">9-RSpec測試完成</a>
+          <a href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-title-link" itemprop="url">9-RSpec測試完成</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-09 00:16:26 / Modified: 00:16:59" itemprop="dateCreated datePublished" datetime="2022-09-09T00:16:26+08:00">2022-09-09</time>
+      <time title="Created: 2022-09-09 00:16:26 / Modified: 00:20:13" itemprop="dateCreated datePublished" datetime="2022-09-09T00:16:26+08:00">2022-09-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
     </span>
 
   
-    <span id="/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="9-RSpec測試完成" title="Views">
+    <span id="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="9-RSpec測試完成" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -266,8 +266,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/09/9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/09/9-RSpec測試完成/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/09/IT邦鐵人賽Day9-RSpec測試完成/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -282,27 +282,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。</p>
-<p>好啦，我們的主題是測試，那就不説太多主題以外的東西，直接進行這篇要做的事情，把剩下的code都全部補上。</p>
-<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>先將 mobile_wallet_spec.rb 的第二個規格測試需要的 code 完成：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089qYiXXcmM6k.png"></p>
-<p>再來到 mobile_wallet.rb，針對扣款失敗的狀況，用判斷式表達，如紅匡所示。</p>
-<p>只要扣款金額小於等於錢包餘額，就執行扣款。反之，只要扣款金額大於錢包餘額，就不進行扣款，既然不進行扣款，那錢包餘額自然就不會改變：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/201490897eSLHgMJdM.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/201490897eSLHgMJdM.png"></p>
-<p>接著在終端機執行 rspec .&#x2F;mobile_wallet_spec.rb 後，即可得到測試通過的畫面：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089Cm0CC1GGYr.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089Cm0CC1GGYr.png"></p>
-<p>再來做最後一項測試，也是一樣重複步驟，先在 mobile_wallet_spec.rb 寫測試的code:</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089cMBeHejnoZ.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089cMBeHejnoZ.png"></p>
-<p>然後在 mobile_wallet.rb 寫要被測試的 code :</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089vHdW0A0jTr.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089vHdW0A0jTr.png"></p>
-<p>接著到終端機執行 rspec 進行測試：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220909/20149089IMwIDin9zE.png" alt="https://ithelp.ithome.com.tw/upload/images/20220909/20149089IMwIDin9zE.png"></p>
-<p>這麼一來，測試都通過了！</p>
-<p>當測試都通過後，代表的意義是，所有的程式碼都是能正常運作的。因為我們在寫 code，一定都是先求有再求好，先讓 code 能 run，接著再來思考效能、可讀性等等的程式碼優化與重構。</p>
-<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>在進行程式碼優化與重構時，就會更動到原本寫的程式碼，所以這時就可以邊寫邊測，如果變紅燈，記得趕快修復它，這就是測試的好處，能夠馬上發現問題。</p>
-<p>如此一來，往後在維護這份專案，或是要針對這份專案新增功能時，都可以透過測試，來確保你的所作所為是否影響原本既有的功能。</p>
-<p>一直到這裡，我想全程有跟著做的朋友，應該明白了測試的內容。不過測試的世界也是蠻龐大的，不同的程式語言都有不同的測試軟體或框架，而不同的專案環境與需求，可能也會需要不同的測試方法。</p>
-<p>明天我們先來認識一下 RSpec 裡的基本語法。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
