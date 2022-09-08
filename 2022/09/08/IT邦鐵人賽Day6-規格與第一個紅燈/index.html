@@ -20,29 +20,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。">
+    <meta name="description" content="在前天講了TDD的概念與流程，昨天也安裝好Ruby語言跟RSpec測試框架，接下來要開始慢慢帶入測試的模樣，讓我們來看看測試流程到底長什麼樣子，測試到底是在測什麼，要寫什麼code。先別急，我們今天先講個測試之前需要的「規格」。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT邦鐵人賽Day3-測試類型(二)">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/index.html">
+<meta property="og:title" content="IT邦鐵人賽Day6-規格與第一個紅燈">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 Evanescence - Bring me to life 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。">
+<meta property="og:description" content="在前天講了TDD的概念與流程，昨天也安裝好Ruby語言跟RSpec測試框架，接下來要開始慢慢帶入測試的模樣，讓我們來看看測試流程到底長什麼樣子，測試到底是在測什麼，要寫什麼code。先別急，我們今天先講個測試之前需要的「規格」。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-02T16:08:26.000Z">
-<meta property="article:modified_time" content="2022-09-02T16:20:16.407Z">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220906/20149089oraCq0JhlH.jpg">
+<meta property="article:published_time" content="2022-09-08T02:55:00.000Z">
+<meta property="article:modified_time" content="2022-09-08T02:55:36.492Z">
 <meta property="article:author" content="Mike">
+<meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="Rspec">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/","path":"2022/09/03/IT邦鐵人賽Day3-測試類型/","title":"IT邦鐵人賽Day3-測試類型(二)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/","path":"2022/09/08/IT邦鐵人賽Day6-規格與第一個紅燈/","title":"IT邦鐵人賽Day6-規格與第一個紅燈"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT邦鐵人賽Day3-測試類型(二) | Mike Code</title>
+<title>IT邦鐵人賽Day6-規格與第一個紅燈 | Mike Code</title>
   
 
 
@@ -127,7 +132,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%B3%BB%E7%B5%B1%E6%B8%AC%E8%A9%A6%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">三、系統測試：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B6%88%E8%B2%BB%E8%80%85%E4%BD%BF%E7%94%A8%E6%B8%AC%E8%A9%A6%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">四、消費者使用測試：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">小結:</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E8%A6%8F%E6%A0%BC%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什麼是規格？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B%E8%AA%AA%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">範例說明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E7%B4%85%E7%87%88"><span class="nav-number">3.</span> <span class="nav-text">關於紅燈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +220,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -228,12 +233,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT邦鐵人賽Day3-測試類型(二) | Mike Code">
+      <meta itemprop="name" content="IT邦鐵人賽Day6-規格與第一個紅燈 | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT邦鐵人賽Day3-測試類型(二)<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-03-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT邦鐵人賽Day6-規格與第一個紅燈<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-08-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -245,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-03 00:08:26 / Modified: 00:20:16" itemprop="dateCreated datePublished" datetime="2022-09-03T00:08:26+08:00">2022-09-03</time>
+      <time title="Created: 2022-09-08 10:55:00 / Modified: 10:55:36" itemprop="dateCreated datePublished" datetime="2022-09-08T10:55:00+08:00">2022-09-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,7 +263,7 @@
     </span>
 
   
-    <span id="/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day3-測試類型(二)" title="Views">
+    <span id="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day6-規格與第一個紅燈" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -273,8 +278,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/03/IT邦鐵人賽Day3-測試類型/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/08/IT邦鐵人賽Day6-規格與第一個紅燈/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -288,20 +293,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>經過昨天用 atm 與捷運門來解釋單元測試與整合測試後，不知道大家有沒有清楚。我早上起床聽著以前最愛的 <strong>Evanescence - Bring me to life</strong> 後，突然想到可以用樂團來解釋，所以今天就讓我們用樂團來理解所有測試類型是什麼概念。</p>
+        <p>在前天講了TDD的概念與流程，昨天也安裝好Ruby語言跟RSpec測試框架，接下來要開始慢慢帶入測試的模樣，讓我們來看看測試流程到底長什麼樣子，測試到底是在測什麼，要寫什麼code。先別急，我們今天先講個測試之前需要的「<strong>規格</strong>」。</p>
 <span id="more"></span>
 <hr>
-<p>一個樂團代表一個專案，這個樂團(專案)的目的就是要在演唱會上演奏歌曲。一個樂團裡會有鼓手、Bass手、吉他手、主唱，這每一個樂手代表著一個又一個的方法、類別等最小單位，他們的樂譜代表 code，所以樂手 (功能)  會依照樂譜 (code) 彈奏出音樂 (執行後的結果)，當所有樂手組合起來彈奏出各自的音樂，就是演奏出一首歌 (一個完整的專案)。</p>
-<hr>
-<p>今天我們進行單元測試時，就是針對每一個樂手(功能、方法等) 去確認是不是已經能照著樂譜(code)彈奏歌曲(正確的執行，沒有 bug) 了，solo、過門是不是都沒問題了。</p>
-<p>大家都練好也確認都沒問題之後，就開始進行整合測試，也就是所有樂手到練團室一起演奏同一首歌，彼此協調節拍，確認大家在演奏同一首歌時，節奏是一致的，也就是在確認彼此的運作關係。</p>
-<hr>
-<p>接著承接 Day2，繼續來講解<strong>系統測試</strong>與<strong>消費者使用測試</strong>：</p>
-<h2 id="三、系統測試："><a href="#三、系統測試：" class="headerlink" title="三、系統測試："></a>三、系統測試：</h2><p>完成了整合測試後，接續進行系統測試，而通常會與其他外部系統一同進行，所以也會與其他人員一起合作，相當耗時。以上述樂團為例，團練(整合測試) 沒問題後，接著就是要到現場與 PA 設備一起預演，確認樂團演奏時，音響設備都正常，而且還要安排好設備擺放位置與方向以利達到演唱會聲音傳播的最佳程度。</p>
-<h2 id="四、消費者使用測試："><a href="#四、消費者使用測試：" class="headerlink" title="四、消費者使用測試："></a>四、消費者使用測試：</h2><p>製作專案的最終目的就是要讓使用者滿意，因為工程師與使用者的視角不同，有時工程師製作出來的東西可能會稍微不合乎使用者體驗，所以才需要進行消費者使用測試。</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結:"></a>小結:</h2><p>盡量不要把測試想的太可怕，因為之後有蠻大的機率會碰到測試，而測試的重點是之後的維護與增加新的功能，到時就會知道測試的好。</p>
-<p>這三天的文章一直圍繞在測試的概念上，希望大家都有明白這三天的內容。如果有大大發現文章裡有什麼地方說錯的，還請留言跟我說一下，非常感謝大家~</p>
-<p>那麼接下來就要開始進入本系列的重點，將會一一介紹測試模式 <strong>TDD</strong> 與 <strong>BDD</strong>，以及它們的測試框架如何使用。</p>
+<h1 id="什麼是規格？"><a href="#什麼是規格？" class="headerlink" title="什麼是規格？"></a>什麼是規格？</h1><p>其實規格就是規範，範本的概念，用來描述標的物的形式，像是產品規格，設計規格。舉個例子，假如今天公司要你研發一台冷氣機，那是不是要先把藍圖畫出來，它的外型長什麼樣子，壓縮機要用哪種？往復式、渦卷式、螺旋式、迴轉式及離心式？有了這些構思藍圖，再開始一步步的把東西做出來，總不可能要你研發，你都不用想冷氣的外型，構造，內部元件等結構，然後就可以直接憑空做出一台冷氣機吧！</p>
+<p>那測試的規格就是以測試內容為標的物所製作出來的文字描述。這是為了方便我們清楚知道，我們到底要做什麼。</p>
+<p>在我們開始寫測試之前，我們要先了解目標專案的需求，然後思考這些需求如何達成，需要的介面是什麼，然後把想到的可能，寫在規格上。</p>
+<h1 id="範例說明"><a href="#範例說明" class="headerlink" title="範例說明"></a>範例說明</h1><p>今天客戶想要一個行動支付的軟體，我們就要思考，行動支付會有什麼功能，這些功能會如何運作。行動支付不外乎主要有扣款跟轉帳功能。</p>
+<p>其中的扣款功能，規格可以這樣寫：<br>軟體錢包原本有50元，扣款10元後，錢包顯示40元。<br>軟體錢包原本有50元，扣款100元後失敗，錢包仍顯示50元。</p>
+<p>如果客戶還想要有將錢存至錢包的存錢功能，規格可以這樣寫：<br>軟體錢包原本有28元，按下存入，輸入12元後，錢包顯示40元。</p>
+<p>像這樣就是規格的呈現，把情境與需求一一列出來，便可清楚知道，要測什麼，情境有哪些。如上可知，現在總共要做兩個不同的功能，那我們可以再整理得更清楚些：</p>
+<p>扣款功能：<br>軟體錢包原本有50元，扣款10元後，錢包顯示40元。<br>軟體錢包原本有50元，扣款100元後失敗，錢包仍顯示50元。</p>
+<p>存錢功能：<br>軟體錢包原本有28元，按下存入，輸入12元後，錢包顯示40元。</p>
+<p>試著把它寫進 RSpec：<br>我們先找一個喜歡的目錄，在終端機輸入 rspec –init，系統會自動建立 RSpec 的資料夾，並在 spec 裡建立檔案 mobile_wallet_spec.rb。</p>
+<p>這個檔名主要是專案名稱再加上 _spec 或 _test ，代表這個檔案是用來進行某某專案的測試檔，而後面的 .rb 就是程式語言 Ruby。</p>
+<p>（檔名可以隨便取叫123abc，但你應該會比較希望看到檔名就知道它是什麼吧？所以取名要取得有意義。）</p>
+<p>接著在測試檔案撰寫：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20220906/20149089G7Wxo03HX1.jpg"></p>
+<p>如此一來，是不是就能很清楚的知道這個測試需要做什麼，這就是規格。所以有句話是這麼說的：「寫測試就是在寫規格」。</p>
+<p>有了規格後，便能開始撰寫測試需要的 code。</p>
+<p>不過先別急著寫，我們來看看，這時候 run 測試會發生什麼事情，在終端機上輸入指令 rspec .&#x2F;mobile_wallet_spec.rb：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220906/20149089oraCq0JhlH.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20220906/20149089oraCq0JhlH.jpg"></p>
+<p>這時候會出現異常訊息是正常的，因為我們才剛做完測試的規格，並還沒有把實際的內容填上，所以執行測試一定是失敗(紅燈)的。</p>
+<p>NameError: uninitialized constant MobileWallet<br>意思就是我們還沒有 MobileWallet 的常數類別，這是理所當然的，畢竟我們根本還沒開始寫實作的 code。</p>
+<h1 id="關於紅燈"><a href="#關於紅燈" class="headerlink" title="關於紅燈"></a>關於紅燈</h1><p>千萬不要覺得紅燈是壞事，如果今天在做測試，從頭到尾都綠燈，那不是很可怕嗎？天底下真的有這麼順利的事情？</p>
+<p>所以通常都會先讓測試跑出紅燈，或是在測試綠燈之後，故意把驗證寫錯，看看會不會如預期亮紅燈，以此確認測試是正常的。</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>那今天就介紹規格，明天再來講解，寫完規格後要幹嘛？我們下回見～</p>
 
     </div>
 
@@ -311,22 +328,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
               <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
               <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
+              <a href="/tags/Rspec/" rel="tag"><i class="fa fa-tag"></i> Rspec</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/" rel="prev" title="IT邦鐵人賽Day2-測試的類型">
-                  <i class="fa fa-chevron-left"></i> IT邦鐵人賽Day2-測試的類型
+                <a href="/2022/09/08/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" rel="prev" title="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/04/IT%E5%B9%AB%E9%90%B5%E4%BA%BA%E8%B3%BDDay4-TDD%E4%BB%8B%E7%B4%B9/" rel="next" title="IT幫鐵人賽Day4-TDD介紹">
-                  IT幫鐵人賽Day4-TDD介紹 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
