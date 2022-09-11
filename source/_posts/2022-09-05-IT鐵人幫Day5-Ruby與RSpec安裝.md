@@ -1,5 +1,5 @@
 ---
-title: IT鐵人幫Day5-Ruby與RSpec安裝
+title: IT 鐵人幫 Day 5 - Ruby 與 RSpec 安裝
 date: 2022-09-05 21:15:47
 category: iThome
 tags: 

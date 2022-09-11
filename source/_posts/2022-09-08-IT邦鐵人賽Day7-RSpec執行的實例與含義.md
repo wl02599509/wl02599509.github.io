@@ -1,5 +1,5 @@
 ---
-title: IT邦鐵人賽Day7-RSpec執行的實例與含義
+title: IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義
 date: 2022-09-07 23:36:23
 category: iThome
 tags: 
