@@ -20,28 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。">
+    <meta name="description" content="寫程式寫到後來發現，最難的其實是「取名」，要取個一眼就知道這是在幹麻的變數名稱，實在是門藝術，像我這種思維方正又收斂的人，取名真的是一大困難，貼心如 RSpec 也聽到了大家的困擾，給大家一個不用取名的方法：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="封裝：public &#x2F; private &#x2F; protected">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/protected/index.html">
+<meta property="og:title" content="IT 邦鐵人賽 Day 13 RSpec 語法 subject method">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="封裝的用意存取控制的作用。 讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。 藉此希望使用者只能夠使用某些功能、某些方法。">
+<meta property="og:description" content="寫程式寫到後來發現，最難的其實是「取名」，要取個一眼就知道這是在幹麻的變數名稱，實在是門藝術，像我這種思維方正又收斂的人，取名真的是一大困難，貼心如 RSpec 也聽到了大家的困擾，給大家一個不用取名的方法：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T08:57:52.000Z">
-<meta property="article:modified_time" content="2022-08-14T10:57:12.976Z">
+<meta property="article:published_time" content="2022-09-14T02:17:37.000Z">
+<meta property="article:modified_time" content="2022-09-14T02:20:24.018Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="Rspec">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/protected/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/protected/","path":"2022/08/14/protected/","title":"封裝：public / private / protected"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/","path":"2022/09/14/IT邦鐵人賽-Day-13-RSpec-語法-subject-method/","title":"IT 邦鐵人賽 Day 13 RSpec 語法 subject method"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>封裝：public / private / protected | Mike Code</title>
+<title>IT 邦鐵人賽 Day 13 RSpec 語法 subject method | Mike Code</title>
   
 
 
@@ -126,7 +129,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%81%E8%A3%9D%E7%9A%84%E7%94%A8%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">封裝的用意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%81%E8%A3%9D%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">封裝的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%99%E4%B8%89%E7%A8%AE%E6%96%B9%E6%B3%95%E7%9A%84%E8%AA%AA%E6%98%8E%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">這三種方法的說明如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#public"><span class="nav-number">3.1.</span> <span class="nav-text">public:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#private"><span class="nav-number">3.2.</span> <span class="nav-text">private:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#protected"><span class="nav-number">3.3.</span> <span class="nav-text">protected :</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#subject-method"><span class="nav-number">1.</span> <span class="nav-text">subject method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -214,7 +217,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/protected/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -227,12 +230,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="封裝：public / private / protected | Mike Code">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 13 RSpec 語法 subject method | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          封裝：public / private / protected<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/protected.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 13 RSpec 語法 subject method<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-14-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -244,7 +247,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 16:57:52 / Modified: 18:57:12" itemprop="dateCreated datePublished" datetime="2022-08-14T16:57:52+08:00">2022-08-14</time>
+      <time title="Created: 2022-09-14 10:17:37 / Modified: 10:20:24" itemprop="dateCreated datePublished" datetime="2022-09-14T10:17:37+08:00">2022-09-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -252,12 +255,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/protected/" class="post-meta-item leancloud_visitors" data-flag-title="封裝：public / private / protected" title="Views">
+    <span id="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 13 RSpec 語法 subject method" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -272,8 +275,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/protected/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/protected/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/14/IT邦鐵人賽-Day-13-RSpec-語法-subject-method/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -287,27 +290,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="封裝的用意"><a href="#封裝的用意" class="headerlink" title="封裝的用意"></a>封裝的用意</h1><p>存取控制的作用。</p>
-<p>讓某部分方法透過包裝，限制外部的取用，不讓外部使用者或程式直接取用或呼叫。</p>
-<p>藉此希望使用者只能夠使用某些功能、某些方法。</p>
+        <p>寫程式寫到後來發現，最難的其實是「取名」，要取個一眼就知道這是在幹麻的變數名稱，實在是門藝術，像我這種思維方正又收斂的人，取名真的是一大困難，貼心如 RSpec 也聽到了大家的困擾，給大家一個不用取名的方法：</p>
 <span id="more"></span>
 
-<h1 id="封裝的方法"><a href="#封裝的方法" class="headerlink" title="封裝的方法"></a>封裝的方法</h1><p>共有三種，分別為：public, private, protected. </p>
-<h1 id="這三種方法的說明如下："><a href="#這三種方法的說明如下：" class="headerlink" title="這三種方法的說明如下："></a>這三種方法的說明如下：</h1><h2 id="public"><a href="#public" class="headerlink" title="public:"></a>public:</h2><p>完全公開的方法，內外皆可存取。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span>  <span class="comment">#public狀態的方法</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="subject-method"><a href="#subject-method" class="headerlink" title="subject method"></a>subject method</h1><p>首先，subject 後面可以接一個大括號 { } 裡面放你要的任何東西，直接來看例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Book</span><br><span class="line">  attr_accessor :title, :price, :pages</span><br><span class="line">  def initialize(title, price, pages)</span><br><span class="line">    @title = title</span><br><span class="line">    @price = price</span><br><span class="line">    @pages = pages</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"> </span><br><span class="line">RSpec.describe &quot;123&quot; do</span><br><span class="line">  subject&#123; Book.new(&quot;解憂雜貨店&quot;, 100, 380) &#125;</span><br><span class="line"> </span><br><span class="line">  it &quot;costs 100 dollar &quot; do</span><br><span class="line">    expect(subject.price).to eq(100)</span><br><span class="line">  end</span><br><span class="line"> </span><br><span class="line">  it &quot;have 380 pages&quot; do</span><br><span class="line">    expect(subject.pages).to eq(380)</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="private"><a href="#private" class="headerlink" title="private:"></a>private:</h2><p>對外限制，不能有特定的receiver，故僅能在類別方法裡使用，且不能有 receiver。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span></span><br><span class="line">    money <span class="comment">#成功</span></span><br><span class="line">    <span class="variable language_">self</span>.money <span class="comment">#失敗</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private    <span class="comment">#對外限制的私人方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Mike = Company.new</span><br><span class="line">Mike.finance</span><br><span class="line">Mike.money <span class="comment">#失敗</span></span><br><span class="line">money <span class="comment">#失敗</span></span><br><span class="line">Mike.send (<span class="symbol">:money</span>) <span class="comment">#成功  #在Mike物件上呼叫send公開方法，對Mike send money訊息</span></span><br><span class="line">而private以下的方法皆會變成private狀態，直到遇見public。</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  private</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">documents</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  public</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">staff</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>也可以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RSpec.describe &quot;subject demo&quot; do</span><br><span class="line"> subject &#123; &quot;RSpec is the best&quot; &#125;</span><br><span class="line"> </span><br><span class="line"> it &quot;should be 17 elements&quot; do</span><br><span class="line">   expect(subject.length).to eq (17)</span><br><span class="line"> end</span><br><span class="line"> </span><br><span class="line"> it &#123; is_expected.to eq(&quot;RSpec is the best&quot;) &#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<p>所以一般大眾寫法是先將public的方法寫在前面，後面再使用private設定其他成私人的方法。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">staff</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">marketing</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">documents</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>當然還可以放陣列、Hash等等。</p>
+<p>看吧！根本不需要取什麼名字，直接 subject 用到底！這個方法就很像 let ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let(:book) &#123; Book.new(&quot;解憂雜貨店&quot;, 100, 380) &#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="protected"><a href="#protected" class="headerlink" title="protected :"></a>protected :</h2><p>對外有限制，不能有receiver，但在class裡面則可有receiver也可以沒有receiver。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Company</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">finance</span></span><br><span class="line">  money <span class="comment">#成功</span></span><br><span class="line">  <span class="variable language_">self</span>.money <span class="comment">#成功</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  protected</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">money</span></span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Mike = Company.new</span><br><span class="line">Mike.finance</span><br><span class="line">Mike.money <span class="comment">#失敗</span></span><br></pre></td></tr></table></figure>
+<p>另外還有一個神奇的地方是，只要 RSpec.describe 後面接的是常數類別，subject 就會直接幫我們 new：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RSpec.describe Array do</span><br><span class="line">  it &quot;is an array&quot; do</span><br><span class="line">    subject &lt;&lt; &quot;cat&quot;</span><br><span class="line">    subject.push(&quot;dog&quot;)</span><br><span class="line">    subject.unshift(&quot;rabbit&quot;)</span><br><span class="line">    p subject</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<p>通常protected不太會使用，如果會使用到protected，則代表其實是想使用private。</p>
+<p>結果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Array</span><br><span class="line">[]</span><br><span class="line">[&quot;rabbit&quot;, &quot;cat&quot;, &quot;dog&quot;]</span><br><span class="line">  is an array</span><br></pre></td></tr></table></figure>
+
+<p>像這樣直接使用 subject 會直接透過 RSpec.describe 後面的常數類別 Array new 出一個空陣列，接著 subject 就可以接陣列的方法。所以它也可以是 Hash, String 等等。</p>
+<p>不知道各位剛剛有沒有注意到一段很怪異的 code：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it &#123; is_expected.to eq(&quot;RSpec is the best&quot;) &#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接寫起英文來了？不錯！這也是 subject 厲害的地方！只要是用 subject，就可以使用 is_expected 方法，而 expect 這邊的 subject 就可以省略。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RSpec.describe &quot;5xRuby&quot; do</span><br><span class="line"> it &#123; is_expected.to eq(&quot;5xRuby&quot;) &#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>用英文的文法來看就好像 it 變成了 subject 的代名詞，讓整體的 readability 提升很多！</p>
+<p>視情況使用 subject 真的可以省下很多力氣，也可以避免重複，看起來又乾淨利落。</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>我們來總結一下:</p>
+<p>subject 可以變身成 RSpec.describe 後面接的東西。</p>
+<p>常數類別：Hash、Array、String、甚至是 class 也可以幫你 new。</p>
+<p>其他任何有元素的物件：字串內容 ( “ABCDE” )、數字( 12345 )、陣列( [1, 2, 3] )…等等。</p>
+<p>也就是 subject 會指向 RSpec.describe 後面的東西，成為變數。</p>
+<p>最猛的部分就是 it 後面可以直接接 is_expected 方法。</p>
+<p>這幾天的內容可能都沒太簡單，明天我們來講一個輕鬆的內容讓大家緩緩。</p>
 
     </div>
 
@@ -318,19 +335,22 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
+              <a href="/tags/Rspec/" rel="tag"><i class="fa fa-tag"></i> Rspec</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/14/Array-Method/" rel="prev" title="Array_Method">
-                  <i class="fa fa-chevron-left"></i> Array_Method
+                <a href="/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/" rel="prev" title="IT 邦鐵人賽 Day 12 - RSpec 語法 let method">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 12 - RSpec 語法 let method
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/" rel="next" title="node & nodejs導致rails專案建立失敗">
-                  node & nodejs導致rails專案建立失敗 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/" rel="next" title="IT 邦鐵人賽 Day 14 - RSpec 語法 context method">
+                  IT 邦鐵人賽 Day 14 - RSpec 語法 context method <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
