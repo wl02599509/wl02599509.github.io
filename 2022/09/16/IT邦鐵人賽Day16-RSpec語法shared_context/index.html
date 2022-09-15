@@ -20,29 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言搜尋的功能非常常見，因為資料不會憑空出現，必須靠我們下條件，撈出符合的資料。那要使用哪個搜尋工具就非常重要了，因為工具間的差異，還是會對搜尋結果造成影響。">
+    <meta name="description" content="昨天介紹了 shared_examples 的概念，如果理解，今天的內容就非常容易了。事不宜遲，馬上來介紹我們的 shared_context 吧。 shared_context">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搜尋大對決 Find, Find_by, Where">
-<meta property="og:url" content="https://wl02599509.github.io/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/index.html">
+<meta property="og:title" content="shared_context">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前言搜尋的功能非常常見，因為資料不會憑空出現，必須靠我們下條件，撈出符合的資料。那要使用哪個搜尋工具就非常重要了，因為工具間的差異，還是會對搜尋結果造成影響。">
+<meta property="og:description" content="昨天介紹了 shared_examples 的概念，如果理解，今天的內容就非常容易了。事不宜遲，馬上來介紹我們的 shared_context 吧。 shared_context">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T12:21:25.000Z">
-<meta property="article:modified_time" content="2022-09-03T14:00:01.747Z">
+<meta property="article:published_time" content="2022-09-15T16:51:26.000Z">
+<meta property="article:modified_time" content="2022-09-15T16:52:33.424Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Rails">
-<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="Rspec">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/","path":"2022/08/14/搜尋大對決Find-Find-by-Where/","title":"搜尋大對決 Find, Find_by, Where"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/","path":"2022/09/16/IT邦鐵人賽Day16-RSpec語法shared_context/","title":"shared_context"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>搜尋大對決 Find, Find_by, Where | Mike Code</title>
+<title>shared_context | Mike Code</title>
   
 
 
@@ -127,7 +129,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Find"><span class="nav-number">2.</span> <span class="nav-text">Find</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Find-by"><span class="nav-number">3.</span> <span class="nav-text">Find_by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Where"><span class="nav-number">4.</span> <span class="nav-text">Where</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BC%83"><span class="nav-number">5.</span> <span class="nav-text">比較</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#find-vs-find-by"><span class="nav-number">5.1.</span> <span class="nav-text">find vs find_by</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-%E7%B3%BB%E5%88%97-vs-where-%E7%B3%BB%E5%88%97"><span class="nav-number">5.2.</span> <span class="nav-text">find 系列 vs where 系列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.2.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shared-context"><span class="nav-number">1.</span> <span class="nav-text">shared_context</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +217,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -228,12 +230,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="搜尋大對決 Find, Find_by, Where | Mike Code">
+      <meta itemprop="name" content="shared_context | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          搜尋大對決 Find, Find_by, Where<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-08-14-%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          shared_context<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-16-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -243,15 +245,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-08-14 20:21:25" itemprop="dateCreated datePublished" datetime="2022-08-14T20:21:25+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-03 22:00:01" itemprop="dateModified" datetime="2022-09-03T22:00:01+08:00">2022-09-03</time>
+      <time title="Created: 2022-09-16 00:51:26 / Modified: 00:52:33" itemprop="dateCreated datePublished" datetime="2022-09-16T00:51:26+08:00">2022-09-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -259,12 +255,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/" class="post-meta-item leancloud_visitors" data-flag-title="搜尋大對決 Find, Find_by, Where" title="Views">
+    <span id="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/" class="post-meta-item leancloud_visitors" data-flag-title="shared_context" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -279,8 +275,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/搜尋大對決Find-Find-by-Where/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/16/IT邦鐵人賽Day16-RSpec語法shared_context/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -294,51 +290,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搜尋的功能非常常見，因為資料不會憑空出現，必須靠我們下條件，撈出符合的資料。那要使用哪個搜尋工具就非常重要了，因為工具間的差異，還是會對搜尋結果造成影響。</p>
-<span id="more"></span>
+        <p>昨天介紹了 shared_examples 的概念，如果理解，今天的內容就非常容易了。事不宜遲，馬上來介紹我們的 shared_context 吧。</p>
+<h1 id="shared-context"><a href="#shared-context" class="headerlink" title="shared_context"></a>shared_context</h1><span id="more"></span>
+<p>一樣是在測試項目一樣的情況，shared_examples 主要就是把重複測試項目抽離，而 shared_context 則是把「受測標的」全部抽離打包成一個 group，然後再 include_context 到測試項目的 group 裡：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Comebuy</span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:containers</span>, <span class="symbol">:liquid</span></span><br><span class="line"> </span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">initialize</span>(<span class="params">container, liquid</span>)</span><br><span class="line">    <span class="variable">@containers</span> = container</span><br><span class="line">    <span class="variable">@liquid</span> = liquid</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">RSpec.shared_context <span class="string">&quot;Comebuy&quot;</span> <span class="keyword">do</span></span><br><span class="line">  let(<span class="symbol">:bubble_black_tea</span>) &#123; <span class="title class_">Comebuy</span>.new(<span class="string">&quot;bubble&quot;</span>, <span class="string">&quot;black_tea&quot;</span>) &#125;</span><br><span class="line"> </span><br><span class="line">  subject &#123; <span class="title class_">Comebuy</span>.new(<span class="string">&quot;bubble&quot;</span>, <span class="string">&quot;milk_tea&quot;</span>) &#125;</span><br><span class="line"> </span><br><span class="line">  before <span class="keyword">do</span></span><br><span class="line">    <span class="variable">@bubble_green_tea</span> = <span class="title class_">Comebuy</span>.new(<span class="string">&quot;bubble&quot;</span>, <span class="string">&quot;green_tea&quot;</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">RSpec.describe <span class="string">&quot;Quality Examination for bubble_blacktea&quot;</span> <span class="keyword">do</span></span><br><span class="line">  include_context <span class="string">&quot;Comebuy&quot;</span></span><br><span class="line">  it <span class="string">&quot;is black tea&quot;</span> <span class="keyword">do</span></span><br><span class="line">    expect(bubble_black_tea.liquid).to eq(<span class="string">&quot;black_tea&quot;</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">RSpec.describe <span class="string">&quot;Quality Examination for bubble_milk_tea&quot;</span> <span class="keyword">do</span></span><br><span class="line">  include_context <span class="string">&quot;Comebuy&quot;</span></span><br><span class="line">  it <span class="string">&quot;is milk tea&quot;</span> <span class="keyword">do</span></span><br><span class="line">    expect(subject.liquid).to eq(<span class="string">&quot;milk_tea&quot;</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line">RSpec.describe <span class="string">&quot;Quality Examination for bubble_green_tea&quot;</span> <span class="keyword">do</span></span><br><span class="line">  include_context <span class="string">&quot;Comebuy&quot;</span></span><br><span class="line">  it <span class="string">&quot;is green tea&quot;</span> <span class="keyword">do</span></span><br><span class="line">    expect(<span class="variable">@bubble_green_tea</span>.liquid).to eq(<span class="string">&quot;green_tea&quot;</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Find"><a href="#Find" class="headerlink" title="Find"></a>Find</h1><p>輸入一個 id 參數（只接受id）後，尋找相對應的一筆資料。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@article</span> = Article.find(params[<span class="symbol">:id</span>])</span><br></pre></td></tr></table></figure>
-<p>在 SQL 的部分：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article Load (<span class="number">0.4</span>ms)  <span class="keyword">SELECT</span> &quot;articles&quot;. <span class="operator">*</span> <span class="keyword">FROM</span> &quot;articles&quot; <span class="keyword">WHERE</span> &quot;articles&quot;.&quot;id&quot; <span class="operator">=</span> ? LIMIT ? [[&quot;id&quot;, <span class="number">3</span>], [&quot;LIMIT&quot;, <span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
-
-<p>如果 find 找不到相對應的資料時，會跳出兇殘的錯誤訊息：</p>
-<p><a target="_blank" rel="noopener" href="https://images.vocus.cc/a79266c7-6ed0-4b39-b94e-0e3215a7ca34.png">https://images.vocus.cc/a79266c7-6ed0-4b39-b94e-0e3215a7ca34.png</a></p>
-<p>此外，find 只能找 id，所以如果要找其他資料，必須透過 find_by 或 where。</p>
-<hr>
-<h1 id="Find-by"><a href="#Find-by" class="headerlink" title="Find_by"></a>Find_by</h1><p>輸入一個或多個參數後，找到相對應的一筆資料。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@article</span> = Article.find(<span class="symbol">id:</span> params[<span class="symbol">:id</span>], <span class="symbol">title:</span> params[<span class="symbol">:title</span>])</span><br></pre></td></tr></table></figure>
-
-<p>在 SQL 的部分：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Article Load (<span class="number">0.4</span>ms)  <span class="keyword">SELECT</span> &quot;articles&quot;. <span class="operator">*</span> <span class="keyword">FROM</span> &quot;articles&quot; <span class="keyword">WHERE</span> &quot;articles&quot;.&quot;id&quot; <span class="operator">=</span> ? LIMIT ? [[&quot;id&quot;, <span class="number">3</span>], [&quot;LIMIT&quot;, <span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
-
-<p>如果 find_by 找不到相對應的資料時，會跳出比較溫和的 undefined method 訊息，並回傳 nil：</p>
-<p><a target="_blank" rel="noopener" href="https://images.vocus.cc/3217ab9b-fc4c-465f-aec6-1c910990d19f.png">https://images.vocus.cc/3217ab9b-fc4c-465f-aec6-1c910990d19f.png</a></p>
-<p>在 find_by 後面加驚嘆號，find_by! 也會產生跟 find 一樣的錯誤訊息，但仍能帶入多個參數。</p>
-<hr>
-<h1 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h1><p>輸入一個或多個參數後，找到相對應的多筆資料。</p>
-<p>這個 where 就是 SQL 語法的 where，所以參數也能使用 SQL 語法。</p>
-<p>此外，參數也可以是 String &#x2F; Array &#x2F; Hash 當搜尋條件。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Follow.where(<span class="symbol">user_id:</span> current_user.id, <span class="symbol">followable_id:</span> params[<span class="symbol">:id</span>], <span class="symbol">followable_type:</span> <span class="string">&quot;Project&quot;</span> )</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&lt;ActiveRecord::Relation [#&lt;Follow id: 2, follow: true, followable_id: 8, followable_type: &quot;Project&quot;, created_at: &quot;2022-09-03 08:40:14.738219000 +0000&quot;, updated_at: &quot;2022-09-03 08:40:14.738219000 +0000&quot;, user_id: 1&gt;]&gt;</span><br></pre></td></tr></table></figure>
-
-<p>使用 where 得到的結果是一個陣列裡面含有符合 where 條件的所有物件 ( Array with many objects )，也就是說，結果會是一個集合而不是一個資料，所以在取用時必須以陣列的方式取用。</p>
-<p>以上述 code 為例：</p>
-<p>&#96;&#96;&#96;ruby<br>result &#x3D; Follow.where(user_id: current_user.id, followable_id: params[:id], followable_type: “Project” )</p>
-<p>result.first<br>-&gt;<br>&lt;Follow id: 16, follow: true, followable_id: 7, followable_type: “Project”, created_at: “2022-09-03 13:58:19.096192000 +0000”, updated_at: “2022-09-03 13:58:19.096192000 +0000”, user_id: 5&gt;</p>
-<p>result.first.follow<br>-&gt; ‘true’</p>
-<hr>
-<h1 id="比較"><a href="#比較" class="headerlink" title="比較"></a>比較</h1><h2 id="find-vs-find-by"><a href="#find-vs-find-by" class="headerlink" title="find vs find_by"></a>find vs find_by</h2><ol>
-<li>條件數量不同，find 只能有一個，find_by 可以有很多個。</li>
-<li>錯誤訊息不同 （ 但是 find 可以加驚嘆號，就等同 find ）</li>
-</ol>
-<h2 id="find-系列-vs-where-系列"><a href="#find-系列-vs-where-系列" class="headerlink" title="find 系列 vs where 系列"></a>find 系列 vs where 系列</h2><ol>
-<li>find 系列只會有一筆資料，where 會找出符合搜尋條件的所有資料</li>
-<li>where 可以使用 SQL 語法當作搜尋條件</li>
-</ol>
-<hr>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10225325">https://ithelp.ithome.com.tw/articles/10225325</a></p>
+<p>如此一來，便可以在每個 group 裡省略「受測標的」的 code，讓 group 乾淨優雅一點。</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>今天介紹的 shared_context 與昨天的 shared_example 都在做同樣的事情：避免重複。</p>
+<p>而避免重複也是 Ruby 強調的重點: Do not repeat yourself.</p>
+<p>簡單複習一下：</p>
+<p>shared_examples 是將重複的 examples 打包起來抽離出來。</p>
+<p>shared_context 是將每個 examples 的受測標的打包並抽離。</p>
+<p>明天開始我們將要把 Rspec 帶入 Rails 裡，並逐步介紹好用且常用的測試套件與框架。</p>
 
     </div>
 
@@ -348,22 +311,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
-              <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
+              <a href="/tags/Rspec/" rel="tag"><i class="fa fa-tag"></i> Rspec</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/08/14/ActiveModel-ForbiddenAttributesError/" rel="prev" title="ActiveModel::ForbiddenAttributesError">
-                  <i class="fa fa-chevron-left"></i> ActiveModel::ForbiddenAttributesError
+                <a href="/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/" rel="prev" title="IT 邦鐵人賽 Day 15 - RSpec 語法 shared_example">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 15 - RSpec 語法 shared_example
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/08/14/Redirect-to-Render-RenderPartial/" rel="next" title="Redirect_to / Render / Render Partial">
-                  Redirect_to / Render / Render Partial <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
