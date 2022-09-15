@@ -1,6 +1,5 @@
 ---
-layout: IT 邦鐵人賽 Day 16 - RSpec 語法 shared_context
-title: shared_context
+title: IT 邦鐵人賽 Day 16 - RSpec 語法 shared_context
 date: 2022-09-16 00:51:26
 category: iThome
 tags: 
