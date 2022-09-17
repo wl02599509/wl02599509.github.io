@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -147,7 +147,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -199,6 +199,120 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-09-07 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-12 02:46:11" itemprop="dateModified" datetime="2022-09-12T02:46:11+08:00">2022-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。</p>
+<p>接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1187,114 +1301,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/ViewHelper-form-tag-form-for-form-with/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-title-link" itemprop="url">ViewHelper - form_tag / form_for / form_with</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-08-14 21:01:32 / Modified: 21:29:41" itemprop="dateCreated datePublished" datetime="2022-08-14T21:01:32+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-meta-item leancloud_visitors" data-flag-title="ViewHelper - form_tag / form_for / form_with" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/ViewHelper-form-tag-form-for-form-with/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Rail 的 MVC 架構中，M 是負責驗證與邏輯、以及轉譯向資料庫溝通的角色; C 是負責資料的搬運，搬往 M 或 V; V 則是負責畫面的呈現、及使用者與資料的互動，並將請求送往C，接著得到 C 送回來的資料。</p>
-<p>那關於資料的傳輸，一定是要先有個表單，Rails 提供了三個方法，依照需求使用，不過用過之後，通常就會知道哪個最好用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
