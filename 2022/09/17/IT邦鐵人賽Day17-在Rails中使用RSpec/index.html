@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法） New Project最基本的，我們先創一個 Rails 的 新 project。 1rails new &lt;project_name&gt;  如果想用既有的">
+    <meta name="description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法） New Project最基本的，我們先創一個 Rails 的 新 project。 1rails new &lt;project_name&gt;  如果想用既有的">
+<meta property="og:description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-17T14:24:36.000Z">
-<meta property="article:modified_time" content="2022-09-17T14:25:30.208Z">
+<meta property="article:modified_time" content="2022-09-17T14:26:04.465Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
@@ -247,7 +247,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-17 22:24:36 / Modified: 22:25:30" itemprop="dateCreated datePublished" datetime="2022-09-17T22:24:36+08:00">2022-09-17</time>
+      <time title="Created: 2022-09-17 22:24:36 / Modified: 22:26:04" itemprop="dateCreated datePublished" datetime="2022-09-17T22:24:36+08:00">2022-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,6 +291,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）</p>
+<span id="more"></span>
+
 <h1 id="New-Project"><a href="#New-Project" class="headerlink" title="New Project"></a>New Project</h1><p>最基本的，我們先創一個 Rails 的 新 project。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails new &lt;project_name&gt;</span><br></pre></td></tr></table></figure>
 
