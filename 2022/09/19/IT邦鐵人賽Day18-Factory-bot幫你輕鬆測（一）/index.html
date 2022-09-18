@@ -22,13 +22,13 @@
 
     <meta name="description" content="昨天已經在 Rails  裡安裝了 rails-rspec，但通常不太可能只單靠 rails-rspec 完成測試的撰寫。 WHY我想，如果非 Rails 初學者或至少有學過 CRUD，就會知道 Rails 有大量的關聯性，一對一、一對多、多對多。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一）">
+<meta property="og:title" content="IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="Mike Code">
 <meta property="og:description" content="昨天已經在 Rails  裡安裝了 rails-rspec，但通常不太可能只單靠 rails-rspec 完成測試的撰寫。 WHY我想，如果非 Rails 初學者或至少有學過 CRUD，就會知道 Rails 有大量的關聯性，一對一、一對多、多對多。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-18T16:24:02.000Z">
-<meta property="article:modified_time" content="2022-09-18T16:33:19.825Z">
+<meta property="article:modified_time" content="2022-09-18T17:13:53.174Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
@@ -42,10 +42,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/","path":"2022/09/19/IT邦鐵人賽Day18-Factory-bot幫你輕鬆測（一）/","title":"IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/","path":"2022/09/19/IT邦鐵人賽Day18-Factory-bot幫你輕鬆測（一）/","title":"IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一） | Mike Code</title>
+<title>IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一） | Mike Code</title>
   
 
 
@@ -231,12 +231,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一） | Mike Code">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一） | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一）<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-19-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-19-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -248,7 +248,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-19 00:24:02 / Modified: 00:33:19" itemprop="dateCreated datePublished" datetime="2022-09-19T00:24:02+08:00">2022-09-19</time>
+      <time title="Created: 2022-09-19 00:24:02 / Modified: 01:13:53" itemprop="dateCreated datePublished" datetime="2022-09-19T00:24:02+08:00">2022-09-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +261,7 @@
     </span>
 
   
-    <span id="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一）" title="Views">
+    <span id="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
