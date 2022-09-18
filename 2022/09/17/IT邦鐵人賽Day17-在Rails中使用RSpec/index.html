@@ -22,13 +22,13 @@
 
     <meta name="description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec">
+<meta property="og:title" content="IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/index.html">
 <meta property="og:site_name" content="Mike Code">
 <meta property="og:description" content="前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-17T14:24:36.000Z">
-<meta property="article:modified_time" content="2022-09-17T14:26:04.465Z">
+<meta property="article:modified_time" content="2022-09-18T16:37:58.591Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
@@ -41,10 +41,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/","path":"2022/09/17/IT邦鐵人賽Day17-在Rails中使用RSpec/","title":"IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/","path":"2022/09/17/IT邦鐵人賽Day17-在Rails中使用RSpec/","title":"IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec | Mike Code</title>
+<title>IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec | Mike Code</title>
   
 
 
@@ -230,12 +230,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec | Mike Code">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-17-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-17-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -245,9 +245,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-09-17 22:24:36 / Modified: 22:26:04" itemprop="dateCreated datePublished" datetime="2022-09-17T22:24:36+08:00">2022-09-17</time>
+      <time title="Created: 2022-09-17 22:24:36" itemprop="dateCreated datePublished" datetime="2022-09-17T22:24:36+08:00">2022-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-19 00:37:58" itemprop="dateModified" datetime="2022-09-19T00:37:58+08:00">2022-09-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -260,7 +266,7 @@
     </span>
 
   
-    <span id="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec" title="Views">
+    <span id="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
