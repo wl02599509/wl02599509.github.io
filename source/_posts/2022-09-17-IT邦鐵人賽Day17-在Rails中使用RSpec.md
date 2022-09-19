@@ -1,5 +1,5 @@
 ---
-title: IT 邦鐵人賽 Day17 - 在 Rails 中使用 RSpec
+title: IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec
 date: 2022-09-17 22:24:36
 category: iThome
 tags: 

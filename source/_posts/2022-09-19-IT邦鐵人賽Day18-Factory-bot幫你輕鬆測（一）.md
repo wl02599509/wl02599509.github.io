@@ -1,5 +1,5 @@
 ---
-title: IT邦鐵人賽Day18-Factory_bot幫你輕鬆測（一）
+title: IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）
 date: 2022-09-19 00:24:02
 category: iThome
 tags: 
