@@ -22,13 +22,13 @@
 
     <meta name="description" content="昨天介紹了 Capybara，提到這款套件是以「使用者」角度操作網頁來進行測試，所以它也可以真實呈現操作頁面的視覺畫面！ Capybara 測試模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mike Code">
+<meta property="og:title" content="IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/index.html">
 <meta property="og:site_name" content="Mike Code">
 <meta property="og:description" content="昨天介紹了 Capybara，提到這款套件是以「使用者」角度操作網頁來進行測試，所以它也可以真實呈現操作頁面的視覺畫面！ Capybara 測試模式">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-21T16:45:16.000Z">
-<meta property="article:modified_time" content="2022-09-21T16:58:33.960Z">
+<meta property="article:modified_time" content="2022-09-21T16:58:41.924Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
@@ -42,10 +42,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/","path":"2022/09/22/IT邦鐵人賽Day21-Capybara模式設定、Debug、登入狀態 /","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/","path":"2022/09/22/IT邦鐵人賽Day21-Capybara模式設定、Debug、登入狀態 /","title":"IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Mike Code</title>
+<title>IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態 | Mike Code</title>
   
 
 
@@ -231,12 +231,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Mike Code">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態 | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          <a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-22-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-22-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -248,7 +248,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-22 00:45:16 / Modified: 00:58:33" itemprop="dateCreated datePublished" datetime="2022-09-22T00:45:16+08:00">2022-09-22</time>
+      <time title="Created: 2022-09-22 00:45:16 / Modified: 00:58:41" itemprop="dateCreated datePublished" datetime="2022-09-22T00:45:16+08:00">2022-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +261,7 @@
     </span>
 
   
-    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
