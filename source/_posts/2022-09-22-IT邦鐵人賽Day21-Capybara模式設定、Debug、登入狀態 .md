@@ -1,6 +1,5 @@
 ---
-layout: IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態 
-title: 模式設定、Debug、登入狀態
+title: IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態 
 date: 2022-09-22 00:45:16
 category: iThome
 tags: 

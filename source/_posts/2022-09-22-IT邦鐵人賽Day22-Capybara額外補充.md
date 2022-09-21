@@ -1,5 +1,5 @@
 ---
-title: IT邦鐵人賽Day22-Capybara額外補充
+title: IT 邦鐵人賽 Day 22 - Capybara 額外補充
 date: 2022-09-22 00:48:22
 category: iThome
 tags: 
