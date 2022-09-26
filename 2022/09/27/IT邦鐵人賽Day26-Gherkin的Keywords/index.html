@@ -20,36 +20,42 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。 接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。">
+    <meta name="description" content="前一天介紹了 BDD 的測試框架 Cucumber，而該測試框架的規格書所使用的是 Gherkin，利用人類自己的文字，提升團隊的參與。其中 Gherkin 裡的 Keywords 正是扮演了舉足輕重的角色，今天我們就來詳細介紹這些 Keywords：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/index.html">
+<meta property="og:title" content="IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。 接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。">
+<meta property="og:description" content="前一天介紹了 BDD 的測試框架 Cucumber，而該測試框架的規格書所使用的是 Gherkin，利用人類自己的文字，提升團隊的參與。其中 Gherkin 裡的 Keywords 正是扮演了舉足輕重的角色，今天我們就來詳細介紹這些 Keywords：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png">
-<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089wK3wrbA6VE.png">
-<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089IIafu1zWgC.png">
-<meta property="article:published_time" content="2022-09-07T15:36:23.000Z">
-<meta property="article:modified_time" content="2022-09-11T18:46:11.758Z">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tk1pMq7hx2.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tzk9xto4Qu.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089APVVAdixoo.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089bWjUkxqMhC.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089k9maFYvXm5.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089FZ85N5xq2y.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089ZkHTXrh5P0.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/201490896vjAhnlhz6.png">
+<meta property="article:published_time" content="2022-09-26T17:12:52.000Z">
+<meta property="article:modified_time" content="2022-09-26T17:13:34.686Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Ruby">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
-<meta property="article:tag" content="TDD">
-<meta property="article:tag" content="Rspec">
+<meta property="article:tag" content="Ruby on Rails">
+<meta property="article:tag" content="BDD">
+<meta property="article:tag" content="Cucumber">
+<meta property="article:tag" content="Gherkin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tk1pMq7hx2.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/","path":"2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/","title":"IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/","path":"2022/09/27/IT邦鐵人賽Day26-Gherkin的Keywords/","title":"IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義 | Mike Code</title>
+<title>IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords | Mike Code</title>
   
 
 
@@ -134,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">實作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Feature"><span class="nav-number">1.</span> <span class="nav-text">Feature</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scenario-x2F-Example"><span class="nav-number">2.</span> <span class="nav-text">Scenario &#x2F; Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Given"><span class="nav-number">3.</span> <span class="nav-text">Given</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#When"><span class="nav-number">4.</span> <span class="nav-text">When</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Then"><span class="nav-number">5.</span> <span class="nav-text">Then</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#And-But"><span class="nav-number">6.</span> <span class="nav-text">And, But</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%95%B6%E6%88%91%E5%80%91%E7%9A%84-Given-When-Then-%E9%9C%80%E8%A6%81%E5%85%A9%E5%80%8B%E4%BB%A5%E4%B8%8A%E6%99%82"><span class="nav-number">6.1.</span> <span class="nav-text">當我們的 Given, When, Then 需要兩個以上時</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%B1%E6%9C%83%E4%BD%BF%E7%94%A8-And-%E6%88%96-But-%E4%BE%86%E4%BB%A3%E6%9B%BF%EF%BC%8C%E4%B8%A6%E4%BE%9D%E7%85%A7%E8%AA%9E%E6%84%8F%EF%BC%8C%E6%B1%BA%E5%AE%9A%E8%A6%81%E7%94%A8-And-%E9%82%84%E6%98%AF-But%E3%80%82"><span class="nav-number">6.2.</span> <span class="nav-text">就會使用 And 或 But 來代替，並依照語意，決定要用 And 還是 But。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A4%E5%A4%96%EF%BC%8C%E6%88%91%E5%80%91%E9%82%84%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%98%9F%E8%99%9F-%E4%BE%86%E5%8F%96%E4%BB%A3-And-%E8%B7%9F-But%E3%80%82"><span class="nav-number">6.3.</span> <span class="nav-text">此外，我們還可以使用星號 * 來取代 And 跟 But。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">7.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -222,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -235,12 +241,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義 | Mike Code">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-08-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-27-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -250,15 +256,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-07 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:46:11" itemprop="dateModified" datetime="2022-09-12T02:46:11+08:00">2022-09-12</time>
+      <time title="Created: 2022-09-27 01:12:52 / Modified: 01:13:34" itemprop="dateCreated datePublished" datetime="2022-09-27T01:12:52+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +271,7 @@
     </span>
 
   
-    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -286,8 +286,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day26-Gherkin的Keywords/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -301,22 +301,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。</p>
-<p>接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。</p>
+        <p>前一天介紹了 BDD 的測試框架 Cucumber，而該測試框架的規格書所使用的是 Gherkin，利用人類自己的文字，提升團隊的參與。其中 Gherkin 裡的 Keywords 正是扮演了舉足輕重的角色，今天我們就來詳細介紹這些 Keywords：</p>
 <span id="more"></span>
-<hr>
-<p>那我們繼續將昨天錯誤訊息所說缺少的 MobileWallet 的常數類別與測試需要的 examples 做出來。</p>
-<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>在一樣的目錄（資料夾）裡做一個檔案叫 mobile_wallet.rb，並在裡面寫一個 MobileWallet 的類別：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png" alt="https://ithelp.ithome.com.tw/upload/images/20220907/20149089R477O54jii.png"></p>
-<p>接著我們在到 mobile_wallet_spec.rb 裡加上 require “.&#x2F;mobile_wallet.rb”<br>將 mobile_wallet.rb 引渡到 mobile_wallet_spec.rb 裡，讓mobile_wallet_spec.rb 知道要對哪個檔案進行測試：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220907/20149089wK3wrbA6VE.png" alt="https://ithelp.ithome.com.tw/upload/images/20220907/20149089wK3wrbA6VE.png"></p>
-<p>完成後，再一次到終端機上輸入 rspec .&#x2F;mobile_wallet_spec.rb 執行測試，這次出現的訊息完全不一樣了，沒那麼紅，多了很多美麗的色彩以及友善的文字：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220907/20149089IIafu1zWgC.png" alt="https://ithelp.ithome.com.tw/upload/images/20220907/20149089IIafu1zWgC.png"></p>
-<p>最上面的三個米字＊是 pending 狀態的意思，也就是你的 code 都還沒有寫，提醒你要記得把code補上，而顯示幾個米字＊就代表你有幾個 examples（也就是 it )。</p>
-<p>最下面黃色字體的部分，3 example，也就是有3個 it ，每一個 it 就是一個又一個的 example。</p>
-<p>如果你把 code 補上，測試發生失敗時，米字＊就會變成 F，如果測試成功，米字＊就會變成一個點「 . 」。第幾個 it 的 code 測試失敗或成功，第幾個米字＊就會變成 F 或 . 。</p>
-<p>假如上面顯示 .*F，代表你有三個 it 要測試，第一個 it 已經通過測試，第二個 it 仍然為 pending 狀態，你還沒針對第二個 it 寫上 code，第三個 it 有寫code 了，但內容不正確，code 有錯誤，要頭痛啦！</p>
-<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>目前為止，對於測試的樣子應該是更清楚了些，不會像一開始還搞不懂，測試是什麼，在測什麼，用什麼測，測了會怎樣。希望這樣一篇一點點內容可以讓大家容易理解並吸收，那我們接下來要把實際內容慢慢填上，看看過程會有什麼狀況發生。</p>
+
+<h1 id="Feature"><a href="#Feature" class="headerlink" title="Feature"></a>Feature</h1><p>主要是描述測試的功能，通常後面會接一個清楚的功能名稱，接著底下可以選擇性地寫些描述，用來說明功能意義或是寫上一些商業邏輯。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tk1pMq7hx2.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tk1pMq7hx2.png"></p>
+<h1 id="Scenario-x2F-Example"><a href="#Scenario-x2F-Example" class="headerlink" title="Scenario &#x2F; Example"></a>Scenario &#x2F; Example</h1><p>在這部分，主要是在後面接上一個簡明扼要的標題，用來敘述這個 Feature 的具體情境。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tzk9xto4Qu.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089tzk9xto4Qu.png"></p>
+<p>使用 Scenario 或是 Example 都一樣，兩者是同意的。圖片範例中的 Scenario 也可以換成 Example 。</p>
+<p>通常一個 Feature 底下，可能會有好幾個 Scenario &#x2F; Example ，而每一個 Scenario &#x2F; Example 是由 3 - 5	個 steps 所組成。建議 steps 最多 5 個就好，以免導致可讀性下降。</p>
+<p>這裡指的 steps 是接下來要介紹的 given, when, then, and, but。</p>
+<h1 id="Given"><a href="#Given" class="headerlink" title="Given"></a>Given</h1><p>用作描述情境條件，或是一個在行為開始之前系統須先準備好的資料，也就是行為開始前的條件預設。</p>
+<p>在開始測試時，系統會先將 given 給予的條件產生相對應的物件或資料庫內的資料，好讓系統先處於一個準備好的狀態。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089APVVAdixoo.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089APVVAdixoo.png"></p>
+<h1 id="When"><a href="#When" class="headerlink" title="When"></a>When</h1><p>用來描述行為的開始、執行或是事件的發生。<br>這可以是使用者與系統之間的互動，也可以是被其他系統觸發所產生的事件。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089bWjUkxqMhC.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089bWjUkxqMhC.png"></p>
+<p>建議讀者在每個 Scenario 裡，只要有一個 When 就好，如果覺得一個 When 不夠用的話，那可能要考慮將這個 Scenario 拆成兩個以上的 Scenario。</p>
+<h1 id="Then"><a href="#Then" class="headerlink" title="Then"></a>Then</h1><p>這個比較單純一點，就是用來描述輸出的結果、預期的值。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089k9maFYvXm5.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089k9maFYvXm5.png"></p>
+<h1 id="And-But"><a href="#And-But" class="headerlink" title="And, But"></a>And, But</h1><h2 id="當我們的-Given-When-Then-需要兩個以上時"><a href="#當我們的-Given-When-Then-需要兩個以上時" class="headerlink" title="當我們的 Given, When, Then 需要兩個以上時"></a>當我們的 Given, When, Then 需要兩個以上時</h2><p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089FZ85N5xq2y.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089FZ85N5xq2y.png"></p>
+<h2 id="就會使用-And-或-But-來代替，並依照語意，決定要用-And-還是-But。"><a href="#就會使用-And-或-But-來代替，並依照語意，決定要用-And-還是-But。" class="headerlink" title="就會使用 And 或 But 來代替，並依照語意，決定要用 And 還是 But。"></a>就會使用 And 或 But 來代替，並依照語意，決定要用 And 還是 But。</h2><p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/20149089ZkHTXrh5P0.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/20149089ZkHTXrh5P0.png"></p>
+<h2 id="此外，我們還可以使用星號-來取代-And-跟-But。"><a href="#此外，我們還可以使用星號-來取代-And-跟-But。" class="headerlink" title="此外，我們還可以使用星號 * 來取代 And 跟 But。"></a>此外，我們還可以使用星號 * 來取代 And 跟 But。</h2><p><img src="https://ithelp.ithome.com.tw/upload/images/20220926/201490896vjAhnlhz6.png" alt="https://ithelp.ithome.com.tw/upload/images/20220926/201490896vjAhnlhz6.png"></p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>今天主要是介紹最主要的 Keywords，如果想瞭解更多，可以到 Gherkin 的官網閱讀文件。接下來我們要來介紹 Cucumber 框架啦～</p>
 
     </div>
 
@@ -326,25 +332,23 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
               <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
               <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
-              <a href="/tags/TDD/" rel="tag"><i class="fa fa-tag"></i> TDD</a>
-              <a href="/tags/Rspec/" rel="tag"><i class="fa fa-tag"></i> Rspec</a>
+              <a href="/tags/Ruby-on-Rails/" rel="tag"><i class="fa fa-tag"></i> Ruby on Rails</a>
+              <a href="/tags/BDD/" rel="tag"><i class="fa fa-tag"></i> BDD</a>
+              <a href="/tags/Cucumber/" rel="tag"><i class="fa fa-tag"></i> Cucumber</a>
+              <a href="/tags/Gherkin/" rel="tag"><i class="fa fa-tag"></i> Gherkin</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" rel="prev" title="IT 邦鐵人賽 Day6 - 規格與第一個紅燈">
-                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day6 - 規格與第一個紅燈
+                <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" rel="prev" title="IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" rel="next" title="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈">
-                  IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
