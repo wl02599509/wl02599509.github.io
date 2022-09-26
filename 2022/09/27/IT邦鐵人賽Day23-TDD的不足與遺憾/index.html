@@ -20,21 +20,22 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！ 不過在介紹 BDD 之前 我們要來談談 TDD 的缺點：排擠非工程師背景的人員在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD">
+    <meta name="description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾">
 <meta property="og:url" content="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！ 不過在介紹 BDD 之前 我們要來談談 TDD 的缺點：排擠非工程師背景的人員在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD">
+<meta property="og:description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
 <meta property="article:published_time" content="2022-09-26T17:05:42.000Z">
-<meta property="article:modified_time" content="2022-09-26T17:07:20.107Z">
+<meta property="article:modified_time" content="2022-09-26T17:08:43.810Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Test Automation">
 <meta property="article:tag" content="TDD">
 <meta property="article:tag" content="Ruby on Rails">
+<meta property="article:tag" content="BDD">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
 
@@ -146,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -157,7 +158,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -249,7 +250,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:07:20" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
+      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:08:43" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,6 +295,8 @@
     <div class="post-body" itemprop="articleBody">
         <p>經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。</p>
 <p>結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！</p>
+<span id="more"></span>
+
 <p>不過在介紹 BDD 之前</p>
 <h1 id="我們要來談談-TDD-的缺點："><a href="#我們要來談談-TDD-的缺點：" class="headerlink" title="我們要來談談 TDD 的缺點："></a>我們要來談談 TDD 的缺點：</h1><h2 id="排擠非工程師背景的人員"><a href="#排擠非工程師背景的人員" class="headerlink" title="排擠非工程師背景的人員"></a>排擠非工程師背景的人員</h2><p>在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD 本身還是著重在工程師本身的語言上，使得除了 RD 以外的人，都無法完全理解測試案例。</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png" alt="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png"></p>
@@ -315,6 +318,7 @@
               <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
               <a href="/tags/TDD/" rel="tag"><i class="fa fa-tag"></i> TDD</a>
               <a href="/tags/Ruby-on-Rails/" rel="tag"><i class="fa fa-tag"></i> Ruby on Rails</a>
+              <a href="/tags/BDD/" rel="tag"><i class="fa fa-tag"></i> BDD</a>
           </div>
 
         
@@ -326,6 +330,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" rel="next" title="IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！">
+                  IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！ <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
