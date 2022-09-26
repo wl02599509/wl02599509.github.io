@@ -20,24 +20,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Mike Code">
-<meta property="og:url" content="https://wl02599509.github.io/tags/TDD/index.html">
+    <meta name="description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！ 不過在介紹 BDD 之前 我們要來談談 TDD 的缺點：排擠非工程師背景的人員在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/index.html">
 <meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！ 不過在介紹 BDD 之前 我們要來談談 TDD 的缺點：排擠非工程師背景的人員在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
+<meta property="article:published_time" content="2022-09-26T17:05:42.000Z">
+<meta property="article:modified_time" content="2022-09-26T17:07:20.107Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="TDD">
+<meta property="article:tag" content="Ruby on Rails">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/tags/TDD/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/TDD/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/","path":"2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/","title":"IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Tag: TDD | Mike Code</title>
+<title>IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾 | Mike Code</title>
   
 
 
@@ -109,7 +118,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -122,6 +131,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E5%80%91%E8%A6%81%E4%BE%86%E8%AB%87%E8%AB%87-TDD-%E7%9A%84%E7%BC%BA%E9%BB%9E%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">我們要來談談 TDD 的缺點：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E6%93%A0%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E8%83%8C%E6%99%AF%E7%9A%84%E4%BA%BA%E5%93%A1"><span class="nav-number">1.1.</span> <span class="nav-text">排擠非工程師背景的人員</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%83%E9%9C%80%E6%B1%82%E8%88%87%E7%A8%8B%E5%BC%8F%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">為什麼會需求與程式不一致？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,171 +208,140 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">TDD
-          <small>Tag</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾 | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-27-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:07:20" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。</p>
+<p>結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！</p>
+<p>不過在介紹 BDD 之前</p>
+<h1 id="我們要來談談-TDD-的缺點："><a href="#我們要來談談-TDD-的缺點：" class="headerlink" title="我們要來談談 TDD 的缺點："></a>我們要來談談 TDD 的缺點：</h1><h2 id="排擠非工程師背景的人員"><a href="#排擠非工程師背景的人員" class="headerlink" title="排擠非工程師背景的人員"></a>排擠非工程師背景的人員</h2><p>在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD 本身還是著重在工程師本身的語言上，使得除了 RD 以外的人，都無法完全理解測試案例。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png" alt="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png"></p>
+<p>舉個簡單的例子，如上圖，非程式背景的人，可能就無法理解：「 wallet &#x3D; MobileWallet.new(50) 」在幹嘛？那是什麼意思？</p>
+<p>所以在測試時，只有工程師本身知道測試案例內的條件與情境，這樣的風險就是，可能會導致需求與程式不一致。</p>
+<h2 id="為什麼會需求與程式不一致？"><a href="#為什麼會需求與程式不一致？" class="headerlink" title="為什麼會需求與程式不一致？"></a>為什麼會需求與程式不一致？</h2><p>因為專案的需求只有 PM 最知道，PM 必須將需求完全敘述給工程師，讓工程師寫程式，所以 PM 跟工程師之間的溝通就變得很重要。</p>
+<p>如果今天工程師對 PM 的敘述理解 8 成，這 8 成呈現在規格上時，PM 無法完全理解規格上的程式碼時，就可能會導致不一致，因為 PM 可能會漏掉工程師未理解的那 2 成。</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>那要如何解決這個問題，就是新的測試模式誕生的原因。下一篇會來介紹這個新的模式 BDD，敬請期待。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-27T01:05:42+08:00"
-              content="2022-09-27">
-          09-27
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
+              <a href="/tags/TDD/" rel="tag"><i class="fa fa-tag"></i> TDD</a>
+              <a href="/tags/Ruby-on-Rails/" rel="tag"><i class="fa fa-tag"></i> Ruby on Rails</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" rel="prev" title="IT 邦鐵人賽 Day 22 - Capybara 額外補充">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 22 - Capybara 額外補充
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-10T00:16:45+08:00"
-              content="2022-09-10">
-          09-10
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day10 - RSpec 基本語法</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-09T00:16:26+08:00"
-              content="2022-09-09">
-          09-09
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" itemprop="url">
-            <span itemprop="name">9-RSpec測試完成</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-08T00:17:08+08:00"
-              content="2022-09-08">
-          09-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-07T23:36:23+08:00"
-              content="2022-09-07">
-          09-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-06T10:55:00+08:00"
-              content="2022-09-06">
-          09-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day6 - 規格與第一個紅燈</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-04T00:30:14+08:00"
-              content="2022-09-04">
-          09-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/09/04/IT%E5%B9%AB%E9%90%B5%E4%BA%BA%E8%B3%BDDay4-TDD%E4%BB%8B%E7%B4%B9/" itemprop="url">
-            <span itemprop="name">IT 邦鐵人賽 Day4 - TDD介紹</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 
