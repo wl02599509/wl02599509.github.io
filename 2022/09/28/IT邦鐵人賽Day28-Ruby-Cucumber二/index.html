@@ -20,24 +20,39 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Mike Code">
-<meta property="og:url" content="https://wl02599509.github.io/categories/Rails/index.html">
+    <meta name="description" content="昨天我們安裝了 Cucumber 套件，然後也把規格寫好後，run 一遍測試，出現了訊息告訴我們有幾個 scenario 與 step，因為我們還沒有在 step_definations 資料夾裡新增規格要測試的檔案，所以訊息也有出現測試檔案內容的雛形 (太方便了)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)">
+<meta property="og:url" content="https://wl02599509.github.io/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/index.html">
 <meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="昨天我們安裝了 Cucumber 套件，然後也把規格寫好後，run 一遍測試，出現了訊息告訴我們有幾個 scenario 與 step，因為我們還沒有在 step_definations 資料夾裡新增規格要測試的檔案，所以訊息也有出現測試檔案內容的雛形 (太方便了)。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/201490894TFvyHD6Pn.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/20149089g7HPPJTRtZ.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/20149089x68DKa3K0b.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/20149089gF9vKhsiQH.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/20149089AI6uNIW3kX.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/20149089qtSab3Ajhy.png">
+<meta property="article:published_time" content="2022-09-27T16:12:47.000Z">
+<meta property="article:modified_time" content="2022-09-27T16:13:33.897Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="BDD">
+<meta property="article:tag" content="Cucumber">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220928/201490894TFvyHD6Pn.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/categories/Rails/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"categories/Rails/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/","path":"2022/09/28/IT邦鐵人賽Day28-Ruby-Cucumber二/","title":"IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Category: Rails | Mike Code</title>
+<title>IT 邦鐵人賽 Day 28 - Ruby Cucumber(二) | Mike Code</title>
   
 
 
@@ -109,7 +124,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -122,6 +137,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%A6%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">實作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,151 +214,152 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Rails
-          <small>Category</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="IT 邦鐵人賽 Day 28 - Ruby Cucumber(二) | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-28-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+      <time title="Created: 2022-09-28 00:12:47 / Modified: 00:13:33" itemprop="dateCreated datePublished" datetime="2022-09-28T00:12:47+08:00">2022-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/28/IT邦鐵人賽Day28-Ruby-Cucumber二/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>昨天我們安裝了 Cucumber 套件，然後也把規格寫好後，run 一遍測試，出現了訊息告訴我們有幾個 scenario 與 step，因為我們還沒有在 step_definations 資料夾裡新增規格要測試的檔案，所以訊息也有出現測試檔案內容的雛形 (太方便了)。</p>
+<span id="more"></span>
+
+<p>今天我們就要將程式碼通通補上，來看看過程中的測試與訊息變化。</p>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>先將 step 每個描述，轉化成程式碼，並寫在 step 底下：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/201490894TFvyHD6Pn.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/201490894TFvyHD6Pn.png"></p>
+<p>執行 cucumber：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/20149089g7HPPJTRtZ.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/20149089g7HPPJTRtZ.png"></p>
+<p>很棒，這是很正確的錯誤訊息，跟之前介紹 RSpec 時一樣，一堆的紅色錯誤訊息，上面寫著 unitialized constant MobileWallet…..，這樣就對了，因為我們根本還沒寫到實作的程式碼，測試碼當然找不到。</p>
+<p>已經講解過這個錯誤訊息，這裡就不多廢話，我們就直接把實際的程式碼補上：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/20149089x68DKa3K0b.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/20149089x68DKa3K0b.png"></p>
+<p>執行 cucumber 看看跑出什麼：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/20149089gF9vKhsiQH.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/20149089gF9vKhsiQH.png"></p>
+<p>第一個 scenario 的 steps 已經全部 pass 了，剩下兩個錯誤的部分，我們在針對錯誤的部分修正一下實作的測試碼：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/20149089AI6uNIW3kX.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/20149089AI6uNIW3kX.png"></p>
+<p>修改好後執行 cucumber ：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20220928/20149089qtSab3Ajhy.png" alt="https://ithelp.ithome.com.tw/upload/images/20220928/20149089qtSab3Ajhy.png"></p>
+<p>大功告成！所有的 scenario 都 pass 了！</p>
+<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>測試完成後，接著就可以開始進行測試碼的優化了，讓可讀性上升。</p>
+<p>還記得為什麼每做一步就要 run 一次測試嗎？為了知道你的測試框架有沒有正常。如果你剛剛 cucumber 後，他跑出一堆 pass ，但你根本還沒寫，這豈不是測試框架出了問題嗎？（可能是小精靈幫我寫完了）</p>
+<p>如果沒有發現到這個框架出現了問題，等全部寫完，才 run 第一次，那眼前出現的 pass 是真的 pass 嗎？</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T21:01:32+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" itemprop="url">
-            <span itemprop="name">ViewHelper - form_tag / form_for / form_with</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
+              <a href="/tags/BDD/" rel="tag"><i class="fa fa-tag"></i> BDD</a>
+              <a href="/tags/Cucumber/" rel="tag"><i class="fa fa-tag"></i> Cucumber</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/" rel="prev" title="IT 邦鐵人賽 Day 27 - Cucumber with Ruby">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 27 - Cucumber with Ruby
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T20:37:54+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/Redirect-to-Render-RenderPartial/" itemprop="url">
-            <span itemprop="name">Redirect_to / Render / Render Partial</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T20:21:25+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/" itemprop="url">
-            <span itemprop="name">搜尋大對決 Find, Find_by, Where</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T20:11:45+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/ActiveModel-ForbiddenAttributesError/" itemprop="url">
-            <span itemprop="name">ActiveModel::ForbiddenAttributesError</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T19:31:56+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/model%E9%97%9C%E8%81%AF%E7%9A%84%E5%A4%B1%E6%95%97%E7%95%B0%E5%B8%B8/" itemprop="url">
-            <span itemprop="name">model 關聯的失敗異常</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T19:15:08+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/node%20&%20nodejs%E5%B0%8E%E8%87%B4rails%E5%B0%88%E6%A1%88%E5%BB%BA%E7%AB%8B%E5%A4%B1%E6%95%97/" itemprop="url">
-            <span itemprop="name">node & nodejs導致rails專案建立失敗</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 
