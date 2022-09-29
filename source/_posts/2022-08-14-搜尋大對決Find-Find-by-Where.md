@@ -38,7 +38,7 @@ https://images.vocus.cc/a79266c7-6ed0-4b39-b94e-0e3215a7ca34.png
 輸入一個或多個參數後，找到相對應的一筆資料。
 
 ```ruby
-@article = Article.find(id: params[:id], title: params[:title])
+@article = Article.find_by(id: params[:id], title: params[:title])
 ```
 
 在 SQL 的部分：
@@ -83,7 +83,7 @@ result.first
 
 result.first.follow
 -> 'true'
-
+```
 ---
 
 # 比較
