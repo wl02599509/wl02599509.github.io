@@ -20,34 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！">
+    <meta name="description" content="前言Action Text 是 Rails 提供的魔法之一，它可以讓你的表單的欄位轉變成 trix-editor，如此一來便能在該欄位裡享受寫文章的快感與樂趣，而不像一般的欄位，只能寫到底，無法換行。 但在進行測試，需要驗證trix-editor產出來的值時，卻發生了意外，事情不再是單純的 xxx.content 就能得到它的值了…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/index.html">
+<meta property="og:title" content="如何取得 Action Text 的 Content 呢？">
+<meta property="og:url" content="https://wl02599509.github.io/2022/10/05/action-text/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。 結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！">
+<meta property="og:description" content="前言Action Text 是 Rails 提供的魔法之一，它可以讓你的表單的欄位轉變成 trix-editor，如此一來便能在該欄位裡享受寫文章的快感與樂趣，而不像一般的欄位，只能寫到底，無法換行。 但在進行測試，需要驗證trix-editor產出來的值時，卻發生了意外，事情不再是單純的 xxx.content 就能得到它的值了…">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
-<meta property="article:published_time" content="2022-09-26T17:05:42.000Z">
-<meta property="article:modified_time" content="2022-09-26T17:08:43.810Z">
+<meta property="article:published_time" content="2022-10-05T03:09:55.000Z">
+<meta property="article:modified_time" content="2022-10-22T04:07:13.259Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="iThome">
-<meta property="article:tag" content="Test Automation">
-<meta property="article:tag" content="TDD">
-<meta property="article:tag" content="Ruby on Rails">
-<meta property="article:tag" content="BDD">
+<meta property="article:tag" content="Ruby">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/10/05/action-text/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/","path":"2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/","title":"IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/10/05/action-text/","path":"2022/10/05/action-text/","title":"如何取得 Action Text 的 Content 呢？"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾 | Mike Code</title>
+<title>如何取得 Action Text 的 Content 呢？ | Mike Code</title>
   
 
 
@@ -132,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E5%80%91%E8%A6%81%E4%BE%86%E8%AB%87%E8%AB%87-TDD-%E7%9A%84%E7%BC%BA%E9%BB%9E%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">我們要來談談 TDD 的缺點：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E6%93%A0%E9%9D%9E%E5%B7%A5%E7%A8%8B%E5%B8%AB%E8%83%8C%E6%99%AF%E7%9A%84%E4%BA%BA%E5%93%A1"><span class="nav-number">1.1.</span> <span class="nav-text">排擠非工程師背景的人員</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%83%E9%9C%80%E6%B1%82%E8%88%87%E7%A8%8B%E5%BC%8F%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">為什麼會需求與程式不一致？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-number">2.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E8%88%87%E8%A7%A3%E6%B1%BA-%E6%8C%87%E4%BB%A4%E7%92%B0%E5%A2%83%E7%82%BA-rails-console"><span class="nav-number">2.</span> <span class="nav-text">問題與解決 (指令環境為 rails console)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#to-s"><span class="nav-number">2.1.</span> <span class="nav-text">to_s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#body-before-type-cast"><span class="nav-number">2.2.</span> <span class="nav-text">body_before_type_cast</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -220,7 +214,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/10/05/action-text/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -233,12 +227,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾 | Mike Code">
+      <meta itemprop="name" content="如何取得 Action Text 的 Content 呢？ | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-27-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          如何取得 Action Text 的 Content 呢？<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-10-22-action-text.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -248,9 +242,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:08:43" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
+      <time title="Created: 2022-10-05 11:09:55" itemprop="dateCreated datePublished" datetime="2022-10-05T11:09:55+08:00">2022-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-10-22 12:07:13" itemprop="dateModified" datetime="2022-10-22T12:07:13+08:00">2022-10-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,12 +258,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/Action-Text/" itemprop="url" rel="index"><span itemprop="name">Action Text</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾" title="Views">
+    <span id="/2022/10/05/action-text/" class="post-meta-item leancloud_visitors" data-flag-title="如何取得 Action Text 的 Content 呢？" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -278,8 +282,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/10/05/action-text/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/05/action-text/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -293,18 +297,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。</p>
-<p>結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Action Text 是 Rails 提供的魔法之一，它可以讓你的表單的欄位轉變成 trix-editor，如此一來便能在該欄位裡享受寫文章的快感與樂趣，而不像一般的欄位，只能寫到底，無法換行。</p>
+<p>但在進行測試，需要驗證trix-editor產出來的值時，卻發生了意外，事情不再是單純的 xxx.content 就能得到它的值了…</p>
 <span id="more"></span>
 
-<p>不過在介紹 BDD 之前</p>
-<h1 id="我們要來談談-TDD-的缺點："><a href="#我們要來談談-TDD-的缺點：" class="headerlink" title="我們要來談談 TDD 的缺點："></a>我們要來談談 TDD 的缺點：</h1><h2 id="排擠非工程師背景的人員"><a href="#排擠非工程師背景的人員" class="headerlink" title="排擠非工程師背景的人員"></a>排擠非工程師背景的人員</h2><p>在 TDD 的測試模式下，看似完善且理想的一套流程，但因為 TDD 本身還是著重在工程師本身的語言上，使得除了 RD 以外的人，都無法完全理解測試案例。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png" alt="https://ithelp.ithome.com.tw/upload/images/20220922/20149089qturPVyzff.png"></p>
-<p>舉個簡單的例子，如上圖，非程式背景的人，可能就無法理解：「 wallet &#x3D; MobileWallet.new(50) 」在幹嘛？那是什麼意思？</p>
-<p>所以在測試時，只有工程師本身知道測試案例內的條件與情境，這樣的風險就是，可能會導致需求與程式不一致。</p>
-<h2 id="為什麼會需求與程式不一致？"><a href="#為什麼會需求與程式不一致？" class="headerlink" title="為什麼會需求與程式不一致？"></a>為什麼會需求與程式不一致？</h2><p>因為專案的需求只有 PM 最知道，PM 必須將需求完全敘述給工程師，讓工程師寫程式，所以 PM 跟工程師之間的溝通就變得很重要。</p>
-<p>如果今天工程師對 PM 的敘述理解 8 成，這 8 成呈現在規格上時，PM 無法完全理解規格上的程式碼時，就可能會導致不一致，因為 PM 可能會漏掉工程師未理解的那 2 成。</p>
-<h1 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h1><p>那要如何解決這個問題，就是新的測試模式誕生的原因。下一篇會來介紹這個新的模式 BDD，敬請期待。</p>
+<h1 id="問題與解決-指令環境為-rails-console"><a href="#問題與解決-指令環境為-rails-console" class="headerlink" title="問題與解決 (指令環境為 rails console)"></a>問題與解決 (指令環境為 rails console)</h1><p>假如 <strong>tasks</strong> table 的 content column 使用 action_text 的話，訊息內容就會被存到 <strong>action_text_rich_texts table</strong> 裡，此時 tasks 的 content 欄位必為 nil ( 所以不能對需要使用 action text 的欄位增加 null: fulse 的限制 )，但你輸入 Task.first.content 時，就會顯示 action_text::rich_text 物件。</p>
+<p>所以我們要再從 action_text::rich_text model 使用 body 再去找他的內容：<br>    Task.first.content.body<br>這時就會獲得 action_text::content，也就是第一個任務欄位的 action_text 模組底下的 content 物件。</p>
+<h2 id="to-s"><a href="#to-s" class="headerlink" title="to_s"></a>to_s</h2><p>透過 .to_s 也就是 Task.first.content.body.to_s，可以把這個物件的內容帶出來轉換成字串，顯示的就會是html 字串形式:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">\</span>&quot;<span class="attr">trix-content</span>\&quot;&gt;</span>\n  <span class="tag">&lt;<span class="name">div</span>&gt;</span>task_real_content_written_by_user<span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>\n<span class="tag">&lt;/<span class="name">div</span>&gt;</span>\n<span class="tag">&lt;/<span class="name">div</span>&gt;</span>\n&quot;   </span><br></pre></td></tr></table></figure>
+
+<p>接著就是透過字串 method 把 task_real_content_written_by_user 以外不需要的字 delete 掉就能得到我們所需要的 content，如此一來，測試就能成功抓到它了！</p>
+<h2 id="body-before-type-cast"><a href="#body-before-type-cast" class="headerlink" title="body_before_type_cast"></a>body_before_type_cast</h2><p>但這樣處理上來，似乎有點費工，我們可以使用 body_before_type_cast：Task.first.content.body_before_type_cast，它會把上述一大串，還原成還沒被套入 trix-content 的 div 前的樣子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>task_real_content_written_by_user<span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>\n<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>這樣就超方便啦～ 接著只需要把 <div> <br> \n 這些渣渣刪掉，就能得到測試需要抓到的值囉～</p>
 
     </div>
 
@@ -313,25 +318,18 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
-              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
-              <a href="/tags/TDD/" rel="tag"><i class="fa fa-tag"></i> TDD</a>
-              <a href="/tags/Ruby-on-Rails/" rel="tag"><i class="fa fa-tag"></i> Ruby on Rails</a>
-              <a href="/tags/BDD/" rel="tag"><i class="fa fa-tag"></i> BDD</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" rel="prev" title="IT 邦鐵人賽 Day 22 - Capybara 額外補充">
-                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 22 - Capybara 額外補充
+                <a href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/" rel="prev" title="IT 邦鐵人賽第 29 天 - Cucumber in Rails">
+                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽第 29 天 - Cucumber in Rails
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" rel="next" title="IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！">
-                  IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！ <i class="fa fa-chevron-right"></i>
+                <a href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/" rel="next" title="IT 邦鐵人賽 Day 30 - 回首測試">
+                  IT 邦鐵人賽 Day 30 - 回首測試 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
