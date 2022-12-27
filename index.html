@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-12-27 22:38:40 / Modified: 22:47:08" itemprop="dateCreated datePublished" datetime="2022-12-27T22:38:40+08:00">2022-12-27</time>
+      <time title="Created: 2022-12-27 22:38:40 / Modified: 22:51:29" itemprop="dateCreated datePublished" datetime="2022-12-27T22:38:40+08:00">2022-12-27</time>
     </span>
 
   
@@ -272,31 +272,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>accept_nested_attributes_for</strong><br>用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：<br>User model:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User <span class="symbol">model:</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">has_many:</span> articles, <span class="symbol">dependent:</span> <span class="symbol">:destroy</span></span><br><span class="line"><span class="symbol">has_one_attached:</span> avatar</span><br><span class="line"></span><br><span class="line">accepts_nested_attributes_for <span class="symbol">:articles</span>, <span class="symbol">allow_destroy:</span> <span class="literal">true</span></span><br><span class="line">accepts_nested_attributes_for <span class="symbol">:avatar_attachment</span>, <span class="symbol">allow_destroy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>通常在使用 anaf 時，只會有 update 不會有 create，因為是透過關聯進行 CRUD，像是：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User has_many <span class="symbol">:articles</span></span><br><span class="line">Article belongs_to <span class="symbol">:user</span></span><br><span class="line"></span><br><span class="line">User.articles.new(<span class="symbol">title:</span> <span class="string">&#x27;Porter&#x27;</span>, <span class="symbol">price:</span> <span class="number">300</span>)</span><br><span class="line">User.update</span><br><span class="line"></span><br><span class="line">params.<span class="keyword">require</span>(<span class="symbol">:user</span>).permit(<span class="symbol">articles_attribute:</span> %i[id title price])</span><br></pre></td></tr></table></figure>
-<p>抑或是：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>; <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span></span><br><span class="line">	<span class="keyword">if</span> current_user.update(permitted_params)</span><br><span class="line">    redirect_to <span class="symbol">action:</span> <span class="symbol">:edit</span>, <span class="symbol">status:</span> <span class="symbol">:see_other</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    render <span class="symbol">action:</span> <span class="symbol">:edit</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">permitted_params</span></span><br><span class="line">	params.<span class="keyword">require</span>(<span class="symbol">:user</span>).permit(<span class="symbol">articles_attribute:</span> %i[id title price _destroy])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>fields_for</strong><br>巢狀 form 使用。</p>
-<p>在上述兩個有關聯性的 model 在使用 anaf 時，表單會使用 <code>nested_form</code>  的 <code>fields_for</code> 來處理：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_with <span class="symbol">model:</span> current_user, <span class="symbol">scope:</span> <span class="symbol">:user</span>, <span class="symbol">url:</span> url_for(<span class="symbol">action:</span> <span class="symbol">:update</span>), <span class="symbol">method:</span> <span class="symbol">:patch</span> <span class="keyword">do</span> |<span class="params">form</span>| %&gt;</span><br><span class="line">	&lt;%= form.fields_for <span class="symbol">:articles</span> <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;   </span><br><span class="line">		&lt;%= f.text_field <span class="symbol">:title</span> %&gt;</span><br><span class="line">		&lt;%= f.text_field <span class="symbol">:price</span> %&gt;</span><br><span class="line">	&lt;% <span class="keyword">end</span> %&gt;</span><br><span class="line">&lt;% <span class="keyword">end</span> %&gt;</span><br></pre></td></tr></table></figure>
-<p>表單送出後，打到後端的參數會因為表單為巢狀，而變成巢狀參數：</p>
-<p><code>params: &#123; ‘user’ ⇒ &#123; ‘articles_attributes’ ⇒ &#123; title: ‘xxx’, price: xxx &#125; &#125; &#125;</code></p>
-<p>要特別留意，如果是針對 <code>has_many</code> 的 model 進行 <code>nested_form</code>  時， <code>fields_for</code> 會把所有的 model 全部撈出來並 render 出來！ </p>
-<p>此時畫面上會是一個又一個的 article 資料，而每個的 title 跟 price 都會變成 text_field！</p>
-<p>如果只希望呈現空白的欄位或是其他種類的 field，可以這樣：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.fields_for <span class="symbol">:articles</span>, current_user.articles.new <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br></pre></td></tr></table></figure>
-<p>這樣就會建立一個 article 物件，且畫面上也只會有一個 title 跟 price 的 text_field，不會有所有 article 的資料。</p>
-<p>PS:在 <code>:article</code> 後面可以做很多事情。</p>
-<p>如果想要 <code>delete</code>，則需要有 <code>_destroy</code> 且 value 為 <code>1</code> 時，就會進行刪除。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;</span><br><span class="line">&lt;%= f.hidden_field <span class="symbol">:_destroy</span>, <span class="symbol">value:</span> <span class="string">&#x27;1&#x27;</span> %&gt;</span><br></pre></td></tr></table></figure>
-<p>只要有 <code>:id</code> <code>_destroy</code> 就能夠執行刪除。<br>進行刪除的方式有很多，像是用 f.checkbox :_destroy 或是另外再給一個 form 讓畫面上有一個刪除鈕：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_with <span class="symbol">model:</span> current_user, <span class="symbol">scope:</span> <span class="symbol">:user</span>, <span class="symbol">url:</span> url_for(<span class="symbol">action:</span> <span class="symbol">:update</span>), <span class="symbol">method:</span> <span class="symbol">:patch</span> <span class="keyword">do</span> |<span class="params">form</span>| %&gt;</span><br><span class="line">	&lt;%= form.fields_for <span class="symbol">:articles</span> <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:_destroy</span>, <span class="symbol">value:</span> <span class="string">&#x27;1&#x27;</span> %&gt;</span><br><span class="line">	&lt;% <span class="keyword">end</span> %&gt;</span><br><span class="line">	&lt;% form.submit <span class="string">&#x27;刪除文章&#x27;</span> %&gt;</span><br><span class="line">&lt;% <span class="keyword">end</span> %&gt;</span><br></pre></td></tr></table></figure>
-<p>以上兩種魔法都蠻好用的也蠻常見的，讓關聯之間的 CRUD 都能變得非常單純。</p>
-
+          <p><strong>accept_nested_attributes_for</strong><br>用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/27/accept-nested-attributes-for-fields-for/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
