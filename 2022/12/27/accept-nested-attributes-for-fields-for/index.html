@@ -20,29 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Day1 時，我們淺談了測試的重要性；測試在工程師們的眼中是何等存在？浪費時間？但似乎又很重要？ 在我們實際看到測試到底是什麼東西前，先讓大家了解測試的類型有哪些。">
+    <meta name="description" content="accept_nested_attributes_for用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：User model: 1234567User model:has_many: articles, dependent: :destroyhas_one_attached: avataraccepts_n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day 2 - 測試的類型">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/index.html">
+<meta property="og:title" content="accept_nested_attributes_for + fields_for">
+<meta property="og:url" content="https://wl02599509.github.io/2022/12/27/accept-nested-attributes-for-fields-for/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="Day1 時，我們淺談了測試的重要性；測試在工程師們的眼中是何等存在？浪費時間？但似乎又很重要？ 在我們實際看到測試到底是什麼東西前，先讓大家了解測試的類型有哪些。">
+<meta property="og:description" content="accept_nested_attributes_for用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：User model: 1234567User model:has_many: articles, dependent: :destroyhas_one_attached: avataraccepts_n">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-01T16:30:25.000Z">
-<meta property="article:modified_time" content="2022-09-11T18:45:58.027Z">
+<meta property="article:published_time" content="2022-12-27T14:38:40.000Z">
+<meta property="article:modified_time" content="2022-12-27T14:44:28.614Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="iThome">
-<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="Ruby">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/">
+<link rel="canonical" href="https://wl02599509.github.io/2022/12/27/accept-nested-attributes-for-fields-for/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/","path":"2022/09/02/IT邦鐵人賽Day2-測試的類型/","title":"IT 邦鐵人賽 Day 2 - 測試的類型"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/12/27/accept-nested-attributes-for-fields-for/","path":"2022/12/27/accept-nested-attributes-for-fields-for/","title":"accept_nested_attributes_for + fields_for"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day 2 - 測試的類型 | Mike Code</title>
+<title>accept_nested_attributes_for + fields_for | Mike Code</title>
   
 
 
@@ -114,7 +113,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -127,7 +126,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B%E5%A4%A7%E8%87%B4%E5%88%86%E7%82%BA%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">測試的類型大致分為：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">一、單元測試：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B4%E5%90%88%E6%B8%AC%E8%A9%A6%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">二、整合測試：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">小結：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +213,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/12/27/accept-nested-attributes-for-fields-for/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -228,12 +226,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day 2 - 測試的類型 | Mike Code">
+      <meta itemprop="name" content="accept_nested_attributes_for + fields_for | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 2 - 測試的類型<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-02-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          accept_nested_attributes_for + fields_for<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-12-27-accept-nested-attributes-for-fields-for.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -243,28 +241,13 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-02 00:30:25" itemprop="dateCreated datePublished" datetime="2022-09-02T00:30:25+08:00">2022-09-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:45:58" itemprop="dateModified" datetime="2022-09-12T02:45:58+08:00">2022-09-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
+      <time title="Created: 2022-12-27 22:38:40 / Modified: 22:44:28" itemprop="dateCreated datePublished" datetime="2022-12-27T22:38:40+08:00">2022-12-27</time>
     </span>
 
   
-    <span id="/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 2 - 測試的類型" title="Views">
+    <span id="/2022/12/27/accept-nested-attributes-for-fields-for/" class="post-meta-item leancloud_visitors" data-flag-title="accept_nested_attributes_for + fields_for" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -279,8 +262,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/02/IT邦鐵人賽Day2-測試的類型/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/12/27/accept-nested-attributes-for-fields-for/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/12/27/accept-nested-attributes-for-fields-for/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -294,27 +277,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Day1 時，我們淺談了測試的重要性；測試在工程師們的眼中是何等存在？浪費時間？但似乎又很重要？</p>
-<p>在我們實際看到測試到底是什麼東西前，先讓大家了解測試的類型有哪些。</p>
-<span id="more"></span>
+        <p><strong>accept_nested_attributes_for</strong><br>用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：<br>User model:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User <span class="symbol">model:</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">has_many:</span> articles, <span class="symbol">dependent:</span> <span class="symbol">:destroy</span></span><br><span class="line"><span class="symbol">has_one_attached:</span> avatar</span><br><span class="line"></span><br><span class="line">accepts_nested_attributes_for <span class="symbol">:articles</span>, <span class="symbol">allow_destroy:</span> <span class="literal">true</span></span><br><span class="line">accepts_nested_attributes_for <span class="symbol">:avatar_attachment</span>, <span class="symbol">allow_destroy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="測試的類型大致分為："><a href="#測試的類型大致分為：" class="headerlink" title="測試的類型大致分為："></a>測試的類型大致分為：</h1><ul>
-<li>單元測試 Unit testing (又稱模組測試) </li>
-<li>整合測試 Integrated Testing </li>
-<li>系統測試 System Testing </li>
-<li>使用者接受度測試 User Acceptance Testing。</li>
-</ul>
-<h2 id="一、單元測試："><a href="#一、單元測試：" class="headerlink" title="一、單元測試："></a>一、單元測試：</h2><p>專門針對每項功能與方法進行的測試，以最小單位( 一個方法、類別、屬性等)一一進行測試，確認設計邏輯正確，品質正常，程式沒有 bug，能正常 run 起來。簡單來說，以銀行的 atm 功能為例。</p>
-<p>今天設計了一項查詢餘額的功能，目的是要讓 atm 能正確顯示存款餘額；</p>
-<p>另一項功能則是設計提款功能，讓 atm 給予使用者所輸入之金額，並在螢幕上顯示提款後的餘額；</p>
-<p>再另一項則是設計存款功能，讓 atm 正確判斷使用者給予的金額，並在螢幕上顯示存款金額與存款後的餘額。 </p>
-<p>單元測試就是分別對這幾項功能，個別進行測試，確認是否有 bug。</p>
-<h2 id="二、整合測試："><a href="#二、整合測試：" class="headerlink" title="二、整合測試："></a>二、整合測試：</h2><p>針對複數的功能、類別，進行整體性的測試，確認彼此的運作關係符合邏輯。</p>
-<p>最好懂的例子就是，台北捷運除了車門以外，還有月台閘門，所以旅客要上下車時，車門與月台砸門都要開啟，但這樣還不夠，還必須要是差不多時間開啟。</p>
-<p>如果月台閘門開啟後，車門才打開始準備開啟，你當下會不會感到一點點的奇怪：「(月台閘門開了但車門還沒開) 欸~怎麼回事?  (車門開始開啟了) 哦! 打開了。」這樣明顯的時間差可能會讓人感到突兀。</p>
-<p>再更極端一點就是，月台閘門打開後，車門才打開，接著月台閘門先關起來，車門才關起來，這樣功能之間各跑各的，不在合理的步調上讓整體流暢，似乎就是有問題。</p>
-<p>這就是整合測試的重要，讓每個功能都能夠以符合邏輯的方式運作。</p>
-<h2 id="小結："><a href="#小結：" class="headerlink" title="小結："></a>小結：</h2><p>今天運用比較白話且生活的方式講解，希望讓新手們能夠以輕鬆簡單的方式理解這一切，剩下的系統測試與使用者接受度測試就留到下一篇，可以先慢慢思考一下這篇所說的內容，俗話說慢慢來才會快，學習一步一步一點一點的成長，吸收了再繼續。</p>
+<p>通常在使用 anaf 時，只會有 update 不會有 create，因為是透過關聯進行 CRUD，像是：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User has_many <span class="symbol">:articles</span></span><br><span class="line">Article belongs_to <span class="symbol">:user</span></span><br><span class="line"></span><br><span class="line">User.articles.new(<span class="symbol">title:</span> <span class="string">&#x27;Porter&#x27;</span>, <span class="symbol">price:</span> <span class="number">300</span>)</span><br><span class="line">User.update</span><br><span class="line"></span><br><span class="line">params.<span class="keyword">require</span>(<span class="symbol">:user</span>).permit(<span class="symbol">articles_attribute:</span> %i[id title price])</span><br></pre></td></tr></table></figure>
+<p>抑或是：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">edit</span>; <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span></span><br><span class="line">	<span class="keyword">if</span> current_user.update(permitted_params)</span><br><span class="line">    redirect_to <span class="symbol">action:</span> <span class="symbol">:edit</span>, <span class="symbol">status:</span> <span class="symbol">:see_other</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    render <span class="symbol">action:</span> <span class="symbol">:edit</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">permitted_params</span></span><br><span class="line">	params.<span class="keyword">require</span>(<span class="symbol">:user</span>).permit(<span class="symbol">articles_attribute:</span> %i[id title price _destroy])</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>fields_for</strong><br>巢狀 form 使用。</p>
+<p>在上述兩個有關聯性的 model 在使用 anaf 時，表單會使用 <code>nested_form</code>  的 <code>fields_for</code> 來處理：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_with <span class="symbol">model:</span> current_user, <span class="symbol">scope:</span> <span class="symbol">:user</span>, <span class="symbol">url:</span> url_for(<span class="symbol">action:</span> <span class="symbol">:update</span>), <span class="symbol">method:</span> <span class="symbol">:patch</span> <span class="keyword">do</span> |<span class="params">form</span>| %&gt;</span><br><span class="line">	&lt;%= form.fields_for <span class="symbol">:articles</span> <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;   </span><br><span class="line">		&lt;%= f.text_field <span class="symbol">:title</span> %&gt;</span><br><span class="line">		&lt;%= f.text_field <span class="symbol">:price</span> %&gt;</span><br><span class="line">	&lt;% <span class="keyword">end</span> %&gt;</span><br><span class="line">&lt;% <span class="keyword">end</span> %&gt;</span><br></pre></td></tr></table></figure>
+<p>表單送出後，打到後端的參數會因為表單為巢狀，而變成巢狀參數：</p>
+<p><code>params: &#123; ‘user’ ⇒ &#123; ‘articles_attributes’ ⇒ &#123; title: ‘xxx’, price: xxx &#125; &#125; &#125;</code></p>
+<p>要特別留意，如果是針對 <code>has_many</code> 的 model 進行 <code>nested_form</code>  時， <code>fields_for</code> 會把所有的 model 全部撈出來並 render 出來！ </p>
+<p>此時畫面上會是一個又一個的 article 資料，而每個的 title 跟 price 都會變成 text_field！</p>
+<p>如果只希望呈現空白的欄位或是其他種類的 field，可以這樣：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.fields_for <span class="symbol">:articles</span>, current_user.articles.new <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br></pre></td></tr></table></figure>
+<p>這樣就會建立一個 article 物件，且畫面上也只會有一個 title 跟 price 的 text_field，不會有所有 article 的資料。</p>
+<p>PS:在 <code>:article</code> 後面可以做很多事情。</p>
+<p>如果想要 <code>delete</code>，則需要有 <code>_destroy</code> 且 value 為 <code>1</code> 時，就會進行刪除。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;</span><br><span class="line">&lt;%= f.hidden_field <span class="symbol">:_destroy</span>, <span class="symbol">value:</span> <span class="string">&#x27;1&#x27;</span> %&gt;</span><br></pre></td></tr></table></figure>
+<p>只要有 <code>:id</code> <code>_destroy</code> 就能夠執行刪除。<br>進行刪除的方式有很多，像是用 f.checkbox :_destroy 或是另外再給一個 form 讓畫面上有一個刪除鈕：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_with <span class="symbol">model:</span> current_user, <span class="symbol">scope:</span> <span class="symbol">:user</span>, <span class="symbol">url:</span> url_for(<span class="symbol">action:</span> <span class="symbol">:update</span>), <span class="symbol">method:</span> <span class="symbol">:patch</span> <span class="keyword">do</span> |<span class="params">form</span>| %&gt;</span><br><span class="line">	&lt;%= form.fields_for <span class="symbol">:articles</span> <span class="keyword">do</span> |<span class="params">f</span>| %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:id</span> %&gt;</span><br><span class="line">		&lt;%= f.hidden_field <span class="symbol">:_destroy</span>, <span class="symbol">value:</span> <span class="string">&#x27;1&#x27;</span> %&gt;</span><br><span class="line">	&lt;% <span class="keyword">end</span> %&gt;</span><br><span class="line">	&lt;% form.submit <span class="string">&#x27;刪除文章&#x27;</span> %&gt;</span><br><span class="line">&lt;% <span class="keyword">end</span> %&gt;</span><br></pre></td></tr></table></figure>
+<p>以上兩種魔法都蠻好用的也蠻常見的，讓關聯之間的 CRUD 都能變得非常單純。</p>
 
     </div>
 
@@ -323,23 +309,16 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
-              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/" rel="prev" title="IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？">
-                  <i class="fa fa-chevron-left"></i> IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？
+                <a href="/2022/10/22/action-text/" rel="prev" title="如何取得 Action Text 的 Content 呢？">
+                  <i class="fa fa-chevron-left"></i> 如何取得 Action Text 的 Content 呢？
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/03/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay3-%E6%B8%AC%E8%A9%A6%E9%A1%9E%E5%9E%8B/" rel="next" title="IT 邦鐵人賽 Day3 - 測試類型(二)">
-                  IT 邦鐵人賽 Day3 - 測試類型(二) <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
