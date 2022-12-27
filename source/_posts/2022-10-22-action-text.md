@@ -1,6 +1,6 @@
 ---
 title: 如何取得 Action Text 的 Content 呢？
-date: 2022-10-05 11:09:55
+date: 2022-10-22 12:09:55
 category: 
 - Rails
 - Action Text
@@ -12,11 +12,22 @@ Action Text 是 Rails 提供的魔法之一，它可以讓你的表單的欄位�
 <!--more-->
 
 # 問題與解決 (指令環境為 rails console)
-假如 **tasks** table 的 content column 使用 action_text 的話，訊息內容就會被存到 **action_text_rich_texts table** 裡，此時 tasks 的 content 欄位必為 nil ( 所以不能對需要使用 action text 的欄位增加 null: fulse 的限制 )，但你輸入 Task.first.content 時，就會顯示 action_text::rich_text 物件。
+假如 **tasks** table 的 content column 使用 action_text 的話，訊息內容就會被存到 **action_text_rich_texts table** 裡，此時 tasks 的 content 欄位必顯示為 nil ( 所以不能對需要使用 action text 的欄位增加 null: fulse 的限制 )，但你輸入 Task.first.content 時，就會顯示 action_text::rich_text 物件：
+```ruby
+#<ActionText::RichText:0x000000010b04d880                                                                
+ id: 4,                                                                                                  
+ name: "content",                                                                                        
+ body: #<ActionText::Content "<div class=\"trix-conte...">,                                              
+ record_type: "Task",                                                                                    
+ record_id: 163,                                                                                         
+ created_at: Fri, 21 Oct 2022 13:09:05.772896000 CST +08:00,                                             
+ updated_at: Fri, 21 Oct 2022 13:09:05.772896000 CST +08:00>    
+ ```
 
-所以我們要再從 action_text::rich_text model 使用 body 再去找他的內容：
+所以我們要再從 action_text::rich_text 物件使用 body 再去找他的內容：
     Task.first.content.body
 這時就會獲得 action_text::content，也就是第一個任務欄位的 action_text 模組底下的 content 物件。
+    #<ActionText::Content "<div class=\"trix-conte...">
 
 ## to_s
 透過 .to_s 也就是 Task.first.content.body.to_s，可以把這個物件的內容帶出來轉換成字串，顯示的就會是html 字串形式:
