@@ -5,7 +5,7 @@ tags:
 - Rails
 - nest_form
 ---
-**accept_nested_attributes_for**
+# accept_nested_attributes_for
 用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：
 <!-- more -->
 
@@ -47,7 +47,7 @@ def permitted_params
 end
 ```
 
-**fields_for**
+# fields_for
 巢狀 form 使用。
 
 在上述兩個有關聯性的 model 在使用 anaf 時，表單會使用 `nested_form`  的 `fields_for` 來處理：
