@@ -1,7 +1,9 @@
 ---
 title: Includes query method
 date: 2023-01-31 22:45:36
-category: Active Record Query
+category: 
+  - Rails
+  - Active Record Query
 tags:
   - includes
   - query
