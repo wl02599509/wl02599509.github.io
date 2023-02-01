@@ -20,29 +20,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="為什麼會想寫這個主題? 常常在IT邦裡挖到不少含金量高的乾貨，讓我在學習時學到了很多觀念；在IT邦挖礦的過程中，意外發現程式設計裡竟然還有專門用來測試工程師們所寫的code是否能正常運作的「測試框架」。這個測試框架當然也是由工程師寫出來的程式碼所組成，所以無論是專案或是測試都是由工程師code出來的。 所以意思是，專案歸專案，測試歸測試，兩個是分開來的，要麻就是寫專案，要麻就是兩者都寫。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？">
-<meta property="og:url" content="https://wl02599509.github.io/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Mike Code">
+<meta property="og:url" content="https://wl02599509.github.io/categories/Rails/Action-Mailer/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="為什麼會想寫這個主題? 常常在IT邦裡挖到不少含金量高的乾貨，讓我在學習時學到了很多觀念；在IT邦挖礦的過程中，意外發現程式設計裡竟然還有專門用來測試工程師們所寫的code是否能正常運作的「測試框架」。這個測試框架當然也是由工程師寫出來的程式碼所組成，所以無論是專案或是測試都是由工程師code出來的。 所以意思是，專案歸專案，測試歸測試，兩個是分開來的，要麻就是寫專案，要麻就是兩者都寫。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-01T15:54:26.000Z">
-<meta property="article:modified_time" content="2022-09-11T18:46:06.052Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="iThome">
-<meta property="article:tag" content="Test Automation">
+<meta property="article:tag" content="Ruby">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/">
+<link rel="canonical" href="https://wl02599509.github.io/categories/Rails/Action-Mailer/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/","path":"2022/09/01/1-IT邦鐵人賽Day1-測試好麻煩，有很重要嗎？/","title":"IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"categories/Rails/Action-Mailer/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？ | Mike Code</title>
+<title>Category: Action Mailer | Mike Code</title>
   
 
 
@@ -203,153 +198,51 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner category posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？ | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2022-09-01-1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">Action Mailer
+          <small>Category</small>
         </h1>
+      </div>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-09-01 23:54:26" itemprop="dateCreated datePublished" datetime="2022-09-01T23:54:26+08:00">2022-09-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:46:06" itemprop="dateModified" datetime="2022-09-12T02:46:06+08:00">2022-09-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 1 - 測試好麻煩，有很重要嗎？" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/01/1-IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay1-%E6%B8%AC%E8%A9%A6%E5%A5%BD%E9%BA%BB%E7%85%A9%EF%BC%8C%E6%9C%89%E5%BE%88%E9%87%8D%E8%A6%81%E5%97%8E%EF%BC%9F/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/01/1-IT邦鐵人賽Day1-測試好麻煩，有很重要嗎？/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p><strong>為什麼會想寫這個主題?</strong></p>
-<p>常常在IT邦裡挖到不少含金量高的乾貨，讓我在學習時學到了很多觀念；在IT邦挖礦的過程中，意外發現程式設計裡竟然還有專門用來測試工程師們所寫的code是否能正常運作的「測試框架」。這個測試框架當然也是由工程師寫出來的程式碼所組成，所以無論是專案或是測試都是由工程師code出來的。</p>
-<p>所以意思是，專案歸專案，測試歸測試，兩個是分開來的，要麻就是寫專案，要麻就是兩者都寫。</p>
-<span id="more"></span>
-
-<p><strong>那這樣不是很麻煩嗎?</strong></p>
-<p>要寫專案又要寫出測試，太花時間了吧? 應該只需要做出專案後，把參數帶進去測試一下，自己手動點一點這個 link、那個 button 就好了?</p>
-<p>沒有錯，程式設計裡的「測試」在很早以前，幾乎等同邊緣人，不受到大家重視，因為沒有人想在時間、資源及人力有限的情況下，還要多花心思多寫其他不會產生報酬的東西。</p>
-<p>別人在做專案時，我正在寫測試的 code；別人快完成專案時，我可能才正開始著手進行專案的 code。光這樣是不是就讓你也產生了對測試的反感XD</p>
-<p><strong>滿滿的需求</strong></p>
-<p>但隨著科技日新月異，生活與科技的型態逐漸融合，導致專案內容日趨龐大且複雜，此外，需求增加、功能新增的可能性，也漸漸隨之提升。</p>
-<p>今天客戶跟你說想要增加 A 功能，隔天跟你說 B 也不錯，不然兩個都要好了。</p>
-<p>當專案上架開始使用時，面臨維修與新增功能的狀況，每當新增一個功能，可能會帶來未知的風險。</p>
-<p>有測試程式者，可以再新增完成後，立即用跑一下測試，確認這次的新增是否會影響既有功能，馬上就知道有沒有問題。</p>
-<p>沒有測試程式者，就必須慢慢手動測試慢慢抓漏，更糟的可能是，不小心漏掉了某些功能的組合，因此沒發現什麼問題，但此時 bug 早已悄然進入你的專案，準備給你驚喜，等到發現這個 bug 時，早就多了不知道幾百行 code，這時可能也不知道到底是哪部份出現問題，這下是真的毀了。</p>
-<p>所以測試到底是什麼呢?接下來我們會用好長一段時間來讓大家了解～</p>
-
+      
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2023-02-01T23:30:41+08:00"
+              content="2023-02-01">
+          02-01
+        </time>
+      </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
-              <a href="/tags/Test-Automation/" rel="tag"><i class="fa fa-tag"></i> Test Automation</a>
-          </div>
+      <div class="post-title">
+          <a class="post-title-link" href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/" itemprop="url">
+            <span itemprop="name">解決 Mail 的 CSS 樣式無法被支援</span>
+          </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/08/29/Code%E6%95%B4%E7%90%86%E8%A1%93-Service/" rel="prev" title="Code整理術:Service">
-                  <i class="fa fa-chevron-left"></i> Code整理術:Service
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/09/02/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay2-%E6%B8%AC%E8%A9%A6%E7%9A%84%E9%A1%9E%E5%9E%8B/" rel="next" title="IT 邦鐵人賽 Day 2 - 測試的類型">
-                  IT 邦鐵人賽 Day 2 - 測試的類型 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
-
-
-
-
-
-    
-  <div class="comments" id="disqus_thread">
-    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
   </div>
   
+  
+  
+
 </div>
   </main>
 
