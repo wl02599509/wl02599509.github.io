@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -147,7 +147,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,6 +208,120 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/" class="post-title-link" itemprop="url">解決 Mail 的 CSS 樣式無法被支援</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-02-01 23:30:41 / Modified: 23:33:40" itemprop="dateCreated datePublished" datetime="2023-02-01T23:30:41+08:00">2023-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/" class="post-meta-item leancloud_visitors" data-flag-title="解決 Mail 的 CSS 樣式無法被支援" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/02/01/解決 Mail 的 CSS 樣式無法被支援/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Rails 內建的 action mailer 可以用來寄發信件，搭配 action job 非同步處理寄送信件是常常使用的搭配。在寄發信件時，信件內容寫在 <code>html.erb</code> 裡代表，我們可以讓信件內容不只是純文字，而是可以將 CSS 套入，使信件內容的樣貌更豐富。</p>
+<p>但由於 email 閱讀軟體的版本非常老舊，甚至比瀏覽器還舊很多，所以在使用 CSS 時，可能會無法被 email 閱讀軟體支援，導致畫面沒有 CSS 的效果。</p>
+<p>解決這個問題的方法有：</p>
+<ol>
+<li><p>撰寫 inline-style css</p>
+</li>
+<li><p>套件：<br> 1).  <code>gem &#39;premailer-rails&#39;</code> </p>
+<p> 2). 在 <code>config/initializers</code> 建立 <code>premailer_rails.rb</code> 並在檔案裡將<code>Premailer::Rails.config.merge!(preserve_styles: true, remove_ids: true)</code> 設定寫入</p>
+<p> 3). 把 mail 的 css 寫在 <code>assets/stylesheets</code> 裡</p>
+<p> 4). 在 <code>assets/config/manifest.js</code> 裡，把 stylesheets 裡的 mail css 檔加進來：<code>*//= link mail/mailer.css</code>   (assets&#x2F;stylesheets&#x2F;mail&#x2F;mailer.css)*</p>
+<p> 5). 在 mail 的 html.erb 檔裡，把 <code>stylesheet_link_tag</code> 加到 head tag 裡: </p>
+ <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span><br><span class="line">  &lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width,initial-scale=1&quot;</span>&gt;</span><br><span class="line">  &lt;%= stylesheet_link_tag <span class="string">&#x27;mail/mailer&#x27;</span> %&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 如此一來，便可以在 assets 的 css 檔裡，幫信件加上 css 樣式，且可被 email 的閱讀軟體支援。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/01/31/Includes-query-method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,7 +340,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/31/Includes-query-method/" class="post-title-link" itemprop="url">Includes_query_method</a>
+          <a href="/2023/01/31/Includes-query-method/" class="post-title-link" itemprop="url">Includes query method</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +352,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-01-31 22:45:36 / Modified: 22:49:41" itemprop="dateCreated datePublished" datetime="2023-01-31T22:45:36+08:00">2023-01-31</time>
+      <time title="Created: 2023-01-31 22:45:36 / Modified: 22:52:10" itemprop="dateCreated datePublished" datetime="2023-01-31T22:45:36+08:00">2023-01-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +365,7 @@
     </span>
 
   
-    <span id="/2023/01/31/Includes-query-method/" class="post-meta-item leancloud_visitors" data-flag-title="Includes_query_method" title="Views">
+    <span id="/2023/01/31/Includes-query-method/" class="post-meta-item leancloud_visitors" data-flag-title="Includes query method" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1166,116 +1280,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-27 01:10:53 / Modified: 01:11:49" itemprop="dateCreated datePublished" datetime="2022-09-27T01:10:53+08:00">2022-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day25-BDD測試框架-Cucumber/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了 BBD 的存在是為了讓專案開發的所有相關人，無論是否有程式背景，都能夠了解測試的內容。那麼今天我們來介紹 BDD 的測試框架：</p>
-<h1 id="Cucumber"><a href="#Cucumber" class="headerlink" title="Cucumber"></a>Cucumber</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
