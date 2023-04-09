@@ -20,24 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Mike Code">
-<meta property="og:url" content="https://wl02599509.github.io/tags/Rake/index.html">
+    <meta name="description" content="接續前一篇，在 rails_project clone 到 EC2 instance 並 cd rails_project 執行 bundle install 時，run 到一半卡住，最後顯示 killed，強制結束的意思。會有 killed 的主要原因是執行 bundle install 安裝特定的 gem 所佔用的記憶體空間過大，導致環境內的記憶體空間不足，而被迫結束 bundle insta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EC2 instance 當 bundle install 遇到 killed">
+<meta property="og:url" content="https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/index.html">
 <meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="接續前一篇，在 rails_project clone 到 EC2 instance 並 cd rails_project 執行 bundle install 時，run 到一半卡住，最後顯示 killed，強制結束的意思。會有 killed 的主要原因是執行 bundle install 安裝特定的 gem 所佔用的記憶體空間過大，導致環境內的記憶體空間不足，而被迫結束 bundle insta">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-09T16:18:28.000Z">
+<meta property="article:modified_time" content="2023-04-09T16:22:46.441Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="rails">
+<meta property="article:tag" content="aws">
+<meta property="article:tag" content="deploy">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/tags/Rake/">
+<link rel="canonical" href="https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/Rake/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/","path":"2023/04/10/EC2-instance-當-bundle-install-遇到-killed/","title":"EC2 instance 當 bundle install 遇到 killed"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Tag: Rake | Mike Code</title>
+<title>EC2 instance 當 bundle install 遇到 killed | Mike Code</title>
   
 
 
@@ -109,7 +115,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -122,6 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%B4%E5%85%85%E8%A8%AD%E5%82%99%E6%88%96%E7%92%B0%E5%A2%83%E7%9A%84%E8%A8%98%E6%86%B6%E9%AB%94%E7%A9%BA%E9%96%93%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">擴充設備或環境的記憶體空間。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0-swapfile-%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">增加 swapfile ：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,51 +205,161 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Rake
-          <small>Tag</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="EC2 instance 當 bundle install 遇到 killed | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EC2 instance 當 bundle install 遇到 killed<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-04-10-EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+      <time title="Created: 2023-04-10 00:18:28 / Modified: 00:22:46" itemprop="dateCreated datePublished" datetime="2023-04-10T00:18:28+08:00">2023-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/" class="post-meta-item leancloud_visitors" data-flag-title="EC2 instance 當 bundle install 遇到 killed" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/10/EC2-instance-當-bundle-install-遇到-killed/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>接續前一篇，在 rails_project clone 到 EC2 instance 並 cd rails_project 執行 bundle install 時，run 到一半卡住，最後顯示 <strong>killed</strong>，強制結束的意思。<br>會有 killed 的主要原因是執行 bundle install 安裝特定的 gem 所佔用的記憶體空間過大，導致環境內的記憶體空間不足，而被迫結束 bundle install。</p>
+<p>解決方法為：</p>
+<span id="more"></span>
+<h1 id="擴充設備或環境的記憶體空間。"><a href="#擴充設備或環境的記憶體空間。" class="headerlink" title="擴充設備或環境的記憶體空間。"></a>擴充設備或環境的記憶體空間。</h1><p>  這個方法顧名思義，應該不需多做討論，且這方法不是本篇主要探討的。</p>
+<h1 id="增加-swapfile-："><a href="#增加-swapfile-：" class="headerlink" title="增加 swapfile ："></a>增加 swapfile ：</h1><pre><code>1. 建立一個空檔案 **`swapfile`**，並設定為 **`root`** 用戶擁有：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 2G /swapfile</span><br><span class="line">sudo chmod <span class="number">600</span> /swapfile</span><br></pre></td></tr></table></figure>
+
+b. 格式化 **`swapfile`**，並啟用：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
+
+c. 將 **`swapfile`** 設定為開機自動啟用，打開 **`/etc/fstab`**，加入以下行：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swapfile swap swap defaults <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+ps. 若 etc 內沒有 fstab file：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/fstab</span><br></pre></td></tr></table></figure>
+
+在文件的末尾添加 **`/swapfile swap swap defaults 0 0`**
+
+d. 啟用新文件：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo swapon -a</span><br></pre></td></tr></table></figure>
+
+e. 確認 swapon 狀態，查看是否啟用正常：
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon -s</span><br></pre></td></tr></table></figure>
+
+完成上述執行過程後，便能再次執行 bundle install，問題就能解決了。
+</code></pre>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-14T20:57:37+08:00"
-              content="2022-08-14">
-          08-14
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/08/14/Rake-in-Rails/" itemprop="url">
-            <span itemprop="name">Rake/in/Rails</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/rails/" rel="tag"><i class="fa fa-tag"></i> rails</a>
+              <a href="/tags/aws/" rel="tag"><i class="fa fa-tag"></i> aws</a>
+              <a href="/tags/deploy/" rel="tag"><i class="fa fa-tag"></i> deploy</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" rel="prev" title="AWS EC2 部署過程">
+                  <i class="fa fa-chevron-left"></i> AWS EC2 部署過程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 
