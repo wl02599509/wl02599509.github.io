@@ -64,7 +64,6 @@ sudo nano /etc/environment
 1. 將以下內容寫入
 
 ```jsx
-  RDS_DB_NAME="db_name"
   RDS_USERNAME="mike"
   RDS_PASSWORD="foobar123"
   RDS_PORT=5432
