@@ -1,7 +1,9 @@
 ---
 title: EC2 instance 當 bundle install 遇到 killed
 date: 2023-04-10 00:18:28
-category: AWS
+category: 
+- AWS
+- EC2
 tags:
 - rails
 - aws
