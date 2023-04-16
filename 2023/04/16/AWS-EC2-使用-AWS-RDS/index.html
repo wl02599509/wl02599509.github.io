@@ -28,7 +28,7 @@
 <meta property="og:description" content="在前一篇記錄了使用 AWS EC2 部署 Rails 專案的過程，在部署裡，除了專案本身外，另一個遇到難處理的就是資料庫。 因為 EC2 instance 環境使用 Amazon Linux 2023，而 package 裡的 pg 版本太舊，只有 9 開頭，導致有很多相容性問題，於是決定外接 RDS，沒想到非常方便，就讓我們來看看到底要如何設置 RDS 吧！">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-16T13:53:55.000Z">
-<meta property="article:modified_time" content="2023-04-16T13:55:43.018Z">
+<meta property="article:modified_time" content="2023-04-16T14:07:30.109Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="rails">
 <meta property="article:tag" content="aws">
@@ -247,7 +247,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-04-16 21:53:55 / Modified: 21:55:43" itemprop="dateCreated datePublished" datetime="2023-04-16T21:53:55+08:00">2023-04-16</time>
+      <time title="Created: 2023-04-16 21:53:55 / Modified: 22:07:30" itemprop="dateCreated datePublished" datetime="2023-04-16T21:53:55+08:00">2023-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
 <ol>
 <li>將以下內容寫入</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">RDS_DB_NAME</span>=<span class="string">&quot;db_name&quot;</span></span><br><span class="line"><span class="variable constant_">RDS_USERNAME</span>=<span class="string">&quot;mike&quot;</span></span><br><span class="line"><span class="variable constant_">RDS_PASSWORD</span>=<span class="string">&quot;foobar123&quot;</span></span><br><span class="line"><span class="variable constant_">RDS_PORT</span>=<span class="number">5432</span></span><br><span class="line"><span class="variable constant_">RDS_HOSTNAME</span>=<span class="string">&quot;examplerds.foofoo.us-west-2.rds.amazonaws.com&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">RDS_USERNAME</span>=<span class="string">&quot;mike&quot;</span></span><br><span class="line"><span class="variable constant_">RDS_PASSWORD</span>=<span class="string">&quot;foobar123&quot;</span></span><br><span class="line"><span class="variable constant_">RDS_PORT</span>=<span class="number">5432</span></span><br><span class="line"><span class="variable constant_">RDS_HOSTNAME</span>=<span class="string">&quot;examplerds.foofoo.us-west-2.rds.amazonaws.com&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="設置-private-ip-至-RDS-的傳入規則"><a href="#設置-private-ip-至-RDS-的傳入規則" class="headerlink" title="設置 private_ip 至 RDS 的傳入規則"></a>設置 private_ip 至 RDS 的傳入規則</h1><p>以上步驟皆完成後，此時執行 <code>RAILS_ENV=production rails db:create</code> 若出現以下錯誤訊息，代表 EC2 instance 連線至 RDS 失敗，原因是 RDS 並不認得目前嘗試連線的 EC2 instance ip：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">PG</span>::<span class="title class_">ConnectionBad</span>: connection to server at <span class="string">&quot;123.666.0.77&quot;</span>, port <span class="number">5432</span> <span class="attr">failed</span>: <span class="title class_">Connection</span> timed out</span><br><span class="line">	<span class="title class_">Is</span> the server running on that host and accepting <span class="variable constant_">TCP</span>/<span class="variable constant_">IP</span> connections?</span><br></pre></td></tr></table></figure>
