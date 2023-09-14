@@ -46,3 +46,6 @@ https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHsFfct1jrBboNtdXrDcTgDp_
 Docker 的容器化技術，其概念跟伺服器一樣。一個容器可裝載一個應用程式，並提供一項服務。
 
 由此見得，容器與伺服器的概念近乎等號。
+
+# 總結
+今天我們用介紹伺服器來當作開賽的前菜，明天開始進入 Docker 系列，讓大家開始體會 Docker 有趣又神秘的世界。
