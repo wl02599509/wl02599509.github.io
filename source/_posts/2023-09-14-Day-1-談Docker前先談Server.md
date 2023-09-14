@@ -1,7 +1,9 @@
 ---
 title: 2023 iT邦鐵人賽 Day 01 - 談Docker前先談Server
 date: 2023-09-14 21:09:27
-category: iThome
+category: 
+- iThome
+- Docker
 tags: 
 - iThome
 - Docker
