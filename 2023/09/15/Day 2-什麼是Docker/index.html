@@ -20,27 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://wl02599509.github.io/tags/index.html">
+    <meta name="description" content="前言當我們提及 Docker 時，最先出現在腦海中的就是鯨魚跟容器。鯨魚是 Docker 應用程式的 icon。容器是 Docker 運作最主要的元素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 2 - 什麼是 Docker">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/index.html">
 <meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言當我們提及 Docker 時，最先出現在腦海中的就是鯨魚跟容器。鯨魚是 Docker 應用程式的 icon。容器是 Docker 運作最主要的元素。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-14T10:50:58.000Z">
-<meta property="article:modified_time" content="2022-08-14T10:51:53.087Z">
+<meta property="article:published_time" content="2023-09-15T00:13:13.000Z">
+<meta property="article:modified_time" content="2023-09-15T00:14:59.156Z">
 <meta property="article:author" content="Mike">
-<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/tags/">
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"https://wl02599509.github.io/tags/index.html","path":"tags/index.html","title":"tags"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/","path":"2023/09/15/Day 2-什麼是Docker/","title":"2023 iT邦鐵人賽 Day 2 - 什麼是 Docker"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>tags | Mike Code
-</title>
+<title>2023 iT邦鐵人賽 Day 2 - 什麼是 Docker | Mike Code</title>
   
 
 
@@ -112,7 +114,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -125,6 +127,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E5%81%9A%E7%9A%84%E4%BA%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Docker 做的事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E8%AE%93%E9%96%8B%E7%99%BC%E7%84%A1%E9%9A%9C%E7%A4%99"><span class="nav-number">1.2.</span> <span class="nav-text">Docker 讓開發無障礙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E4%B9%98%E8%BC%89%E5%A4%9A%E5%80%8B-Server"><span class="nav-number">1.3.</span> <span class="nav-text">Docker 乘載多個 Server</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">2.</span> <span class="nav-text">結論</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,43 +204,142 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 2 - 什麼是 Docker | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023 iT邦鐵人賽 Day 2 - 什麼是 Docker<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-15-Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-15 08:13:13 / Modified: 08:14:59" itemprop="dateCreated datePublished" datetime="2023-09-15T08:13:13+08:00">2023-09-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 2 - 什麼是 Docker" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
     
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
     
-    
-    <div class="post-block" lang="en"><header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">tags<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/tags/index.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
-</h1>
-
-<div class="post-meta-container">
+    <a title="disqus" href="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/15/Day 2-什麼是Docker/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    37 tags in total
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/3A/" style="font-size: 12px;" class="tag-cloud-0">3A</a> <a href="/tags/Array/" style="font-size: 12px;" class="tag-cloud-0">Array</a> <a href="/tags/BDD/" style="font-size: 19.2px;" class="tag-cloud-4">BDD</a> <a href="/tags/Capybara/" style="font-size: 15.6px;" class="tag-cloud-2">Capybara</a> <a href="/tags/Cucumber/" style="font-size: 17.4px;" class="tag-cloud-3">Cucumber</a> <a href="/tags/Data-Base/" style="font-size: 12px;" class="tag-cloud-0">Data Base</a> <a href="/tags/Design/" style="font-size: 12px;" class="tag-cloud-0">Design</a> <a href="/tags/Docker/" style="font-size: 13.8px;" class="tag-cloud-1">Docker</a> <a href="/tags/Factory-bot/" style="font-size: 13.8px;" class="tag-cloud-1">Factory_bot</a> <a href="/tags/Gherkin/" style="font-size: 15.6px;" class="tag-cloud-2">Gherkin</a> <a href="/tags/Git/" style="font-size: 13.8px;" class="tag-cloud-1">Git</a> <a href="/tags/GitHub/" style="font-size: 12px;" class="tag-cloud-0">GitHub</a> <a href="/tags/Installation/" style="font-size: 12px;" class="tag-cloud-0">Installation</a> <a href="/tags/Model/" style="font-size: 12px;" class="tag-cloud-0">Model</a> <a href="/tags/Problems/" style="font-size: 15.6px;" class="tag-cloud-2">Problems</a> <a href="/tags/Rails/" style="font-size: 21px;" class="tag-cloud-5">Rails</a> <a href="/tags/Rake/" style="font-size: 12px;" class="tag-cloud-0">Rake</a> <a href="/tags/Render/" style="font-size: 12px;" class="tag-cloud-0">Render</a> <a href="/tags/Rspec/" style="font-size: 24.6px;" class="tag-cloud-7">Rspec</a> <a href="/tags/Ruby/" style="font-size: 26.4px;" class="tag-cloud-8">Ruby</a> <a href="/tags/Ruby-on-Rails/" style="font-size: 22.8px;" class="tag-cloud-6">Ruby on Rails</a> <a href="/tags/SQL/" style="font-size: 12px;" class="tag-cloud-0">SQL</a> <a href="/tags/TDD/" style="font-size: 19.2px;" class="tag-cloud-4">TDD</a> <a href="/tags/Test-Automation/" style="font-size: 28.2px;" class="tag-cloud-9">Test Automation</a> <a href="/tags/Turbo/" style="font-size: 12px;" class="tag-cloud-0">Turbo</a> <a href="/tags/View/" style="font-size: 13.8px;" class="tag-cloud-1">View</a> <a href="/tags/aws/" style="font-size: 15.6px;" class="tag-cloud-2">aws</a> <a href="/tags/database/" style="font-size: 12px;" class="tag-cloud-0">database</a> <a href="/tags/deploy/" style="font-size: 15.6px;" class="tag-cloud-2">deploy</a> <a href="/tags/iThome/" style="font-size: 30px;" class="tag-cloud-10">iThome</a> <a href="/tags/includes/" style="font-size: 12px;" class="tag-cloud-0">includes</a> <a href="/tags/mail/" style="font-size: 12px;" class="tag-cloud-0">mail</a> <a href="/tags/n-1/" style="font-size: 12px;" class="tag-cloud-0">n+1</a> <a href="/tags/nest-form/" style="font-size: 12px;" class="tag-cloud-0">nest_form</a> <a href="/tags/query/" style="font-size: 12px;" class="tag-cloud-0">query</a> <a href="/tags/rails/" style="font-size: 15.6px;" class="tag-cloud-2">rails</a> <a href="/tags/transaction/" style="font-size: 12px;" class="tag-cloud-0">transaction</a>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>當我們提及 Docker 時，最先出現在腦海中的就是鯨魚跟容器。鯨魚是 Docker 應用程式的 icon。容器是 Docker 運作最主要的元素。</p>
+<span id="more"></span>
 
-      </div>
-      
-      
-      
+<h2 id="Docker-做的事"><a href="#Docker-做的事" class="headerlink" title="Docker 做的事"></a>Docker 做的事</h2><p>Docker 讓我們可以將一個或多個應用程式裝載到一個容器內，讓我們可以透過容器進行專案開發或系統運作。</p>
+<p>不過與其說是將應用程式或專案裝載到容器裡，更正確地說，我們將專案轉換成專案的映像檔 (可以想像成一個壓縮檔)，再透過專案的映像檔建立 (可以想像是解壓縮) 專案的容器，讓專案的容器能夠在 Docker Engine 上運作起來。</p>
+<p>當我們將專案轉換成映像檔時，會一併把專案所需要的「環境」設置進去，並在映像檔轉換成容器時，環境與專案，皆會一同被安裝到容器裡，所以專案在容器內運作時，其實就很像專案在我們的電腦上運作。是不是很像昨天提到的伺服器的概念？</p>
+<h2 id="Docker-讓開發無障礙"><a href="#Docker-讓開發無障礙" class="headerlink" title="Docker 讓開發無障礙"></a>Docker 讓開發無障礙</h2><p>我想每一位開發者都對一開始專案環境的建置，心裡多少會有所想法 (好麻煩)。如果問我開發最不喜歡的是什麼，那絕對就是建立環境。</p>
+<p>從以上介紹可知，我們在建立專案的映像檔時，會連同環境也一併設置進去，所以當我今天只要有了這個專案的映像檔，我便能直接透過 Docker 來直接開發，而不需要安裝一堆東西後，再開始開發。</p>
+<h2 id="Docker-乘載多個-Server"><a href="#Docker-乘載多個-Server" class="headerlink" title="Docker 乘載多個 Server"></a>Docker 乘載多個 Server</h2><p>Docker 將伺服器縮得更小，變成是 Docker 應用程式內的一個運行中的元素，容器。所以我們能透過 Docker 的容器，將一機一server變成一機多server。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>今天提到了很多 Docker 的專有名詞，像是 docker engine、映像檔、容器，這些細節都會在之後細細說明，今天主要先大方向了解 Docker 是什麼，可以做到什麼。</p>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/" rel="prev" title="2023 iT邦鐵人賽 Day 01 - 談Docker前先談Server">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 01 - 談Docker前先談Server
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
 
 
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
 </div>
   </main>
 
