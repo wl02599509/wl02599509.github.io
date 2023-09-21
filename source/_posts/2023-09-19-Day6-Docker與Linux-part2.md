@@ -1,5 +1,5 @@
 ---
-title: 2023 iT邦鐵人賽 Day6 - Docker 與 Linux part 2
+title: 2023 iT邦鐵人賽 Day 6 - Docker 與 Linux part 2
 date: 2023-09-19 00:14:05
 categories: 
 - [iThome]
