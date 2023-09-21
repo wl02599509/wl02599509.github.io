@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -208,6 +208,118 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-21 23:57:53 / Modified: 23:59:27" itemprop="dateCreated datePublished" datetime="2023-09-21T23:57:53+08:00">2023-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/21/Day8-容器的建立與啟動/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>透過前兩天的講解，希望大家對 Docker 的容器有一定的了解。今天我們要離開學術的象牙塔，自己動手來玩玩看，容器要如何建立、刪除等。</p>
+<p>想要跟著文章動手做的讀者們，還請大家先安裝好 Docker，並且記得要開啟 Docker Desktop 並登入，才有辦法在本機中完成以下手作。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,7 +338,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day7 - 容器的特性</a>
+          <a href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 7 - 容器的特性</a>
         </h2>
 
         <div class="post-meta-container">
@@ -236,9 +348,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-09-20 00:04:59 / Modified: 00:05:42" itemprop="dateCreated datePublished" datetime="2023-09-20T00:04:59+08:00">2023-09-20</time>
+      <time title="Created: 2023-09-20 00:04:59" itemprop="dateCreated datePublished" datetime="2023-09-20T00:04:59+08:00">2023-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-21 23:59:52" itemprop="dateModified" datetime="2023-09-21T23:59:52+08:00">2023-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -255,7 +373,7 @@
     </span>
 
   
-    <span id="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day7 - 容器的特性" title="Views">
+    <span id="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 7 - 容器的特性" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -338,7 +456,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day6 - Docker 與 Linux part 2</a>
+          <a href="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 6 - Docker 與 Linux part 2</a>
         </h2>
 
         <div class="post-meta-container">
@@ -348,9 +466,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-09-19 00:14:05 / Modified: 00:14:53" itemprop="dateCreated datePublished" datetime="2023-09-19T00:14:05+08:00">2023-09-19</time>
+      <time title="Created: 2023-09-19 00:14:05" itemprop="dateCreated datePublished" datetime="2023-09-19T00:14:05+08:00">2023-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-21 23:59:50" itemprop="dateModified" datetime="2023-09-21T23:59:50+08:00">2023-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -367,7 +491,7 @@
     </span>
 
   
-    <span id="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day6 - Docker 與 Linux part 2" title="Views">
+    <span id="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 6 - Docker 與 Linux part 2" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -451,7 +575,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day4 - Docker 與 Linux</a>
+          <a href="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 5 - Docker 與 Linux</a>
         </h2>
 
         <div class="post-meta-container">
@@ -461,9 +585,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-09-19 00:12:49 / Modified: 00:13:32" itemprop="dateCreated datePublished" datetime="2023-09-19T00:12:49+08:00">2023-09-19</time>
+      <time title="Created: 2023-09-19 00:12:49" itemprop="dateCreated datePublished" datetime="2023-09-19T00:12:49+08:00">2023-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-21 23:59:45" itemprop="dateModified" datetime="2023-09-21T23:59:45+08:00">2023-09-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -480,7 +610,7 @@
     </span>
 
   
-    <span id="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day4 - Docker 與 Linux" title="Views">
+    <span id="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 5 - Docker 與 Linux" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1195,123 +1325,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-title-link" itemprop="url">AWS EC2 部署過程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-04-09 00:04:33" itemprop="dateCreated datePublished" datetime="2023-04-09T00:04:33+08:00">2023-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-16 21:57:58" itemprop="dateModified" datetime="2023-04-16T21:57:58+08:00">2023-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/EC2/" itemprop="url" rel="index"><span itemprop="name">EC2</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="AWS EC2 部署過程" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/09/AWS-EC2-部署過程/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在剛接觸 Rails 部署時，我想應該都是從 Heroku 開始學習，對新手來說，Heroku 的輕量部署是非常容易上手的。市面上，除了 Heroku 以外，還有很多部署工具，像是 AWS、Microsoft Azure、Google Cloud 等。今天這篇主要是想要多瞭解 AWS EC2 的部署步驟，需要做些什麼事情而寫，一些詳細的設定就不在本篇多做解說。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

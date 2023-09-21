@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言透過前兩天的講解，希望大家對 Docker 的容器有一定的了解。今天我們要離開學術的象牙塔，自己動手來玩玩看，容器要如何建立、刪除等。 想要跟著文章動手做的讀者們，還請大家先安裝好 Docker，並且記得要開啟 Docker Desktop 並登入，才有辦法在本機中完成以下手作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言透過前兩天的講解，希望大家對 Docker 的容器有一定的了解。今天我們要離開學術的象牙塔，自己動手來玩玩看，容器要如何建立、刪除等。 想要跟著文章動手做的讀者們，還請大家先安裝好 Docker，並且記得要開啟 Docker Desktop 並登入，才有辦法在本機中完成以下手作。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-21T15:57:53.000Z">
+<meta property="article:modified_time" content="2023-09-21T15:59:27.031Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="容器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/","path":"2023/09/21/Day8-容器的建立與啟動/","title":"2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動 | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95"><span class="nav-number">2.</span> <span class="nav-text">容器建立與啟動</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#run"><span class="nav-number">2.1.</span> <span class="nav-text">run</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C-docker-container-run-%E6%98%A0%E5%83%8F%E6%AA%94%E5%90%8D%E7%A8%B1-image-%E6%A8%99%E7%B1%A4-tag-%E4%BB%A5%E5%BB%BA%E7%AB%8B%E4%B8%A6%E5%95%9F%E5%8B%95%E5%AE%B9%E5%99%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">執行 docker container run 映像檔名稱(image):標籤(tag) 以建立並啟動容器:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-%E6%8C%87%E4%BB%A4%E5%B9%AB%E6%88%91%E5%80%91%E5%81%9A%E4%BA%86%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">2.1.2.</span> <span class="nav-text">run 指令幫我們做了什麼？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-start"><span class="nav-number">2.2.</span> <span class="nav-text">create + start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89%E8%A6%81%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%A0%E5%83%8F%E6%AA%94"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 下載要使用的映像檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%94%A8%E4%B8%8B%E8%BC%89%E7%9A%84%E6%98%A0%E5%83%8F%E6%AA%94%E5%BB%BA%E7%AB%8B%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 用下載的映像檔建立容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%95%9F%E5%8B%95%E5%89%9B%E5%89%9B%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 啟動剛剛建立的容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">查看容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">查看運作中的容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%B3%E7%9C%8B%E6%B2%92%E6%9C%89%E5%95%9F%E5%8B%95%E7%9A%84%E5%AE%B9%E5%99%A8%EF%BC%9F"><span class="nav-number">3.1.1.</span> <span class="nav-text">想看沒有啟動的容器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-container-ls-%E8%88%87-docker-container-ps"><span class="nav-number">3.1.2.</span> <span class="nav-text">docker container ls 與 docker container ps</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動 | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-21-Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-21 23:57:53 / Modified: 23:59:27" itemprop="dateCreated datePublished" datetime="2023-09-21T23:57:53+08:00">2023-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 8 - 容器的建立與啟動" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/09/21/Day8-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%BB%BA%E7%AB%8B%E8%88%87%E5%95%9F%E5%8B%95/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/21/Day8-容器的建立與啟動/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>透過前兩天的講解，希望大家對 Docker 的容器有一定的了解。今天我們要離開學術的象牙塔，自己動手來玩玩看，容器要如何建立、刪除等。</p>
+<p>想要跟著文章動手做的讀者們，還請大家先安裝好 Docker，並且記得要開啟 Docker Desktop 並登入，才有辦法在本機中完成以下手作。</p>
+<span id="more"></span>
+
+<h1 id="容器建立與啟動"><a href="#容器建立與啟動" class="headerlink" title="容器建立與啟動"></a>容器建立與啟動</h1><h2 id="run"><a href="#run" class="headerlink" title="run"></a><code>run</code></h2><h3 id="執行-docker-container-run-映像檔名稱-image-標籤-tag-以建立並啟動容器"><a href="#執行-docker-container-run-映像檔名稱-image-標籤-tag-以建立並啟動容器" class="headerlink" title="執行 docker container run 映像檔名稱(image):標籤(tag) 以建立並啟動容器:"></a>執行 <code>docker container run 映像檔名稱(image):標籤(tag)</code> 以建立並啟動容器:</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container <span class="keyword">run</span><span class="language-bash"> httpd</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. Unable to find image <span class="string">&#x27;httpd:latest&#x27;</span> locally</span><br><span class="line"><span class="number">2</span>. latest: Pulling <span class="keyword">from</span> library/httpd</span><br><span class="line"><span class="number">3</span>. <span class="number">4</span>ee097f9a366: Already exists</span><br><span class="line"><span class="number">4</span>. <span class="number">94662</span>ba12854: Pull complete</span><br><span class="line"><span class="number">5</span>. <span class="number">595</span>a05b7c0ad: Pull complete</span><br><span class="line"><span class="number">6</span>. <span class="number">03682</span>c916abd: Pull complete</span><br><span class="line"><span class="number">7</span>. <span class="number">7</span>e88a38e211a: Pull complete</span><br><span class="line"><span class="number">8</span>. Digest: sha256:<span class="number">333</span>f7bca9fb72248f301fd2ae4892b86d36cc2fdf4c6aa49a6700f27c8e06daf</span><br><span class="line"><span class="number">9</span>. Status: Downloaded newer image for httpd:latest</span><br><span class="line"><span class="number">10</span>. AH00558: httpd: Could not reliably determine the server<span class="string">&#x27;s fully qualified domain name, using 172.17.0.2. Set the &#x27;</span>ServerName<span class="string">&#x27; directive globally to suppress this message</span></span><br><span class="line"><span class="string">11. AH00558: httpd: Could not reliably determine the server&#x27;</span>s fully qualified domain name, using <span class="number">172.17</span>.<span class="number">0.2</span>. Set the <span class="string">&#x27;ServerName&#x27;</span> directive globally to suppress this message</span><br><span class="line"><span class="number">12</span>. [Sun Sep <span class="number">03</span> <span class="number">14</span>:<span class="number">42</span>:<span class="number">54.245510</span> <span class="number">2023</span>] [mpm_event:notice] [pid <span class="number">1</span>:tid <span class="number">281473761857568</span>] AH00489: Apache/<span class="number">2.4</span>.<span class="number">57</span> (Unix) configured -- resuming normal operations</span><br><span class="line"><span class="number">13</span>. [Sun Sep <span class="number">03</span> <span class="number">14</span>:<span class="number">42</span>:<span class="number">54.259073</span> <span class="number">2023</span>] [core:notice] [pid <span class="number">1</span>:tid <span class="number">281473761857568</span>] AH00094: Command line: <span class="string">&#x27;httpd -D FOREGROUND&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>輸入完成後會看到多行的回傳資訊，基本上就是 Docker 找不到 http 映像檔，所以就把它抓下來並建立容器。等之後介紹到映像檔時，我們再來細細講解這些 log 是什麼意思。</p>
+<p>當看到 12 與 13 行，代表容器正在運作，而你的終端機正在被容器運行所佔用中，只要按下 <code>control + c</code> 就能關閉容器，並繼續使用終端機。</p>
+<h3 id="run-指令幫我們做了什麼？"><a href="#run-指令幫我們做了什麼？" class="headerlink" title="run 指令幫我們做了什麼？"></a><code>run</code> 指令幫我們做了什麼？</h3><ol>
+<li>找映像檔</li>
+<li>找不到，自動下載映像檔</li>
+<li>下載完後，依照該映像檔建立一個容器，啟動容器，讓容器運作起來</li>
+</ol>
+<h2 id="create-start"><a href="#create-start" class="headerlink" title="create + start"></a><code>create + start</code></h2><p>在使用 <code>run</code> 時， <code>run</code> 一口氣幫我們做了很多事情，但其實我們也可以一步一步慢慢來。</p>
+<h3 id="1-下載要使用的映像檔"><a href="#1-下載要使用的映像檔" class="headerlink" title="1. 下載要使用的映像檔"></a>1. 下載要使用的映像檔</h3><p><code>docker image pull httpd</code></p>
+<h3 id="2-用下載的映像檔建立容器"><a href="#2-用下載的映像檔建立容器" class="headerlink" title="2. 用下載的映像檔建立容器"></a>2. 用下載的映像檔建立容器</h3><p><code>docker container create httpd</code></p>
+<p>建立完成後，會在終端機上看到一長串字串，那是在容器被建立完成後，回傳的 <code>容器 ID</code></p>
+<h3 id="3-啟動剛剛建立的容器"><a href="#3-啟動剛剛建立的容器" class="headerlink" title="3. 啟動剛剛建立的容器"></a>3. 啟動剛剛建立的容器</h3><p><code>docker container start 容器ID或容器名稱(name)</code></p>
+<p>這裡跟前一步驟不一樣，要輸入的是 <code>容器 ID</code> 或是 <code>容器名稱 (name)</code> ，而不是映像檔名稱，因為你現在要啟動 (start) 的是容器，而前一步是用映像檔建立容器。</p>
+<h1 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h1><p>我們剛剛建立並啟動了容器，但我們要怎麼看到容器呢？</p>
+<h2 id="查看運作中的容器"><a href="#查看運作中的容器" class="headerlink" title="查看運作中的容器"></a>查看運作中的容器</h2><p><code>docker container ls</code> &#x2F; <code>docker container ps</code></p>
+<p>透過上述指令，可以查詢<strong>運行中</strong>的容器，所以尚<strong>未啟動的容器，是不會出現在清單上</strong>。如果在上面容器建立並啟動正常，就可以在輸入指令後看到容器的資訊。</p>
+<p>以下是我這邊的資訊：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container ls   </span><br><span class="line"></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS         PORTS     NAMES</span><br><span class="line"><span class="number">82</span>c383e88c6c   httpd     <span class="string">&quot;httpd-foreground&quot;</span>   <span class="number">5</span> minutes ago   Up <span class="number">4</span> minutes   <span class="number">80</span>/tcp    elegant_payne</span><br></pre></td></tr></table></figure>
+
+<p>這是剛剛建立並正在運行的容器，從左到右依序是：</p>
+<p>CONTAINER ID: 容器 ID。</p>
+<p>IMAGE: 建立該容器的映像檔。</p>
+<p>COMMAND: 啟動容器時的命令，主要定義在 Dockerfile 內的 <code>CMD</code> 。</p>
+<p>CREATED: 建立容器的時間。</p>
+<p>STATUS: 容器狀態， <code>up</code> 為運行狀態、 <code>exited</code> 為退出狀態(也就是被終止運行)、 <code>paused</code> 為暫停狀態 (並未被終止)、 <code>created</code> 為已建立狀態 (被建立但尚未啟動)、 <code>dead</code> 為結束狀態(因容器內某些錯誤原因導致無法再被啟動)、 <code>restarting</code> 為重啟狀態。</p>
+<p>PORTS: 容器的連接阜。</p>
+<p>NAMES: 容器的名稱。</p>
+<h3 id="想看沒有啟動的容器？"><a href="#想看沒有啟動的容器？" class="headerlink" title="想看沒有啟動的容器？"></a>想看沒有啟動的容器？</h3><p>上述指令只看得到啟動且運行中的容器，如果想要看沒有啟動的容器，就使用參數 <code>--all</code> 或 <code>-a</code> ，兩個是一樣的，可以查看全部的資訊:  <code>docker container ls --all</code> 、 <code>docker container ls -a</code></p>
+<p>、 <code>docker container ps --all</code> 、 <code>docker container ps -a</code></p>
+<h3 id="docker-container-ls-與-docker-container-ps"><a href="#docker-container-ls-與-docker-container-ps" class="headerlink" title="docker container ls 與 docker container ps"></a>docker container ls 與 docker container ps</h3><p>這兩者都是查看運行中的容器的指令，那到底有什麼不一樣呢？</p>
+<p>在某些容器相關的指令， <code>container</code> 是可省略的， <code>ps</code> 就是其中一個，所以輸入 <code>docker ps</code> 也是能正常使用，但如果是 <code>docker ls</code> 就會出現錯誤。</p>
+<p>這原因其實很簡單， <code>ps</code> 只專屬容器使用，但 <code>ls</code> 則還會被其他，像是 image、volume、network 等，這種共通使用的指令，就必須指名道姓，是誰要用它，是 container 要查詢 ls 還是 image 還是其他的好朋友。</p>
+<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>今天帶大家手動建立並啟動容器，以及如何查看容器，這些指令其實不難，基本上常用的大同小異，練習幾次就會記得了，比較多、比較複雜的是指令參數 ( 也就是上面提到的 <code>--all</code> 這種有 <code>-</code> 的指令 )，明天會帶大家介紹容器常會使用到的指令參數們。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" rel="prev" title="2023 iT邦鐵人賽 Day 7 - 容器的特性">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 7 - 容器的特性
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
