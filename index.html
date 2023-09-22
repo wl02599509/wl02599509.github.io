@@ -348,9 +348,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-09-22 00:03:14 / Modified: 00:03:48" itemprop="dateCreated datePublished" datetime="2023-09-22T00:03:14+08:00">2023-09-22</time>
+      <time title="Created: 2023-09-22 00:03:14" itemprop="dateCreated datePublished" datetime="2023-09-22T00:03:14+08:00">2023-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-23 00:09:37" itemprop="dateModified" datetime="2023-09-23T00:09:37+08:00">2023-09-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -400,22 +406,14 @@
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天我們已經知道如何建立、啟動、查看容器了，但在建立容器時，大部分時候不會如此單純。</p>
 <p>有時需要設定容器的通訊連接、網路配置、資料存放空間等，這些都是會影響到容器運作正常與否。</p>
 <p>今天就讓我們繼續一探容器的指令與參數吧!</p>
-<h1 id="替容器取個好名字"><a href="#替容器取個好名字" class="headerlink" title="替容器取個好名字"></a>替容器取個好名字</h1><p>當容器被建立時，容器會自動取個名字，不仿可以再用指令建立容器後並查看在 name 欄位是否有值。( 這裡指的名字是 <code>name</code> ，而非 <code>ID</code> ，要特別留意容器的 <code>ID</code> 跟 <code>name</code> 是完全不同的。)</p>
-<p>指令參數： <code>--name</code> </p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container create --name foobar httpd</span><br></pre></td></tr></table></figure>
-
-<p>這時在用 <code>docker container ls -a</code> 就會看到有個容器名稱 <code>foobar</code> 在清單中。</p>
-<h1 id="麻煩容器低調點"><a href="#麻煩容器低調點" class="headerlink" title="麻煩容器低調點"></a>麻煩容器低調點</h1><p>在昨天我們 run 出一個容器時，有提到使用 <code>ctrl + c</code> 結束正在終端機上 ( 前台 ) 運行中的容器，那我們可以讓容器啟動時，不要佔用終端機，也就是讓容器在背後默默 ( 後台 ) 的運行自己即可。</p>
-<p>指令參數：<code>-d</code> 、 <code>--detach</code> : 讓終端機在後台默默的運行，前台不會顯示任何 log。</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> --name foobar -d http</span></span><br><span class="line">或</span><br><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> --name foobar --detach http</span></span><br></pre></td></tr></table></figure>
-
-<p>這時，當容器啟動後，不再顯示好幾行的 log，而是只會回傳 <code>容器名稱</code> ，但是如果沒有指定容器的名稱，那就會回傳 <code>容器ID</code> ，這樣就不用被容器的 log 佔據終端機。但如果你想看容器的 log，可以使用 <code>docker container logs 容器ID / 容器名稱</code> 查看容器日誌。</p>
-<h1 id="好想深入容器裡面一探究竟"><a href="#好想深入容器裡面一探究竟" class="headerlink" title="好想深入容器裡面一探究竟"></a>好想深入容器裡面一探究竟</h1><p>透過 <code>docker container inspect 容器ID / 容器名稱</code> ，可以看到該容器的詳細資訊，資訊太多就不一一細說，主要就是能看到容器的名稱、建立時間、是否正在運作、健康狀況、健康檢查次數、連接阜、網路、資料掛載等。</p>
-<h1 id="進去容器一下下"><a href="#進去容器一下下" class="headerlink" title="進去容器一下下"></a>進去容器一下下</h1><p>透過 <code>docker container -it exec 容器ID / 容器名稱 sh</code> ，進入容器裡，與容器內的應用程式進行互動。輸入 <code>ls</code> 便可看到應用程式的目錄。</p>
-<p>其中 <code>-it</code> 是必備的，讓我們能夠與容器互動。</p>
-<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>今天介紹了部分的指令參數，還有些指令會在之後的篇章陸續介紹到。</p>
-<p>基本上，Docker 常見的指令就那幾十個，而且無論容器、映像檔或是 volume 等等，指令大同小異。只要多操作幾次就能記住，在介紹完 Docker 後，會有一篇文章是專門整理好的指令彙整，敬請期待。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/22/Day9-%E5%AE%B9%E5%99%A8%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A6%8B%E6%8C%87%E4%BB%A4%E5%8F%83%E6%95%B8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
