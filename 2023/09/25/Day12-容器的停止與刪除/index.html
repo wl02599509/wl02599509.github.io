@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言前幾天都在講容器的建立與啟動，今天我們來說說，容器該如何停止、刪除，以及刪除容器時要注意些什麼事情。 讓容器停止運作簡單，當我們想讓正在運作中的容器，停止運作，只要使用 stop 指令即可：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言前幾天都在講容器的建立與啟動，今天我們來說說，容器該如何停止、刪除，以及刪除容器時要注意些什麼事情。 讓容器停止運作簡單，當我們想讓正在運作中的容器，停止運作，只要使用 stop 指令即可：">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-25T13:55:45.000Z">
+<meta property="article:modified_time" content="2023-09-25T13:56:24.805Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="容器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/","path":"2023/09/25/Day12-容器的停止與刪除/","title":"2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除 | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%93%E5%AE%B9%E5%99%A8%E5%81%9C%E6%AD%A2%E9%81%8B%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">讓容器停止運作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%9F%E5%AE%B9%E5%99%A8%E8%AA%AA%E5%86%8D%E8%A6%8B"><span class="nav-number">3.</span> <span class="nav-text">跟容器說再見</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8%E5%86%8D%E5%88%AA%E9%99%A4"><span class="nav-number">3.1.</span> <span class="nav-text">先停止容器再刪除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B7%E5%88%B6%E5%88%AA%E9%99%A4%E9%81%8B%E4%BD%9C%E4%B8%AD%E5%AE%B9%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">強制刪除運作中容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%A3%E5%A6%82%E6%9E%9C%E6%83%B3%E4%B8%80%E6%AC%A1%E5%88%AA%E9%99%A4%E5%A4%9A%E5%80%8B%E5%AE%B9%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">那如果想一次刪除多個容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%91%A2%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">容器的資料呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除 | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-25-Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-25 21:55:45 / Modified: 21:56:24" itemprop="dateCreated datePublished" datetime="2023-09-25T21:55:45+08:00">2023-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/25/Day12-容器的停止與刪除/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天都在講容器的建立與啟動，今天我們來說說，容器該如何停止、刪除，以及刪除容器時要注意些什麼事情。</p>
+<h1 id="讓容器停止運作"><a href="#讓容器停止運作" class="headerlink" title="讓容器停止運作"></a>讓容器停止運作</h1><p>簡單，當我們想讓正在運作中的容器，停止運作，只要使用 <code>stop</code> 指令即可：</p>
+<span id="more"></span>
+
+<p>先找出運作中的容器：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS         PORTS     NAMES</span><br><span class="line">ef2929e5ceb0   httpd     <span class="string">&quot;httpd-foreground&quot;</span>   <span class="number">8</span> seconds ago   Up <span class="number">6</span> seconds   <span class="number">80</span>/tcp    iThome</span><br></pre></td></tr></table></figure>
+
+<p>停止容器：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">停止容器：</span><br><span class="line">&gt; docker container stop iThome</span><br><span class="line">iThome</span><br></pre></td></tr></table></figure>
+
+<p>再次查看運作中的容器：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br></pre></td></tr></table></figure>
+
+<p>沒有東西？沒錯！還記得 <code>docker container ls</code> 與 <code>docker container ps</code> 都是查詢「運作中」的容器嗎。我們剛剛停止了容器，所以必須加上 <code>-a</code> 才找得到剛剛停下來的容器。</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container ps -a</span><br><span class="line">CONTAINER ID   IMAGE      COMMAND                   CREATED         STATUS                       PORTS                  NAMES</span><br><span class="line">ef2929e5ceb0   httpd      <span class="string">&quot;httpd-foreground&quot;</span>        <span class="number">4</span> minutes ago   Exited (<span class="number">0</span>) <span class="number">30</span> seconds ago                           iThome</span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到，停止下來的容器狀態是 <code>Exited</code> 退出。</p>
+<h1 id="跟容器說再見"><a href="#跟容器說再見" class="headerlink" title="跟容器說再見"></a>跟容器說再見</h1><p>如果我們想要刪除容器的話，要先讓容器停止運作後，才能夠刪除 <code>rm</code>。</p>
+<p>我們可以先啟動剛剛的容器， <code>iThome</code> ，然後嘗試刪除：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;docker container start iThome</span><br><span class="line">iThome</span><br><span class="line"></span><br><span class="line">&gt;docker container rm iThome</span><br><span class="line">Error response <span class="keyword">from</span> daemon: You cannot remove a running container ef2929e5ceb076f0c836df3c3bbb814450377392430529997e29505813fc6a93. </span><br><span class="line">Stop the container before attempting removal or force remove</span><br></pre></td></tr></table></figure>
+
+<p>跑出來的訊息很直接的告訴我們，想要刪除容器就要先停止容器，不然就是要強制刪除。</p>
+<h2 id="先停止容器再刪除"><a href="#先停止容器再刪除" class="headerlink" title="先停止容器再刪除"></a>先停止容器再刪除</h2><p>所以如果我們想刪除，基本上就是要先停止，然後再刪除：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container stop iThome</span><br><span class="line">iThome</span><br><span class="line"></span><br><span class="line">&gt; docker container rm iThome</span><br><span class="line">iThome</span><br><span class="line"></span><br><span class="line">&gt; docker container ls -a</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br></pre></td></tr></table></figure>
+
+<p>透過 <code>docker container ls -a</code> 可以發現，容器已經不見了。</p>
+<h2 id="強制刪除運作中容器"><a href="#強制刪除運作中容器" class="headerlink" title="強制刪除運作中容器"></a>強制刪除運作中容器</h2><p>至於剛剛說的強制刪除，就是使用 <code>-f</code> 指令參數：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">假設現在有一個運作中的容器 iThome</span><br><span class="line"></span><br><span class="line">&gt; docker container rm -f iThome</span><br><span class="line">iThome</span><br></pre></td></tr></table></figure>
+
+<h2 id="那如果想一次刪除多個容器"><a href="#那如果想一次刪除多個容器" class="headerlink" title="那如果想一次刪除多個容器"></a>那如果想一次刪除多個容器</h2><p>只需要在 <code>rm</code> 後面加上想要刪除的容器們即可：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container rm relaxed_curran postgres_with_e</span><br><span class="line">relaxed_curran</span><br><span class="line">postgres_with_e</span><br></pre></td></tr></table></figure>
+
+<p>這樣好麻煩？沒問題，用 <code>prune</code> 就可以刪除<strong>所有停止中</strong>的容器們了。</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container prune</span><br><span class="line">WARNING! This will remove all stopped containers.</span><br><span class="line">Are you sure you want to continue? [y/N]</span><br></pre></td></tr></table></figure>
+
+<p>docker  向我們確認是不是真的要執行？輸入 y 就可以執行了。</p>
+<p>如果加上 <code>-f</code> 或 <code>--force</code> 就能跳過詢問的步驟直接執行刪除：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS                      PORTS     NAMES</span><br><span class="line">a8cef9d77a9b   httpd     <span class="string">&quot;httpd-foreground&quot;</span>   <span class="number">6</span> seconds ago   Created                               pedantic_meitner</span><br><span class="line"><span class="number">264645</span>d5d5cd   httpd     <span class="string">&quot;httpd-foreground&quot;</span>   <span class="number">8</span> seconds ago   Created                               pensive_edison</span><br><span class="line"><span class="number">6</span>ac5d76c0fc1   httpd     <span class="string">&quot;httpd-foreground&quot;</span>   <span class="number">4</span> minutes ago   Exited (<span class="number">0</span>) <span class="number">14</span> seconds ago             iThome</span><br><span class="line"></span><br><span class="line">&gt; docker container prune --force</span><br><span class="line">Deleted Containers:</span><br><span class="line">a8cef9d77a9b67825e109ac18cc1ba6e1122bc83f438b54fdcad9a395eb28a7f</span><br><span class="line"><span class="number">264645</span>d5d5cd49d42646767b1500d50e990e2e27895bce49e7f3162a5291430a</span><br><span class="line"><span class="number">6</span>ac5d76c0fc12e9f60e2f6c224f4fe565951e41375e85087a4aec4c1e71ca0b6</span><br><span class="line"></span><br><span class="line">Total reclaimed space: <span class="number">0</span>B</span><br></pre></td></tr></table></figure>
+
+<h1 id="容器的資料呢？"><a href="#容器的資料呢？" class="headerlink" title="容器的資料呢？"></a>容器的資料呢？</h1><p>應用程式在運作的過程中，基本上會產生資料，就我們所知，資料會儲存在資料庫中。</p>
+<p>那容器呢？容器裡的應用程式也會產生資料，但資料會放在哪？放在容器裡嗎？聽起來好像很合理。但是容器一旦被刪除，資料是不是也被刪除了？那這樣用容器部署專案妥當嗎？聽起來好抖….</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>今天介紹了容器基本上，刪除之前必須先停止，但也能透過 <code>-f</code> 或 <code>--force</code> 強制刪除運作中的容器。明天我們來介紹容器資料的儲放，在明天的文章中，會為大家解惑最後一個標題裡所提及的所有問題。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/" rel="prev" title="2023 iT邦鐵人賽 Day 11 - 容器的環境變數">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 11 - 容器的環境變數
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
