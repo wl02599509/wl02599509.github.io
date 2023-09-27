@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言我們在學任何程式語言或是框架時，都會碰到程式碼的生命週期、物件的 callback、元件的 life cycle，容器也不例外，容器也有生命週期。 今天我們就來介紹容器的生命週期，並讓各位了解，容器其實就跟社畜一樣，不幹了還能再找其他人來頂替 ( 容器：嘆 )。">
+    <meta name="description" content="前言前幾天，我們不斷地在說明容器，對容器的熟悉度應該就像認識三十年的朋友一樣熟悉了。但這樣還是不夠的，我們必須要知道，你朋友的錢存在哪裡 (咦!?)。 今天我們就來談談朋友的錢存在哪（容器裡應用程式產生的資料存在哪）吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023 iT邦鐵人賽 Day 13 - 容器的生命週期">
-<meta property="og:url" content="https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/index.html">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/index.html">
 <meta property="og:site_name" content="Mike Code">
-<meta property="og:description" content="前言我們在學任何程式語言或是框架時，都會碰到程式碼的生命週期、物件的 callback、元件的 life cycle，容器也不例外，容器也有生命週期。 今天我們就來介紹容器的生命週期，並讓各位了解，容器其實就跟社畜一樣，不幹了還能再找其他人來頂替 ( 容器：嘆 )。">
+<meta property="og:description" content="前言前幾天，我們不斷地在說明容器，對容器的熟悉度應該就像認識三十年的朋友一樣熟悉了。但這樣還是不夠的，我們必須要知道，你朋友的錢存在哪裡 (咦!?)。 今天我們就來談談朋友的錢存在哪（容器裡應用程式產生的資料存在哪）吧。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-26T14:57:38.000Z">
-<meta property="article:modified_time" content="2023-09-26T14:58:22.057Z">
+<meta property="article:published_time" content="2023-09-27T00:55:18.000Z">
+<meta property="article:modified_time" content="2023-09-27T00:55:59.058Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="iThome">
 <meta property="article:tag" content="Docker">
@@ -36,14 +36,14 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/","path":"2023/09/26/Day13-容器的生命週期/","title":"2023 iT邦鐵人賽 Day 13 - 容器的生命週期"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/","path":"2023/09/27/Day14-容器的資料儲存-約定掛載/","title":"2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>2023 iT邦鐵人賽 Day 13 - 容器的生命週期 | Mike Code</title>
+<title>2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載 | Mike Code</title>
   
 
 
@@ -128,7 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">生命週期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%B7%E8%A1%8C"><span class="nav-number">2.2.</span> <span class="nav-text">執行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2"><span class="nav-number">2.3.</span> <span class="nav-text">停止</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A8%E6%A3%84"><span class="nav-number">2.4.</span> <span class="nav-text">捨棄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%94%A8%E5%AE%8C%E5%B0%B1%E4%B8%9F%EF%BC%8C%E4%B8%8D%E7%94%A8%E7%95%99%E6%88%80"><span class="nav-number">3.</span> <span class="nav-text">容器用完就丟，不用留戀</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">4.</span> <span class="nav-text">結論</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AA%94%E6%A1%88%E7%B3%BB%E7%B5%B1"><span class="nav-number">2.</span> <span class="nav-text">檔案系統</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%AF%AB%E5%B1%A4"><span class="nav-number">2.1.</span> <span class="nav-text">可寫層</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89-x2F-%E7%B6%81%E5%AE%9A%E6%8E%9B%E8%BC%89"><span class="nav-number">3.</span> <span class="nav-text">約定掛載 &#x2F; 綁定掛載</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B"><span class="nav-number">3.2.</span> <span class="nav-text">範例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%9C%E5%85%85"><span class="nav-number">3.3.</span> <span class="nav-text">補充</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">總結</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -229,12 +229,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 13 - 容器的生命週期 | Mike Code">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載 | Mike Code">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          2023 iT邦鐵人賽 Day 13 - 容器的生命週期<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-26-Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-27-Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -246,7 +246,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-09-26 22:57:38 / Modified: 22:58:22" itemprop="dateCreated datePublished" datetime="2023-09-26T22:57:38+08:00">2023-09-26</time>
+      <time title="Created: 2023-09-27 08:55:18 / Modified: 08:55:59" itemprop="dateCreated datePublished" datetime="2023-09-27T08:55:18+08:00">2023-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
     </span>
 
   
-    <span id="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 13 - 容器的生命週期" title="Views">
+    <span id="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -278,8 +278,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/26/Day13-容器的生命週期/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/27/Day14-容器的資料儲存-約定掛載/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -293,21 +293,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們在學任何程式語言或是框架時，都會碰到程式碼的生命週期、物件的 callback、元件的 life cycle，容器也不例外，容器也有生命週期。</p>
-<p>今天我們就來介紹容器的生命週期，並讓各位了解，容器其實就跟社畜一樣，不幹了還能再找其他人來頂替 ( 容器：嘆 )。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天，我們不斷地在說明容器，對容器的熟悉度應該就像認識三十年的朋友一樣熟悉了。但這樣還是不夠的，我們必須要知道，你朋友的錢存在哪裡 (咦!?)。</p>
+<p>今天我們就來談談朋友的錢存在哪（容器裡應用程式產生的資料存在哪）吧。</p>
 <span id="more"></span>
-<h1 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h1><h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p>沒錯，容器生命始於建立，也就是 <code>docker container create</code> 。</p>
-<h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>經過前幾篇的介紹與手作，大家應該都能知道是從 <code>docker container start</code> 開始。</p>
-<h2 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h2><p>這個階段就是 <code>docker container stop</code> 。</p>
-<h2 id="捨棄"><a href="#捨棄" class="headerlink" title="捨棄"></a>捨棄</h2><p>最後，容器在 <code>docker container rm</code> 下，結束了他精彩的職涯。</p>
-<h1 id="容器用完就丟，不用留戀"><a href="#容器用完就丟，不用留戀" class="headerlink" title="容器用完就丟，不用留戀"></a>容器用完就丟，不用留戀</h1><p>上述四個階段， <code>建立 → 執行 → 停止 → 捨棄</code>，就是容器的生命週期。</p>
-<p>聽起來好像沒什麼特別的，就一般的出生入死!? 恩~ 沒錯，就只有這樣。</p>
-<p>但今天這篇的重點，是想讓大家知道，容器其實是廉價的，如果容器壞了，或是有稍微的不正常，不用想去修，直接把它換掉就好 ( 怎麼好像慣老闆?! )。</p>
-<p>讓我們回想一下，容器是透過映像檔建立的，所以當映像檔存在的情況下，讓我們可以不斷的製造出容器，這樣的話，與其花時間修裡容器，不如直接把它刪掉，馬上再建立一個新的。</p>
-<p>也就是這樣的特性，在容器管理平台上，能夠維持系統穩定運作。</p>
-<p>當容器管理平台底下，有某個容器發生異常時，管理平台會透過自身的<strong>調節</strong>系統，將不正常的容器刪掉，並再次建立，以維持設定好的容器種類與數量。</p>
-<h1 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h1><p>相較前幾天，今天的內容雖然較少，但是概念也是非常重要的。</p>
-<p>容器本身不重要，只要有問題，刪了再造就好。但今天說的容器的問題，並非那種三不五時出現的常態異常或是功能上的 bug。</p>
+
+<h1 id="檔案系統"><a href="#檔案系統" class="headerlink" title="檔案系統"></a>檔案系統</h1><p>每個容器都有屬於自己的檔案系統，而最基本的檔案系統是由映像檔的共享層與容器內的可寫層所構成。</p>
+<h2 id="可寫層"><a href="#可寫層" class="headerlink" title="可寫層"></a>可寫層</h2><p>映像檔本身是多個層 ( Layer ) 所組成，就像一份漢堡的組成一樣，一層又一層。</p>
+<p>當容器建立並啟動時，容器的檔案系統除了有映像檔的各層以外，docker 會自動加入<strong>可寫層</strong>，以供容器有個暫時儲存資料與檔案的地方。</p>
+<p>因此，可寫層是跟隨著容器的生命週期，可寫層會在容器被刪除後，也跟著消失，所以：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">容器裡產生的資料 ---&gt; 可寫層 ---&gt; 容器被刪除 ---&gt; 可寫層被刪除 ---&gt; 資料消失</span><br></pre></td></tr></table></figure>
+
+<p>但這不是我們想要遇到的問題，在前一篇可知，容器的汰舊換新是常態。</p>
+<p>除了前一篇提到的更替狀況，還有一種情況是，部署新版 (新的功能或是修復已知 bug) 的專案時，這時我們會一定是部署新的容器上去，並把舊的刪掉。敏感的你，是不是察覺不對勁？</p>
+<p>Production 的資料是不是就啪一聲的不見了….?</p>
+<p>我們當然不能因為更新就讓會員資料全部都消失殆盡，所以 docker 有提供了永續性的資料儲存方式： <strong>約定掛載</strong> 與 <strong>Volume</strong>。</p>
+<h1 id="約定掛載-x2F-綁定掛載"><a href="#約定掛載-x2F-綁定掛載" class="headerlink" title="約定掛載 &#x2F; 綁定掛載"></a>約定掛載 &#x2F; 綁定掛載</h1><p>說文解字。約定，即雙方意思合意，你心甘、我情願，因此在雙方認定的範圍內，互通有無; 掛載，也就是將元件、資料等與其他元件跟資料或系統連結。</p>
+<p>在 docker 裡，就是透過設定 (約定)，將本機資料與容器連結在一起 (掛載)：</p>
+<ul>
+<li>將本機的資料夾掛載到容器內，使資料雙向綁定。</li>
+<li>當掛載的目標資料夾已存在檔案時，而使用約定掛載時，會被本機的資料夾所覆蓋，此時容器的資料只會有本機資料夾內的資料。</li>
+<li>若在約定掛載時，掛載來源為單一檔案，此時會與容器內的資料互相合併。</li>
+</ul>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p> <code>--mount type=bind,source=&quot;容器內資料儲存的目錄&quot;,target=&quot;本機資料夾目錄&quot;</code> </p>
+<p>沒錯，你沒看錯，這一整串就是在做約定掛載，我們需要指定資料流通的兩端( source, target )。</p>
+<p>type、source、target 之間必須要有逗號，且逗號間不能有空格。</p>
+<p>什麼？好麻煩？OK， Docker 聽到你的心聲了，那就用 <code>-v 容器內資料儲存的目錄:本機資料夾目錄</code> 吧</p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><ol>
+<li>在目錄 <code>/Users/mike/Desktop/bind</code> 裡建立 <code>index.html</code> 檔案</li>
+<li>在 <code>body</code> tag 裡面輸入任何你想要的畫面設計，這裡為了簡單示範，我在我的 <code>index.html</code> 只輸入 <code>&lt;h1&gt;**This is new data&lt;/h1&gt;</code>** </li>
+<li>輸入以下約定指令：</li>
+</ol>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="string">&quot;/Users/mike/Desktop/bind&quot;</span>,target=<span class="string">&quot;/usr/local/apache2/htdocs/&quot;</span> -p 8001:80 -d httpd</span></span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> -v /Users/mike/Desktop/bind:/usr/local/apache2/htdocs/ -d httpd</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>進入 <a target="_blank" rel="noopener" href="http://localhost:8001/"><code>http://localhost:8001/</code></a></li>
+</ol>
+<p>原本在 <a target="_blank" rel="noopener" href="http://localhost:8001/"><code>http://localhost:8001/</code></a> 應該會出現 <code>It Works!</code> ，現在變成**<code>This is new data</code> 。**</p>
+<p>這代表，目前已經將我綁定的本機目錄與容器連上了，資料雙向流通。</p>
+<p>那為什麼原本是 <code>It Works!</code> ，現在變了。那是因為在容器裡， <code>/usr/local/apache2/htdocs/</code> 底下，原本有 <code>index.html</code> 檔案，現在經過約定掛載後，將原本容器內的資料給覆蓋過去。如上面說明的第三點。</p>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><p>大家可以嘗試建立一個無掛載的 httpd 跟有掛載的 httpd，並使用 <code>inspect</code> 看一下兩者容器內的 <code>Mounts</code> 。</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>今天的東西可能會比較難一點，我們來做個總結吧。</p>
+<p>現在我們知道，容器的資料可以存放在暫時性的可寫層，但可寫層會跟容器一起被刪掉，導致資料無法長存於世，這對 production 來說，不堪使用。</p>
+<p>於是我們有掛載的方法，將資料長期存放。透過約定掛載，我們可以將容器的資料存放在本機的資料夾 (目錄) 中，同時我們也可以更改本機裡的資料。</p>
+<p>因為內容有點龐大，用一篇寫完後發現，東西實在太多了 (汗)，為了減輕讀者負擔，所以今天先只說明檔案系統跟約定掛載，明天我們會來講解另一個神秘空間 volume。</p>
+<p>關於「層」，我們會在之後特別寫一篇文章為大家解釋。今天我們先暫時為了可寫層，間單對映像檔做個基本介紹。</p>
 
     </div>
 
@@ -326,14 +355,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/" rel="prev" title="2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除">
-                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除
+                <a href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" rel="prev" title="2023 iT邦鐵人賽 Day 13 - 容器的生命週期">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 13 - 容器的生命週期
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/" rel="next" title="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載">
-                  2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
