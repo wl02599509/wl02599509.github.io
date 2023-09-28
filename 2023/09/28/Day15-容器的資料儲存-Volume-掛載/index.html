@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言昨天我們講解了容器如何儲放資料，關於掛載的部分，只講了約定掛載，今天我們來講講有別於儲放在本機的 volume 掛載。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言昨天我們講解了容器如何儲放資料，關於掛載的部分，只講了約定掛載，今天我們來講講有別於儲放在本機的 volume 掛載。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-28T14:32:34.000Z">
+<meta property="article:modified_time" content="2023-09-28T14:33:23.955Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="容器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/","path":"2023/09/28/Day15-容器的資料儲存-Volume-掛載/","title":"2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載 | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume-%E6%8E%9B%E8%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Volume 掛載</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-volume"><span class="nav-number">2.1.</span> <span class="nav-text">建立 volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-volume-%E6%B8%85%E5%96%AE"><span class="nav-number">2.2.</span> <span class="nav-text">查看 volume 清單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-volume-%E7%B4%B0%E9%83%A8%E8%B3%87%E6%96%99"><span class="nav-number">2.3.</span> <span class="nav-text">查看 volume 細部資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volume-%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="nav-number">2.4.</span> <span class="nav-text">volume 的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%87%E5%AE%B9%E5%99%A8%E9%80%A3%E7%B5%90"><span class="nav-number">2.5.</span> <span class="nav-text">與容器連結</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volume-%E7%9B%B8%E9%97%9C%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Volume 相關指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volume-%E4%BD%BF%E7%94%A8%E7%9A%84%E5%85%B7%E9%AB%94%E5%AF%A6%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">volume 使用的具體實例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載 | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-28-Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-28 22:32:34 / Modified: 22:33:23" itemprop="dateCreated datePublished" datetime="2023-09-28T22:32:34+08:00">2023-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/28/Day15-容器的資料儲存-Volume-掛載/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天我們講解了容器如何儲放資料，關於掛載的部分，只講了約定掛載，今天我們來講講有別於儲放在本機的 <code>volume</code> 掛載。</p>
+<span id="more"></span>
+<h1 id="Volume-掛載"><a href="#Volume-掛載" class="headerlink" title="Volume 掛載"></a>Volume 掛載</h1><p>volume 是 docker 裡的一個儲存元件，有別於掛載，volume 是從 docker 內切出一塊獨立空間出來，提供容器使用，讓容器可以儲放資料。因此，容器被刪除，也不會影響到 volume。那這個被另外切出來的空間，也是要透過掛載，讓 volume 跟容器彼此連結。</p>
+<h2 id="建立-volume"><a href="#建立-volume" class="headerlink" title="建立 volume"></a>建立 volume</h2><p>既然如此，那代表 volume 也是要另外創造：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker <span class="keyword">volume</span><span class="language-bash"> create --name iThome_volume</span></span><br><span class="line">iThome_volume</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-volume-清單"><a href="#查看-volume-清單" class="headerlink" title="查看 volume 清單"></a>查看 volume 清單</h2><p>然後我們可以查看 volume 的清單：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker <span class="keyword">volume</span><span class="language-bash"> <span class="built_in">ls</span>                                                                                              ✔  3.1.3   16:28:48</span></span><br><span class="line">DRIVER    <span class="keyword">VOLUME</span><span class="language-bash"> NAME</span></span><br><span class="line">local     iThome_volume</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-volume-細部資料"><a href="#查看-volume-細部資料" class="headerlink" title="查看 volume 細部資料"></a>查看 volume 細部資料</h2><p>也可透過 inspect 查看 volume 的詳細資料：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker <span class="keyword">volume</span><span class="language-bash"> inspect iThome_volume                                                                           ✔  3.1.3   16:29:06</span></span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;CreatedAt&quot;</span>: <span class="string">&quot;2023-09-10T08:27:43Z&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Driver&quot;</span>: <span class="string">&quot;local&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Labels&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;Mountpoint&quot;</span>: <span class="string">&quot;/var/lib/docker/volumes/iThome_volume/_data&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Name&quot;</span>: <span class="string">&quot;iThome_volume&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Options&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;Scope&quot;</span>: <span class="string">&quot;local&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="volume-的起源"><a href="#volume-的起源" class="headerlink" title="volume 的起源"></a>volume 的起源</h2><p>嘗試再建立另外一個 <code>volume</code> ，並看兩者的 <code>Mountpoint</code> :</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iThome_volume:</span><br><span class="line"><span class="string">&quot;Mountpoint&quot;</span>: <span class="string">&quot;/var/lib/docker/volumes/iThome_volume/_data&quot;</span></span><br><span class="line"></span><br><span class="line">another_volume:</span><br><span class="line"><span class="string">&quot;Mountpoint&quot;</span>: <span class="string">&quot;/var/lib/docker/volumes/another_volume/_data&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>由此可知， <code>volume</code> 是從 docker 裡去另外製造出來的。</p>
+<h2 id="與容器連結"><a href="#與容器連結" class="headerlink" title="與容器連結"></a>與容器連結</h2><p>這裡也是使用 <code>--mount</code> 或 <code>-v</code> ，但要注意的是 <code>--mount</code> 的 <code>type</code> 是 <code>volume</code> ，而不是 <code>bind</code> :</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> --name iThome --mount <span class="built_in">type</span>=volume,<span class="built_in">source</span>=iThome_volume,target=<span class="string">&quot;/usr/local/apache2/htdocs/&quot;</span> -p 8001:80 -d httpd</span></span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">docker container <span class="keyword">run</span><span class="language-bash"> -v iThome_volume:/usr/local/apache2/htdocs/ -d httpd</span></span><br></pre></td></tr></table></figure>
+
+<p>然後我們 inspect 容器，可以看到容器 <code>Mounts</code> 的 <code>source</code> 就是剛剛我們 inspect volume 時的 <code>Mountpoint</code> 。</p>
+<h1 id="Volume-相關指令"><a href="#Volume-相關指令" class="headerlink" title="Volume 相關指令"></a>Volume 相關指令</h1><p>除了上述的建立 <code>volume</code> 的 <code>create</code> 以外，還有很多常用的指令，像是 <code>ls</code> 查看 volume 清單， <code>inspect</code> 查看特定 volume， <code>rm</code> 刪除 volume。用法跟容器的一樣。只是把 <code>container</code> 改成 <code>volume</code></p>
+<p>那我們來試著刪除剛剛 <code>iThome</code> 容器的 volume <code>iThome_volume</code> ，這時會發現他不給刪：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker <span class="keyword">volume</span><span class="language-bash"> <span class="built_in">rm</span> iThome_volume</span></span><br><span class="line"></span><br><span class="line">Error response <span class="keyword">from</span> daemon: remove iThome_volume: <span class="keyword">volume</span><span class="language-bash"> is <span class="keyword">in</span> use - [4671d716df2040b93ff740f8466bd80909af55196b33e8a407a93299b45b18a9]</span></span><br></pre></td></tr></table></figure>
+
+<p>錯誤訊息很明顯告訴我們， volume 使用中。這是一個很正常的機制。</p>
+<p>如果想要刪除掉 <code>volume</code> ，就必須確保沒有容器在使用 <code>volume</code> 後才能刪除。</p>
+<p>所謂的沒有容器在使用是指，使用該 volume 的容器，必須都被刪除了，已經沒有這些使用它的容器了，如果只是把容器 stop 或 kill，那仍然還是在使用著 <code>volume</code> ，一樣刪不掉 <code>volume</code> 。</p>
+<h1 id="volume-使用的具體實例"><a href="#volume-使用的具體實例" class="headerlink" title="volume 使用的具體實例"></a>volume 使用的具體實例</h1><p>講了這麼多，到底誰會用到 <code>volume</code> 呢? 只要是會產生資料的容器，就需要 <code>volume</code> 嗎? 其實未必。</p>
+<p>用 <code>Rails</code> 舉例， <code>Rails</code> 專案的容器會有 Rails app 本身的容器，另外還會有與 Rails 串接的資料庫容器，兩種容器 ( 這裡只談簡配、不談 sidekiq, redis )。這裡會需要 <code>volume</code> 的只有資料庫容器，因為資料庫容器是負責資料儲放的容器。透過 Rails 產生的資料，會經過容器間的通訊，將資料傳遞給資料庫容器，所以需要將儲放資料的容器進行掛載，讓資料得以被保存。</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>讓我們來簡單整理一下今天的 <code>Volume</code>：</p>
+<ul>
+<li>另外創建的儲存元件，可比喻為隨身碟。</li>
+<li>不會因為容器的刪除而跟著被刪除，獨立於容器的生命週期。</li>
+<li>若仍有容器使用著 <code>volume</code> ，就無法刪除 <code>volume</code></li>
+</ul>
+<p>那容器就介紹到這邊，接下來我們要進入到也是很重要的映像檔 image 的世界了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/" rel="prev" title="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
