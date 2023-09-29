@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言我想到現在第十五天，大家應該都很熟悉，映像檔就是用來製造容器的東西，那究竟什麼是映像檔呢？那映像檔又是怎麼產生的？接下來我們會花個幾天圍繞在這上面。 那今天我們就先來講解，有點抽象又有點重要的容器媽媽：映像檔 Image。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image">
+<meta property="og:url" content="https://wl02599509.github.io/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言我想到現在第十五天，大家應該都很熟悉，映像檔就是用來製造容器的東西，那究竟什麼是映像檔呢？那映像檔又是怎麼產生的？接下來我們會花個幾天圍繞在這上面。 那今天我們就先來講解，有點抽象又有點重要的容器媽媽：映像檔 Image。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-29T14:51:04.000Z">
+<meta property="article:modified_time" content="2023-09-29T14:51:54.058Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="iThome">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="容器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/","path":"2023/09/29/Day16-什麼是映像檔Image/","title":"2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94-Image"><span class="nav-number">2.</span> <span class="nav-text">什麼是映像檔 Image</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%A0%E5%83%8F%E6%AA%94%E5%90%8D%E7%A8%B1"><span class="nav-number">3.</span> <span class="nav-text">映像檔名稱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Name"><span class="nav-number">3.1.</span> <span class="nav-text">Image Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Tag"><span class="nav-number">3.2.</span> <span class="nav-text">Image Tag</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%A0%E5%83%8F%E6%AA%94%E7%94%9F%E6%88%90%E8%88%87%E7%B5%90%E6%A7%8B"><span class="nav-number">4.</span> <span class="nav-text">映像檔生成與結構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">4.1.</span> <span class="nav-text">Dockerfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%83%8F%E5%B1%A4"><span class="nav-number">4.2.</span> <span class="nav-text">映像層</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">5.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-09-29-Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-09-29 22:51:04 / Modified: 22:51:54" itemprop="dateCreated datePublished" datetime="2023-09-29T22:51:04+08:00">2023-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/29/Day16-什麼是映像檔Image/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我想到現在第十五天，大家應該都很熟悉，映像檔就是用來製造容器的東西，那究竟什麼是映像檔呢？那映像檔又是怎麼產生的？接下來我們會花個幾天圍繞在這上面。</p>
+<p>那今天我們就先來講解，有點抽象又有點重要的容器媽媽：映像檔 Image。</p>
+<span id="more"></span>
+<h1 id="什麼是映像檔-Image"><a href="#什麼是映像檔-Image" class="headerlink" title="什麼是映像檔 Image"></a>什麼是映像檔 Image</h1><p>在談到映像檔的細節之前，我們先用具體的事物來比喻映像檔。</p>
+<p>我們可以把映像檔當作是一片光碟 ( 應該都有用過吧!? )，這個光碟可以讓我們安裝應用程式，當已安裝的應用程式被刪除後，可以再使用光碟安裝應用程式，正如同映像檔可以建立容器，容器刪掉後，再用映像檔建立容器。</p>
+<p>所以映像檔可以說是容器的安裝檔。</p>
+<p>那映像檔是如何構成的呢？</p>
+<h1 id="映像檔名稱"><a href="#映像檔名稱" class="headerlink" title="映像檔名稱"></a>映像檔名稱</h1><p>還記得第八天時，在 run 出一個容器時，出現以下的 log 嗎</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; docker container <span class="keyword">run</span><span class="language-bash"> httpd</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>. Unable to find image <span class="string">&#x27;httpd:latest&#x27;</span> locally</span><br><span class="line"><span class="number">2</span>. latest: Pulling <span class="keyword">from</span> library/httpd</span><br><span class="line"><span class="number">3</span>. <span class="number">4</span>ee097f9a366: Already exists</span><br><span class="line"><span class="number">4</span>. <span class="number">94662</span>ba12854: Pull complete</span><br><span class="line"><span class="number">5</span>. <span class="number">595</span>a05b7c0ad: Pull complete</span><br><span class="line"><span class="number">6</span>. <span class="number">03682</span>c916abd: Pull complete</span><br><span class="line"><span class="number">7</span>. <span class="number">7</span>e88a38e211a: Pull complete</span><br><span class="line"><span class="number">8</span>. Digest: sha256:<span class="number">333</span>f7bca9fb72248f301fd2ae4892b86d36cc2fdf4c6aa49a6700f27c8e06daf</span><br><span class="line"><span class="number">9</span>. Status: Downloaded newer image for httpd:latest</span><br><span class="line"><span class="number">10</span>. AH00558: httpd: Could not reliably determine the server<span class="string">&#x27;s fully qualified domain name, using 172.17.0.2. Set the &#x27;</span>ServerName<span class="string">&#x27; directive globally to suppress this message</span></span><br><span class="line"><span class="string">11. AH00558: httpd: Could not reliably determine the server&#x27;</span>s fully qualified domain name, using <span class="number">172.17</span>.<span class="number">0.2</span>. Set the <span class="string">&#x27;ServerName&#x27;</span> directive globally to suppress this message</span><br><span class="line"><span class="number">12</span>. [Sun Sep <span class="number">03</span> <span class="number">14</span>:<span class="number">42</span>:<span class="number">54.245510</span> <span class="number">2023</span>] [mpm_event:notice] [pid <span class="number">1</span>:tid <span class="number">281473761857568</span>] AH00489: Apache/<span class="number">2.4</span>.<span class="number">57</span> (Unix) configured -- resuming normal operations</span><br><span class="line"><span class="number">13</span>. [Sun Sep <span class="number">03</span> <span class="number">14</span>:<span class="number">42</span>:<span class="number">54.259073</span> <span class="number">2023</span>] [core:notice] [pid <span class="number">1</span>:tid <span class="number">281473761857568</span>] AH00094: Command line: <span class="string">&#x27;httpd -D FOREGROUND&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中第一行的 <code>httpd:latest</code> 是完整的映像檔名稱。</p>
+<p>前面的 <code>httpd</code> 是 <code>image name</code>，後面的 <code>latest</code> 是映像檔標籤 <code>image tag</code> 。</p>
+<h2 id="Image-Name"><a href="#Image-Name" class="headerlink" title="Image Name"></a>Image Name</h2><p>當我們在定義一個映像檔時，一定會定義一個屬於該映像檔的名字 <code>name</code> ，像是這幾天在練習用的 <code>httpd</code> 、 <code>postgre_sql</code> ，又或是 <code>mysql</code> 、 <code>traefik</code> 等等，這些都是映像檔的名字。</p>
+<h2 id="Image-Tag"><a href="#Image-Tag" class="headerlink" title="Image Tag"></a>Image Tag</h2><p>映像檔標籤就是針對同種映像檔進行分類時，所使用的標示。</p>
+<p>為什麼我們需要針對映像檔進行分類？</p>
+<p>因為映像檔會隨應用程式不斷更新，而不斷產生新的映像檔，如果我們想要保留舊的應用程式，也要有新的應用程式，就會使用 <code>image tag</code> 將同一種的應用程式映像檔分門別類。</p>
+<p>像是 <code>mysql:latest</code> 、 <code>mysql:8.0.34-debian</code> 。</p>
+<h1 id="映像檔生成與結構"><a href="#映像檔生成與結構" class="headerlink" title="映像檔生成與結構"></a>映像檔生成與結構</h1><p>那映像檔到底是怎麼製造出來的? 它的構造又是什麼?</p>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>映像檔是透過 Dockerfile 定義出來的。 Dockerfile 是一個 yaml 格式的檔案，裡面定義了一個映像檔的組成方式。</p>
+<p>之後我們會在寫一篇文章來細說 Dockerfile，這裡我們只要先簡單知道，Dockerfile 就是映像檔的模板，定義著映像檔的樣子，並可透過 Dockerfile 產生出映像檔。</p>
+<h2 id="映像層"><a href="#映像層" class="headerlink" title="映像層"></a>映像層</h2><p>這裡我們一樣用上面的 log 來說明映像層。</p>
+<p>第 3 到 7 行，是抓取映像檔的過程。那一行一行是映像檔 <code>httpd</code> 的映像層們。</p>
+<p>第 8 行，sha256 後面那串是透過映像檔的內容，所產生的固定長度的編碼，只要映像檔內容有變，這串編碼就會不一樣。</p>
+<p>因為映像檔是由<strong>一層又一層的映像層</strong>堆疊所構成，所以下載時，也是一層又一層的抓取映像層，因此可以看到有好幾個 Pull。</p>
+<p>映像檔 <code>httpd</code> 是由 <code>4ee097f9a366</code> 、 <code>94662ba12854</code> 、 <code>595a05b7c0ad</code>、 <code>03682c916abd</code>、 <code>7e88a38e211a</code> 構成。</p>
+<p>然而第三行的 <code>Already exists</code> 是因為我之前有下載過這個映像檔，在我的 Docker 裡還存在 <code>4ee097f9a366</code> 這一層的快取，因此這一層只需要從快取裡抓就好，不需要再從 Repository 上下載下來，節省時間。</p>
+<p>當我們使用映像檔建立容器時，會由 Docker 將他們組裝再一起以建立容器的檔案系統，所以容器裡的檔案系統，就是透過映像層逐一搭建而成的。</p>
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>不知道大家會不會覺得有點抽象，這映像檔與映像層我也是花了不少時間才能吸收進腦子裡，稍微為今天的文章做個簡單的整理：</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dockerfile --生成--&gt; 映像檔 --生成--&gt; 容器</span><br><span class="line"></span><br><span class="line">映像層 + 映像層 + 映像層 + 映像層 --堆疊在一起--&gt; 映像檔</span><br></pre></td></tr></table></figure>
+
+<p>欸!! 這樣看起來，Dockerfile 是不是跟映像層有關係? 沒錯! 竟然被眼尖的你發現了! 之後會在 Dockerfile 的文章裡解釋。</p>
+<p>明天我們會再繼續研究映像層，讓大家更清楚映像檔與映像層彼此之間的關係。</p>
+<p>如果大家想要找到其他更多的映像檔，可以到 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker hub</a> 找，上面都有各式各樣官方釋出的映像檔。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iThome/" rel="tag"><i class="fa fa-tag"></i> iThome</a>
+              <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/" rel="prev" title="2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載">
+                  <i class="fa fa-chevron-left"></i> 2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
