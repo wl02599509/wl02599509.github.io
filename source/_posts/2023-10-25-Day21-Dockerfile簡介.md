@@ -14,6 +14,8 @@ tags:
 
 那麼今天，我們會先稍微介紹 `Dockerfile` 是什麼。
 
+<!-- more -->
+
 # 什麼是 Dockerfile
 
 Dockerfile 是一個檔案名稱，沒錯，就是叫 `Dockerfile` 的一個檔案，它是由 Docker 內建提供的腳本，由 Docker 指令與 Linux 指令所組成，用來打包應用程式並產生映像檔。
