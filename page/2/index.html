@@ -136,18 +136,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/10/25/Day20-DockerHub/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 7 - 容器的特性</a>
+          <a href="/2023/10/25/Day20-DockerHub/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 20 - DockerHub</a>
         </h2>
 
         <div class="post-meta-container">
@@ -236,15 +236,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-09-20 00:04:59" itemprop="dateCreated datePublished" datetime="2023-09-20T00:04:59+08:00">2023-09-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-21 23:59:52" itemprop="dateModified" datetime="2023-09-21T23:59:52+08:00">2023-09-21</time>
+      <time title="Created: 2023-10-25 21:42:22 / Modified: 21:43:48" itemprop="dateCreated datePublished" datetime="2023-10-25T21:42:22+08:00">2023-10-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +255,7 @@
     </span>
 
   
-    <span id="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 7 - 容器的特性" title="Views">
+    <span id="/2023/10/25/Day20-DockerHub/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 20 - DockerHub" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -276,8 +270,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/20/Day7-容器的特性/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/10/25/Day20-DockerHub/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/25/Day20-DockerHub/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -291,11 +285,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第三天我們介紹了 Docker 容器，並提到容器技術最為重要的<strong>隔離環境</strong>，因為這個，讓容器得已廣泛應用，無論在開發、測試或部署，都能看到容器的應用。</p>
-<p>今天我們來講解，容器除了隔離環境以外，還有哪些重要的特性。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>文章越來越接近末班車了，在迎接 2 字頭之時，我們先來輕鬆一下。時至今日，我們已經操作過好多次的 docker 指令，容器、映像檔、volume 等，對指令有一定的熟悉度，其中常常需要把映像檔抓下來，那到底是從哪裡抓下來的呢？之前有稍微提到 Docker Hub 這個東西，今天就讓我們來詳細介紹。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/20/Day7-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%89%B9%E6%80%A7/#more" rel="contents">
+              <a class="btn" href="/2023/10/25/Day20-DockerHub/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -326,7 +319,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/19/Day6-Docker%E8%88%87Linux-part2/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/10/25/Day19-%E6%98%A0%E5%83%8F%E6%AA%94%E7%9A%84%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -344,7 +337,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 6 - Docker 與 Linux part 2</a>
+          <a href="/2023/10/25/Day19-%E6%98%A0%E5%83%8F%E6%AA%94%E7%9A%84%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 19 - 映像檔的指令</a>
         </h2>
 
         <div class="post-meta-container">
@@ -354,15 +347,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-09-19 00:14:05" itemprop="dateCreated datePublished" datetime="2023-09-19T00:14:05+08:00">2023-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-21 23:59:50" itemprop="dateModified" datetime="2023-09-21T23:59:50+08:00">2023-09-21</time>
+      <time title="Created: 2023-10-25 21:41:09 / Modified: 21:41:52" itemprop="dateCreated datePublished" datetime="2023-10-25T21:41:09+08:00">2023-10-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -379,7 +366,7 @@
     </span>
 
   
-    <span id="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 6 - Docker 與 Linux part 2" title="Views">
+    <span id="/2023/10/25/Day19-%E6%98%A0%E5%83%8F%E6%AA%94%E7%9A%84%E6%8C%87%E4%BB%A4/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 19 - 映像檔的指令" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -394,8 +381,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/19/Day6-Docker與Linux-part2/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/10/25/Day19-%E6%98%A0%E5%83%8F%E6%AA%94%E7%9A%84%E6%8C%87%E4%BB%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/25/Day19-映像檔的指令/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -409,12 +396,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在前兩篇，我們可以了解，Docker 是一個以 Linux 為基礎的技術，Docker 的所有運行都跟 Linux OS 有關，就連容器裡的環境，也是 Linux OS。</p>
-<p>那使用 Docker 的系統，如 Windows、Mac OS，是怎麼有辦法使用 Docker 呢？</p>
-<p>那又為什麼 Docker 容器裡的 Linux OS 會是只有部分，而不是全部？</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這幾天經歷了顛頗又艱難的學習，今天我們來點輕鬆愉快的小菜，請大家放心地躺著看。</p>
+<p>基本上指令都跟容器大同小異，所以在容器的關卡已經熟悉的話，這裡其實也不會太難，負擔會比偏概念的文章還要小很多很多。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/19/Day6-Docker%E8%88%87Linux-part2/#more" rel="contents">
+              <a class="btn" href="/2023/10/25/Day19-%E6%98%A0%E5%83%8F%E6%AA%94%E7%9A%84%E6%8C%87%E4%BB%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -445,7 +431,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/19/Day5-Docker%E8%88%87Linux/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/10/25/Day18-%E5%BE%9E%E6%98%A0%E5%83%8F%E5%B1%A4%E5%88%B0%E5%AE%B9%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -463,7 +449,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 5 - Docker 與 Linux</a>
+          <a href="/2023/10/25/Day18-%E5%BE%9E%E6%98%A0%E5%83%8F%E5%B1%A4%E5%88%B0%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 18 - 從映像層到容器</a>
         </h2>
 
         <div class="post-meta-container">
@@ -473,15 +459,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-09-19 00:12:49" itemprop="dateCreated datePublished" datetime="2023-09-19T00:12:49+08:00">2023-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-21 23:59:45" itemprop="dateModified" datetime="2023-09-21T23:59:45+08:00">2023-09-21</time>
+      <time title="Created: 2023-10-25 21:40:00 / Modified: 21:41:57" itemprop="dateCreated datePublished" datetime="2023-10-25T21:40:00+08:00">2023-10-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -498,7 +478,7 @@
     </span>
 
   
-    <span id="/2023/09/19/Day5-Docker%E8%88%87Linux/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 5 - Docker 與 Linux" title="Views">
+    <span id="/2023/10/25/Day18-%E5%BE%9E%E6%98%A0%E5%83%8F%E5%B1%A4%E5%88%B0%E5%AE%B9%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 18 - 從映像層到容器" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -513,8 +493,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/19/Day5-Docker%E8%88%87Linux/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/19/Day5-Docker與Linux/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/10/25/Day18-%E5%BE%9E%E6%98%A0%E5%83%8F%E5%B1%A4%E5%88%B0%E5%AE%B9%E5%99%A8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/25/Day18-從映像層到容器/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -528,11 +508,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在前一篇提到，空的容器是由 Linux OS 的映像檔所建立而成的容器，會稱之為空的原因是因為它本身並未提供任何服務，只是一個單純的作業系統環境。</p>
-<p>今天我們要講的重點是，整個 Docker 運行的基礎作業系統就是 Linux，好的，一言以蔽之，今天就到這裡了（誤），但這確實是本日重點（汗）。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天我們已經對映像檔以及映像層之間的關係，更加熟悉了，今天我們要來拉大視野一探映像層、映像檔到容器，這三者之間的神秘又糾纏的關係。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/19/Day5-Docker%E8%88%87Linux/#more" rel="contents">
+              <a class="btn" href="/2023/10/25/Day18-%E5%BE%9E%E6%98%A0%E5%83%8F%E5%B1%A4%E5%88%B0%E5%AE%B9%E5%99%A8/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -563,7 +542,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/17/Day-4-%E7%A9%BA%E7%9A%84%E5%AE%B9%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/30/Day17-%E9%80%99%E6%A8%A3%E7%9C%8B%E6%98%A0%E5%83%8F%E5%B1%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -581,7 +560,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/17/Day-4-%E7%A9%BA%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 4 - 空的容器</a>
+          <a href="/2023/09/30/Day17-%E9%80%99%E6%A8%A3%E7%9C%8B%E6%98%A0%E5%83%8F%E5%B1%A4/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 17 - 這樣看映像層</a>
         </h2>
 
         <div class="post-meta-container">
@@ -593,7 +572,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-09-17 00:35:16 / Modified: 00:37:07" itemprop="dateCreated datePublished" datetime="2023-09-17T00:35:16+08:00">2023-09-17</time>
+      <time title="Created: 2023-09-30 00:03:19 / Modified: 00:04:03" itemprop="dateCreated datePublished" datetime="2023-09-30T00:03:19+08:00">2023-09-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -610,7 +589,7 @@
     </span>
 
   
-    <span id="/2023/09/17/Day-4-%E7%A9%BA%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 4 - 空的容器" title="Views">
+    <span id="/2023/09/30/Day17-%E9%80%99%E6%A8%A3%E7%9C%8B%E6%98%A0%E5%83%8F%E5%B1%A4/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 17 - 這樣看映像層" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -625,8 +604,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/17/Day-4-%E7%A9%BA%E7%9A%84%E5%AE%B9%E5%99%A8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/17/Day-4-空的容器/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/30/Day17-%E9%80%99%E6%A8%A3%E7%9C%8B%E6%98%A0%E5%83%8F%E5%B1%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/30/Day17-這樣看映像層/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -640,10 +619,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大家對作業系統應該不陌生，像是 Windows、macOS、Linux。這些作業系統是電腦設備最底層最基本的運作系統，電腦上所有的操作與視覺上的回饋，都必須透過作業系統的運作。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天跟大家介紹了什麼是映像檔，原來映像檔就是由一層一層的映像層 (layer) 所堆疊而成。有人說他是千層蛋糕，有人說是堆積木，也有人說是漢堡，基本上都是在形容映像層的層層堆疊。</p>
+<p>我們今天就來看看每個映像檔中的映像層，讓大家更能明白映像層的堆疊。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/17/Day-4-%E7%A9%BA%E7%9A%84%E5%AE%B9%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2023/09/30/Day17-%E9%80%99%E6%A8%A3%E7%9C%8B%E6%98%A0%E5%83%8F%E5%B1%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -674,7 +654,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/16/Day-3-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%AE%B9%E5%99%A8Container/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -692,7 +672,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/16/Day-3-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%AE%B9%E5%99%A8Container/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 3 - 什麼是容器 Container</a>
+          <a href="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image</a>
         </h2>
 
         <div class="post-meta-container">
@@ -704,7 +684,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-09-16 00:19:56 / Modified: 00:36:17" itemprop="dateCreated datePublished" datetime="2023-09-16T00:19:56+08:00">2023-09-16</time>
+      <time title="Created: 2023-09-29 22:51:04 / Modified: 22:51:54" itemprop="dateCreated datePublished" datetime="2023-09-29T22:51:04+08:00">2023-09-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -721,7 +701,7 @@
     </span>
 
   
-    <span id="/2023/09/16/Day-3-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%AE%B9%E5%99%A8Container/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 3 - 什麼是容器 Container" title="Views">
+    <span id="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 16 - 什麼是映像檔Image" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -736,8 +716,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/16/Day-3-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%AE%B9%E5%99%A8Container/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/16/Day-3-什麼是容器Container/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/29/Day16-什麼是映像檔Image/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -751,10 +731,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面講了 Server 的概念，並介紹了 Docker 本人，今天我們開始詳細介紹 Docker 最重要的東西：容器 Docker。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我想到現在第十五天，大家應該都很熟悉，映像檔就是用來製造容器的東西，那究竟什麼是映像檔呢？那映像檔又是怎麼產生的？接下來我們會花個幾天圍繞在這上面。</p>
+<p>那今天我們就先來講解，有點抽象又有點重要的容器媽媽：映像檔 Image。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/16/Day-3-%E4%BB%80%E9%BA%BC%E6%98%AF%E5%AE%B9%E5%99%A8Container/#more" rel="contents">
+              <a class="btn" href="/2023/09/29/Day16-%E4%BB%80%E9%BA%BC%E6%98%AF%E6%98%A0%E5%83%8F%E6%AA%94Image/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -785,7 +766,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -803,7 +784,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 2 - 什麼是 Docker</a>
+          <a href="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載</a>
         </h2>
 
         <div class="post-meta-container">
@@ -815,7 +796,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-09-15 08:13:13 / Modified: 08:14:59" itemprop="dateCreated datePublished" datetime="2023-09-15T08:13:13+08:00">2023-09-15</time>
+      <time title="Created: 2023-09-28 22:32:34 / Modified: 22:33:23" itemprop="dateCreated datePublished" datetime="2023-09-28T22:32:34+08:00">2023-09-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -832,7 +813,7 @@
     </span>
 
   
-    <span id="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 2 - 什麼是 Docker" title="Views">
+    <span id="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 15 - 容器的資料儲存-Volume 掛載" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -847,8 +828,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/15/Day 2-什麼是Docker/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/28/Day15-容器的資料儲存-Volume-掛載/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -862,10 +843,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>當我們提及 Docker 時，最先出現在腦海中的就是鯨魚跟容器。鯨魚是 Docker 應用程式的 icon。容器是 Docker 運作最主要的元素。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天我們講解了容器如何儲放資料，關於掛載的部分，只講了約定掛載，今天我們來講講有別於儲放在本機的 <code>volume</code> 掛載。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/15/Day%202-%E4%BB%80%E9%BA%BC%E6%98%AFDocker/#more" rel="contents">
+              <a class="btn" href="/2023/09/28/Day15-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-Volume-%E6%8E%9B%E8%BC%89/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -896,7 +877,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -914,7 +895,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 01 - 談Docker前先談Server</a>
+          <a href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載</a>
         </h2>
 
         <div class="post-meta-container">
@@ -926,7 +907,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-09-14 21:09:27 / Modified: 22:42:05" itemprop="dateCreated datePublished" datetime="2023-09-14T21:09:27+08:00">2023-09-14</time>
+      <time title="Created: 2023-09-27 08:55:18 / Modified: 08:55:59" itemprop="dateCreated datePublished" datetime="2023-09-27T08:55:18+08:00">2023-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -943,7 +924,7 @@
     </span>
 
   
-    <span id="/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 01 - 談Docker前先談Server" title="Views">
+    <span id="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 14 - 容器的資料儲存-約定掛載" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -958,8 +939,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/14/Day-1-談Docker前先談Server/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/27/Day14-容器的資料儲存-約定掛載/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -973,12 +954,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>新的一年，新的學習。去年參與鐵人賽時，我主要介紹了 Rspec 與 Capybara。這兩個測試工具是每一位 rails developer 都需要掌握的。今年，我的主題則是更廣為人知的工具——Docker。Docker 的應用範圍遍佈開發與部署，已成為必須知曉甚至熟悉的工具。</p>
-<p>接下來一個月，我將介紹 Docker 與 Docker Compose 為主題。最後會稍微介紹另一個知名的工具 k8s，讓讀者們大略了解 k8s 是什麼，以及它與 Docker 的差異。</p>
-<p>在開始談到 Docker 之前，我們先來講講伺服器吧。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天，我們不斷地在說明容器，對容器的熟悉度應該就像認識三十年的朋友一樣熟悉了。但這樣還是不夠的，我們必須要知道，你朋友的錢存在哪裡 (咦!?)。</p>
+<p>今天我們就來談談朋友的錢存在哪（容器裡應用程式產生的資料存在哪）吧。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/09/14/Day-1-%E8%AB%87Docker%E5%89%8D%E5%85%88%E8%AB%87Server/#more" rel="contents">
+              <a class="btn" href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1009,7 +989,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1027,7 +1007,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/" class="post-title-link" itemprop="url">AWS EC2 使用 AWS RDS</a>
+          <a href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 13 - 容器的生命週期</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1039,7 +1019,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-04-16 21:53:55 / Modified: 22:07:30" itemprop="dateCreated datePublished" datetime="2023-04-16T21:53:55+08:00">2023-04-16</time>
+      <time title="Created: 2023-09-26 22:57:38 / Modified: 22:58:22" itemprop="dateCreated datePublished" datetime="2023-09-26T22:57:38+08:00">2023-09-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1047,20 +1027,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/RDS/" itemprop="url" rel="index"><span itemprop="name">RDS</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/RDS/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a>
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
         </span>
     </span>
 
   
-    <span id="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/" class="post-meta-item leancloud_visitors" data-flag-title="AWS EC2 使用 AWS RDS" title="Views">
+    <span id="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 13 - 容器的生命週期" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1075,8 +1051,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/16/AWS-EC2-使用-AWS-RDS/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/26/Day13-容器的生命週期/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1090,11 +1066,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在前一篇記錄了使用 AWS EC2 部署 Rails 專案的過程，在部署裡，除了專案本身外，另一個遇到難處理的就是資料庫。</p>
-<p>因為 EC2 instance 環境使用 Amazon Linux 2023，而 package 裡的 pg 版本太舊，只有 9 開頭，導致有很多相容性問題，於是決定外接 RDS，沒想到非常方便，就讓我們來看看到底要如何設置 RDS 吧！</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們在學任何程式語言或是框架時，都會碰到程式碼的生命週期、物件的 callback、元件的 life cycle，容器也不例外，容器也有生命週期。</p>
+<p>今天我們就來介紹容器的生命週期，並讓各位了解，容器其實就跟社畜一樣，不幹了還能再找其他人來頂替 ( 容器：嘆 )。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/#more" rel="contents">
+              <a class="btn" href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1125,7 +1101,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1143,7 +1119,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/" class="post-title-link" itemprop="url">EC2 instance 當 bundle install 遇到 killed</a>
+          <a href="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1153,15 +1129,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-04-10 00:18:28" itemprop="dateCreated datePublished" datetime="2023-04-10T00:18:28+08:00">2023-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-16 21:57:42" itemprop="dateModified" datetime="2023-04-16T21:57:42+08:00">2023-04-16</time>
+      <time title="Created: 2023-09-25 21:55:45 / Modified: 21:56:24" itemprop="dateCreated datePublished" datetime="2023-09-25T21:55:45+08:00">2023-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1169,16 +1139,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/EC2/" itemprop="url" rel="index"><span itemprop="name">EC2</span></a>
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
         </span>
     </span>
 
   
-    <span id="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/" class="post-meta-item leancloud_visitors" data-flag-title="EC2 instance 當 bundle install 遇到 killed" title="Views">
+    <span id="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 12 - 容器的停止與刪除" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1193,8 +1163,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/10/EC2-instance-當-bundle-install-遇到-killed/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/25/Day12-容器的停止與刪除/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1208,11 +1178,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>接續前一篇，在 rails_project clone 到 EC2 instance 並 cd rails_project 執行 bundle install 時，run 到一半卡住，最後顯示 <strong>killed</strong>，強制結束的意思。<br>會有 killed 的主要原因是執行 bundle install 安裝特定的 gem 所佔用的記憶體空間過大，導致環境內的記憶體空間不足，而被迫結束 bundle install。</p>
-<p>解決方法為：</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前幾天都在講容器的建立與啟動，今天我們來說說，容器該如何停止、刪除，以及刪除容器時要注意些什麼事情。</p>
+<h1 id="讓容器停止運作"><a href="#讓容器停止運作" class="headerlink" title="讓容器停止運作"></a>讓容器停止運作</h1><p>簡單，當我們想讓正在運作中的容器，停止運作，只要使用 <code>stop</code> 指令即可：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#more" rel="contents">
+              <a class="btn" href="/2023/09/25/Day12-%E5%AE%B9%E5%99%A8%E7%9A%84%E5%81%9C%E6%AD%A2%E8%88%87%E5%88%AA%E9%99%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1243,7 +1213,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1261,7 +1231,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-title-link" itemprop="url">AWS EC2 部署過程</a>
+          <a href="/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 11 - 容器的環境變數</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1271,15 +1241,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-04-09 00:04:33" itemprop="dateCreated datePublished" datetime="2023-04-09T00:04:33+08:00">2023-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-16 21:57:58" itemprop="dateModified" datetime="2023-04-16T21:57:58+08:00">2023-04-16</time>
+      <time title="Created: 2023-09-25 21:50:42 / Modified: 21:51:37" itemprop="dateCreated datePublished" datetime="2023-09-25T21:50:42+08:00">2023-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1287,16 +1251,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AWS/EC2/" itemprop="url" rel="index"><span itemprop="name">EC2</span></a>
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
         </span>
     </span>
 
   
-    <span id="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="AWS EC2 部署過程" title="Views">
+    <span id="/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 11 - 容器的環境變數" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1311,8 +1275,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/09/AWS-EC2-部署過程/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/25/Day11-容器的環境變數/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1326,10 +1290,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在剛接觸 Rails 部署時，我想應該都是從 Heroku 開始學習，對新手來說，Heroku 的輕量部署是非常容易上手的。市面上，除了 Heroku 以外，還有很多部署工具，像是 AWS、Microsoft Azure、Google Cloud 等。今天這篇主要是想要多瞭解 AWS EC2 的部署步驟，需要做些什麼事情而寫，一些詳細的設定就不在本篇多做解說。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在開發的過程中，我們會把很重要的資訊、secret key等，使用環境變數的方式，來對這些資訊進行保護，以免遭到外洩。</p>
+<p>在 Docker 中也是一樣的，我們在使用容器時，也不希望映像檔裡暴露著各種重要資料，所以我們會由外部來提供這些資料，也就是在建立容器時，設置好相對應的環境變數。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/2023/09/25/Day11-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1353,7 +1318,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

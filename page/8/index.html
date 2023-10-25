@@ -136,18 +136,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Array-Method/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/14/Array-Method/" class="post-title-link" itemprop="url">Array_Method</a>
+          <a href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/" class="post-title-link" itemprop="url">GitHub, Git 分清楚了嗎？（上）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-08-14 15:52:33 / Modified: 18:56:23" itemprop="dateCreated datePublished" datetime="2022-08-14T15:52:33+08:00">2022-08-14</time>
+      <time title="Created: 2022-08-15 17:08:14 / Modified: 21:52:40" itemprop="dateCreated datePublished" datetime="2022-08-15T17:08:14+08:00">2022-08-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,12 +246,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+          <a href="/categories/GitHub/" itemprop="url" rel="index"><span itemprop="name">GitHub</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/08/14/Array-Method/" class="post-meta-item leancloud_visitors" data-flag-title="Array_Method" title="Views">
+    <span id="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="GitHub, Git 分清楚了嗎？（上）" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -266,8 +266,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/08/14/Array-Method/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Array-Method/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/15/GitHub, Git 分清楚了嗎？（上）/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -281,11 +281,993 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在學習程式語言時，操縱陣列是非常頻繁的一件事情，因為資料的貯存與提取，不外乎就是 Array, Hash 的型態來處理。</p>
-<p>本篇將整理陣列中常使用的 Methods，也算是筆記整理的一個篇章。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>GitHub 是業界中廣為人知的版本控制網站，它是使用 Rails 建構（一定要提一下ＸＤ）。</p>
+<p>只要輕輕地使用 git 指令，便能將檔案推上網站，或是從網站上拉下來。</p>
+<p>等等，一下 GitHub 一下 git，有什麼差嗎，為什麼會用兩個不同的詞？</p>
+<p>就讓我們繼續看下去。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/08/14/Array-Method/#more" rel="contents">
+              <a class="btn" href="/2022/08/15/GitHub,%20Git%20%E5%88%86%E6%B8%85%E6%A5%9A%E4%BA%86%E5%97%8E%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/ViewHelper-form-tag-form-for-form-with/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-title-link" itemprop="url">ViewHelper - form_tag / form_for / form_with</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 21:01:32 / Modified: 21:29:41" itemprop="dateCreated datePublished" datetime="2022-08-14T21:01:32+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/ViewHelper-form-tag-form-for-form-with/" class="post-meta-item leancloud_visitors" data-flag-title="ViewHelper - form_tag / form_for / form_with" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/ViewHelper-form-tag-form-for-form-with/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Rail 的 MVC 架構中，M 是負責驗證與邏輯、以及轉譯向資料庫溝通的角色; C 是負責資料的搬運，搬往 M 或 V; V 則是負責畫面的呈現、及使用者與資料的互動，並將請求送往C，接著得到 C 送回來的資料。</p>
+<p>那關於資料的傳輸，一定是要先有個表單，Rails 提供了三個方法，依照需求使用，不過用過之後，通常就會知道哪個最好用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/ViewHelper-form-tag-form-for-form-with/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Rake-in-Rails/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/Rake-in-Rails/" class="post-title-link" itemprop="url">Rake/in/Rails</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 20:57:37 / Modified: 21:00:29" itemprop="dateCreated datePublished" datetime="2022-08-14T20:57:37+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/Rake-in-Rails/" class="post-meta-item leancloud_visitors" data-flag-title="Rake/in/Rails" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/Rake-in-Rails/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Rake-in-Rails/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model："><a href="#將-Rails-環境帶入-rake-裡，讓-rake-可以使用-Rails-的元素，像是-Model：" class="headerlink" title="將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model："></a>將 Rails 環境帶入 rake 裡，讓 rake 可以使用 Rails 的元素，像是 Model：</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace <span class="symbol">:user</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">&quot;建立使用者&quot;</span></span><br><span class="line">  task <span class="symbol">:init</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span> <span class="comment"># 讓 rake 可以引入所有 rails 的東西（ model, migration 等等）  </span></span><br><span class="line">    User.create(<span class="symbol">email:</span> Faker::Internet.email ,<span class="symbol">password:</span> <span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">    puts <span class="string">&quot;user created&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/Rake-in-Rails/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/" class="post-title-link" itemprop="url">樂觀鎖 vs 悲觀鎖</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 20:53:13 / Modified: 20:56:56" itemprop="dateCreated datePublished" datetime="2022-08-14T20:53:13+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Base/" itemprop="url" rel="index"><span itemprop="name">Data Base</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/" class="post-meta-item leancloud_visitors" data-flag-title="樂觀鎖 vs 悲觀鎖" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/樂觀鎖vs悲觀鎖/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在介紹什麼是樂觀鎖、什麼是悲觀鎖之前，我們先來了解一下，這兩個鎖是應用在什麼地方？</p>
+<hr>
+<h1 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h1><p>資料庫是用來處理資料的讀取與寫入，而資料庫的交易行為 (transaction) 必須符合 ACID，其中的 I 為 Isolation，指的是資料庫在對同個資料同時進行多筆交易時，必須避免產生資料的不一致。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/%E6%A8%82%E8%A7%80%E9%8E%96vs%E6%82%B2%E8%A7%80%E9%8E%96/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Redirect-to-Render-RenderPartial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/Redirect-to-Render-RenderPartial/" class="post-title-link" itemprop="url">Redirect_to / Render / Render Partial</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 20:37:54 / Modified: 20:52:14" itemprop="dateCreated datePublished" datetime="2022-08-14T20:37:54+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/Redirect-to-Render-RenderPartial/" class="post-meta-item leancloud_visitors" data-flag-title="Redirect_to / Render / Render Partial" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/Redirect-to-Render-RenderPartial/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Redirect-to-Render-RenderPartial/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Rails 裡常常可以看到 redirect_to 與 render，前者是用來轉址，後者則是用來渲染畫面，這樣聽起來，根本上的就差異很大了呀，為何還需要拿來比較？</p>
+<p>沒錯，他們在根本上的差異是不同的，但如果我們將不同的方法使用在相同的畫面上，這其中的細節，就耐人尋味了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/Redirect-to-Render-RenderPartial/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/" class="post-title-link" itemprop="url">搜尋大對決 Find, Find_by, Where</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-14 20:21:25" itemprop="dateCreated datePublished" datetime="2022-08-14T20:21:25+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-09-29 15:55:41" itemprop="dateModified" datetime="2022-09-29T15:55:41+08:00">2022-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/" class="post-meta-item leancloud_visitors" data-flag-title="搜尋大對決 Find, Find_by, Where" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/搜尋大對決Find-Find-by-Where/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搜尋的功能非常常見，因為資料不會憑空出現，必須靠我們下條件，撈出符合的資料。那要使用哪個搜尋工具就非常重要了，因為工具間的差異，還是會對搜尋結果造成影響。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/%E6%90%9C%E5%B0%8B%E5%A4%A7%E5%B0%8D%E6%B1%BAFind-Find-by-Where/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/ActiveModel-ForbiddenAttributesError/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/ActiveModel-ForbiddenAttributesError/" class="post-title-link" itemprop="url">ActiveModel::ForbiddenAttributesError</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 20:11:45 / Modified: 20:16:16" itemprop="dateCreated datePublished" datetime="2022-08-14T20:11:45+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/ActiveModel-ForbiddenAttributesError/" class="post-meta-item leancloud_visitors" data-flag-title="ActiveModel::ForbiddenAttributesError" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/ActiveModel-ForbiddenAttributesError/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/ActiveModel-ForbiddenAttributesError/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Rails 要讓表單將資料送往資料庫時，如果沒有經過「核對欄位」時，就會噴出下圖錯誤：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/ActiveModel-ForbiddenAttributesError/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/MVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/MVC/" class="post-title-link" itemprop="url">MVC</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-14 20:07:09" itemprop="dateCreated datePublished" datetime="2022-08-14T20:07:09+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-01 23:36:25" itemprop="dateModified" datetime="2023-02-01T23:36:25+08:00">2023-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/MVC/" class="post-meta-item leancloud_visitors" data-flag-title="MVC" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/MVC/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/MVC/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="意義"><a href="#意義" class="headerlink" title="意義"></a>意義</h1><p>MVC是一套網頁開發的架構流程，代表著從前端到後端的各自分工。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/MVC/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/&:%20and%20&.%20in%20Ruby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/&:%20and%20&.%20in%20Ruby/" class="post-title-link" itemprop="url">The special methods for Ruby -> &(:) and &.</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 19:54:25 / Modified: 20:06:22" itemprop="dateCreated datePublished" datetime="2022-08-14T19:54:25+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ruby/" itemprop="url" rel="index"><span itemprop="name">Ruby</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/&:%20and%20&.%20in%20Ruby/" class="post-meta-item leancloud_visitors" data-flag-title="The special methods for Ruby -> &(:) and &." title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/&:%20and%20&.%20in%20Ruby/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/&: and &. in Ruby/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="amp"><a href="#amp" class="headerlink" title="&amp;:"></a>&amp;:</h1><p>&amp;: 將一組陣列中的元素轉換成字串</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cats = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/&:%20and%20&.%20in%20Ruby/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/" class="post-title-link" itemprop="url">Code 創作心法：SLR</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-08-14 19:42:48 / Modified: 19:50:13" itemprop="dateCreated datePublished" datetime="2022-08-14T19:42:48+08:00">2022-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Conception/" itemprop="url" rel="index"><span itemprop="name">Conception</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/" class="post-meta-item leancloud_visitors" data-flag-title="Code 創作心法：SLR" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/08/14/Code創作心法：SLR/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="SLR"><a href="#SLR" class="headerlink" title="SLR"></a>SLR</h1><p><strong>SLR(Single-Line Responsibility)</strong> 就是一種讓醜陋且難以閱讀的code，變成非常容易理解容易閱讀的一個方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/14/Code%E5%89%B5%E4%BD%9C%E5%BF%83%E6%B3%95%EF%BC%9ASLR/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -309,7 +1291,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

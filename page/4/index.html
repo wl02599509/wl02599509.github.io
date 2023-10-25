@@ -136,18 +136,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber</a>
+          <a href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/" class="post-title-link" itemprop="url">AWS EC2 使用 AWS RDS</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-27 01:10:53 / Modified: 01:11:49" itemprop="dateCreated datePublished" datetime="2022-09-27T01:10:53+08:00">2022-09-27</time>
+      <time title="Created: 2023-04-16 21:53:55 / Modified: 22:07:30" itemprop="dateCreated datePublished" datetime="2023-04-16T21:53:55+08:00">2023-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,12 +246,20 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AWS/RDS/" itemprop="url" rel="index"><span itemprop="name">RDS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AWS/RDS/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber" title="Views">
+    <span id="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/" class="post-meta-item leancloud_visitors" data-flag-title="AWS EC2 使用 AWS RDS" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -266,8 +274,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day25-BDD測試框架-Cucumber/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/16/AWS-EC2-使用-AWS-RDS/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -281,11 +289,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了 BBD 的存在是為了讓專案開發的所有相關人，無論是否有程式背景，都能夠了解測試的內容。那麼今天我們來介紹 BDD 的測試框架：</p>
-<h1 id="Cucumber"><a href="#Cucumber" class="headerlink" title="Cucumber"></a>Cucumber</h1>
+          <p>在前一篇記錄了使用 AWS EC2 部署 Rails 專案的過程，在部署裡，除了專案本身外，另一個遇到難處理的就是資料庫。</p>
+<p>因為 EC2 instance 環境使用 Amazon Linux 2023，而 package 裡的 pg 版本太舊，只有 9 開頭，導致有很多相容性問題，於是決定外接 RDS，沒想到非常方便，就讓我們來看看到底要如何設置 RDS 吧！</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#more" rel="contents">
+              <a class="btn" href="/2023/04/16/AWS-EC2-%E4%BD%BF%E7%94%A8-AWS-RDS/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -316,7 +324,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -334,761 +342,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-27 01:07:48 / Modified: 01:09:06" itemprop="dateCreated datePublished" datetime="2022-09-27T01:07:48+08:00">2022-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day24-BDD，讓我們開始說人話吧！/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天我們來介紹跟 TDD 相近的 <strong>BDD</strong>，這裡指的相近絕對不是只差一個字的相近。在 TDD 情況下，工程師們彼此間的討論與溝通是沒有問題的，但非技術人員，像是 PM、Designer 等，較難透過工程師所寫的程式碼了解並參與討論。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:08:43" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。</p>
-<p>結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 22 - Capybara 額外補充</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-22 00:48:22 / Modified: 00:58:02" itemprop="dateCreated datePublished" datetime="2022-09-22T00:48:22+08:00">2022-09-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 22 - Capybara 額外補充" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/22/IT邦鐵人賽Day22-Capybara額外補充/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在使用 Capybara 時，雖然語法看起來就是單單純純的去哪個頁面、按什麼按鈕、填什麼表單、然後驗證。這樣聽起來似乎並不難，但只要操作到外網或是使用套件，就沒有那麼單純了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-22 00:45:16 / Modified: 00:58:41" itemprop="dateCreated datePublished" datetime="2022-09-22T00:45:16+08:00">2022-09-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/22/IT邦鐵人賽Day21-Capybara模式設定、Debug、登入狀態 /" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了 Capybara，提到這款套件是以「使用者」角度操作網頁來進行測試，所以它也可以真實呈現操作頁面的視覺畫面！</p>
-<h1 id="Capybara-測試模式"><a href="#Capybara-測試模式" class="headerlink" title="Capybara 測試模式"></a>Capybara 測試模式</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 20 - 水豚君的幫助 Capybara</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-20 01:48:17 / Modified: 01:49:09" itemprop="dateCreated datePublished" datetime="2022-09-20T01:48:17+08:00">2022-09-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 20 - 水豚君的幫助 Capybara" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/20/IT邦鐵人賽Day20-水豚君的幫助Capybara/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天我們來介紹這款我超喜歡的測試框架：capybara。Capybara 是用來跟 Rspec-rails 搭配使用，也就是 Rspec-rails 的輔助工具，主要是以「使用者」的角度，以網頁操作進行測試。</p>
-<p>與其文字解釋，不如直接看 code，因為 capybara 的 method 非常簡單明瞭，所以一看就知道到底在幹嘛：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 19 - Factory_bot 幫你輕鬆測（二）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-19 00:34:56 / Modified: 00:37:07" itemprop="dateCreated datePublished" datetime="2022-09-19T00:34:56+08:00">2022-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 19 - Factory_bot 幫你輕鬆測（二）" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/19/IT邦鐵人賽Day19-Factory-bot幫你輕鬆測（二）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了超好用的測試輔助套件 factory_bot_rails，但內容太多，一天講完實在太冗長，所以我們分兩篇來講。</p>
-<p>今天我們來講一些細節的東西。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-09-19 00:24:02 / Modified: 01:13:53" itemprop="dateCreated datePublished" datetime="2022-09-19T00:24:02+08:00">2022-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 18 - Factory_bot 幫你輕鬆測（一）" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/19/IT邦鐵人賽Day18-Factory-bot幫你輕鬆測（一）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>昨天已經在 Rails  裡安裝了 rails-rspec，但通常不太可能只單靠 rails-rspec 完成測試的撰寫。</p>
-<h1 id="WHY"><a href="#WHY" class="headerlink" title="WHY"></a>WHY</h1><p>我想，如果非 Rails 初學者或至少有學過 CRUD，就會知道 Rails 有大量的關聯性，一對一、一對多、多對多。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay18-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec</a>
+          <a href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/" class="post-title-link" itemprop="url">EC2 instance 當 bundle install 遇到 killed</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1099,14 +353,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-09-17 22:24:36" itemprop="dateCreated datePublished" datetime="2022-09-17T22:24:36+08:00">2022-09-17</time>
+      <time title="Created: 2023-04-10 00:18:28" itemprop="dateCreated datePublished" datetime="2023-04-10T00:18:28+08:00">2023-04-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-19 00:37:58" itemprop="dateModified" datetime="2022-09-19T00:37:58+08:00">2022-09-19</time>
+      <time title="Modified: 2023-04-16 21:57:42" itemprop="dateModified" datetime="2023-04-16T21:57:42+08:00">2023-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1114,12 +368,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AWS/EC2/" itemprop="url" rel="index"><span itemprop="name">EC2</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 17 - 在 Rails 中使用 RSpec" title="Views">
+    <span id="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/" class="post-meta-item leancloud_visitors" data-flag-title="EC2 instance 當 bundle install 遇到 killed" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1134,8 +392,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/17/IT邦鐵人賽Day17-在Rails中使用RSpec/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/10/EC2-instance-當-bundle-install-遇到-killed/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1149,10 +407,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>前幾天我們介紹了 RSpec 如何進行測試，以及其各種在建立規格時會用到的方法，今天我們要把 RSpec 裝到 Rails 裡，讓 Rails 也可以進行測試。（言下之意便是，要在 Rails 裡使用 RSpec 需要另外的安裝方法）</p>
+          <p>接續前一篇，在 rails_project clone 到 EC2 instance 並 cd rails_project 執行 bundle install 時，run 到一半卡住，最後顯示 <strong>killed</strong>，強制結束的意思。<br>會有 killed 的主要原因是執行 bundle install 安裝特定的 gem 所佔用的記憶體空間過大，導致環境內的記憶體空間不足，而被迫結束 bundle install。</p>
+<p>解決方法為：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/17/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay17-%E5%9C%A8Rails%E4%B8%AD%E4%BD%BF%E7%94%A8RSpec/#more" rel="contents">
+              <a class="btn" href="/2023/04/10/EC2-instance-%E7%95%B6-bundle-install-%E9%81%87%E5%88%B0-killed/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1183,7 +442,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1201,7 +460,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 16 - RSpec 語法 shared_context</a>
+          <a href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-title-link" itemprop="url">AWS EC2 部署過程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1211,9 +470,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-09-16 00:51:26 / Modified: 00:54:36" itemprop="dateCreated datePublished" datetime="2022-09-16T00:51:26+08:00">2022-09-16</time>
+      <time title="Created: 2023-04-09 00:04:33" itemprop="dateCreated datePublished" datetime="2023-04-09T00:04:33+08:00">2023-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-16 21:57:58" itemprop="dateModified" datetime="2023-04-16T21:57:58+08:00">2023-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1221,12 +486,16 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+          <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AWS/EC2/" itemprop="url" rel="index"><span itemprop="name">EC2</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 16 - RSpec 語法 shared_context" title="Views">
+    <span id="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="AWS EC2 部署過程" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1241,8 +510,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/16/IT邦鐵人賽Day16-RSpec語法shared_context/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/04/09/AWS-EC2-部署過程/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1256,11 +525,776 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了 shared_examples 的概念，如果理解，今天的內容就非常容易了。事不宜遲，馬上來介紹我們的 shared_context 吧。</p>
-<h1 id="shared-context"><a href="#shared-context" class="headerlink" title="shared_context"></a>shared_context</h1>
+          <p>在剛接觸 Rails 部署時，我想應該都是從 Heroku 開始學習，對新手來說，Heroku 的輕量部署是非常容易上手的。市面上，除了 Heroku 以外，還有很多部署工具，像是 AWS、Microsoft Azure、Google Cloud 等。今天這篇主要是想要多瞭解 AWS EC2 的部署步驟，需要做些什麼事情而寫，一些詳細的設定就不在本篇多做解說。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/16/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay16-RSpec%E8%AA%9E%E6%B3%95shared_context/#more" rel="contents">
+              <a class="btn" href="/2023/04/09/AWS-EC2-%E9%83%A8%E7%BD%B2%E9%81%8E%E7%A8%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/" class="post-title-link" itemprop="url">解決 Mail 的 CSS 樣式無法被支援</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-02-01 23:30:41 / Modified: 23:40:53" itemprop="dateCreated datePublished" datetime="2023-02-01T23:30:41+08:00">2023-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/Action-Mailer/" itemprop="url" rel="index"><span itemprop="name">Action Mailer</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/" class="post-meta-item leancloud_visitors" data-flag-title="解決 Mail 的 CSS 樣式無法被支援" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/02/01/解決 Mail 的 CSS 樣式無法被支援/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Rails 內建的 action mailer 可以用來寄發信件，搭配 action job 非同步處理寄送信件是常常使用的搭配。在寄發信件時，信件內容寫在 <code>html.erb</code> 裡代表，我們可以讓信件內容不只是純文字，而是可以將 CSS 套入，使信件內容的樣貌更豐富。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/01/%E8%A7%A3%E6%B1%BA%20Mail%20%E7%9A%84%20CSS%20%E6%A8%A3%E5%BC%8F%E7%84%A1%E6%B3%95%E8%A2%AB%E6%94%AF%E6%8F%B4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/01/31/Includes-query-method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/31/Includes-query-method/" class="post-title-link" itemprop="url">Includes query method</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-31 22:45:36" itemprop="dateCreated datePublished" datetime="2023-01-31T22:45:36+08:00">2023-01-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-01 23:37:36" itemprop="dateModified" datetime="2023-02-01T23:37:36+08:00">2023-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/Active-Record-Query/" itemprop="url" rel="index"><span itemprop="name">Active Record Query</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/01/31/Includes-query-method/" class="post-meta-item leancloud_visitors" data-flag-title="Includes query method" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/01/31/Includes-query-method/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/01/31/Includes-query-method/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>N + 1 一直是 rails 在讀取資料的效能殺手，解決這個效能問題有很多方法，今天這篇簡單地講解一下其中一個方法: <strong>includes</strong>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/31/Includes-query-method/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/01/28/Turbo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/28/Turbo/" class="post-title-link" itemprop="url">Rails 7 的超強 Turbo</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-28 17:37:39 / Modified: 18:10:11" itemprop="dateCreated datePublished" datetime="2023-01-28T17:37:39+08:00">2023-01-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/01/28/Turbo/" class="post-meta-item leancloud_visitors" data-flag-title="Rails 7 的超強 Turbo" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/01/28/Turbo/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/01/28/Turbo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>有在使用 Rails 開發專案的工程師們，應該知道或至少聽過 Rails 7 把 turbo 變得更加強大，使用方式更廣。我們就花幾個篇幅來講講這個酷東西吧。</p>
+<h1 id="Turbo"><a href="#Turbo" class="headerlink" title="Turbo"></a>Turbo</h1><p>Turbo 是透過 JS ，讓網頁在換頁時，只換內容不換頁。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/28/Turbo/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/12/27/accept-nested-attributes-for-fields-for/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/27/accept-nested-attributes-for-fields-for/" class="post-title-link" itemprop="url">accept_nested_attributes_for + fields_for</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-27 22:38:40" itemprop="dateCreated datePublished" datetime="2022-12-27T22:38:40+08:00">2022-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-01-28 17:58:41" itemprop="dateModified" datetime="2023-01-28T17:58:41+08:00">2023-01-28</time>
+    </span>
+
+  
+    <span id="/2022/12/27/accept-nested-attributes-for-fields-for/" class="post-meta-item leancloud_visitors" data-flag-title="accept_nested_attributes_for + fields_for" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/12/27/accept-nested-attributes-for-fields-for/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/12/27/accept-nested-attributes-for-fields-for/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="accept-nested-attributes-for"><a href="#accept-nested-attributes-for" class="headerlink" title="accept_nested_attributes_for"></a>accept_nested_attributes_for</h1><p>用來讓父 model 的子關聯們的屬性，能被父 model 接受，所以後面接的參數會依照 has_one 或 has_many 決定單複數：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/27/accept-nested-attributes-for-fields-for/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/10/22/action-text/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/22/action-text/" class="post-title-link" itemprop="url">如何取得 Action Text 的 Content 呢？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-10-22 12:09:55 / Modified: 13:02:31" itemprop="dateCreated datePublished" datetime="2022-10-22T12:09:55+08:00">2022-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/" itemprop="url" rel="index"><span itemprop="name">Rails</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Rails/Action-Text/" itemprop="url" rel="index"><span itemprop="name">Action Text</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/10/22/action-text/" class="post-meta-item leancloud_visitors" data-flag-title="如何取得 Action Text 的 Content 呢？" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/10/22/action-text/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/22/action-text/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Action Text 是 Rails 提供的魔法之一，它可以讓你的表單的欄位轉變成 trix-editor，如此一來便能在該欄位裡享受寫文章的快感與樂趣，而不像一般的欄位，只能寫到底，無法換行。</p>
+<p>但在進行測試，需要驗證trix-editor產出來的值時，卻發生了意外，事情不再是單純的 xxx.content 就能得到它的值了…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/22/action-text/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 30 - 回首測試</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-10-05 11:09:55 / Modified: 11:11:38" itemprop="dateCreated datePublished" datetime="2022-10-05T11:09:55+08:00">2022-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 30 - 回首測試" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/05/IT邦鐵人賽Day30-回首測試/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>經過前面 29 天的介紹與手把手實際操作與解說，我相信大家應該都很能理解測試到底在做些什麼事情，今天我們稍微總結一下。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay30-%E5%9B%9E%E9%A6%96%E6%B8%AC%E8%A9%A6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/" class="post-title-link" itemprop="url">IT 邦鐵人賽第 29 天 - Cucumber in Rails</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-10-05 11:07:39 / Modified: 11:08:48" itemprop="dateCreated datePublished" datetime="2022-10-05T11:07:39+08:00">2022-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽第 29 天 - Cucumber in Rails" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/05/IT邦鐵人賽第29天-Cucumber-in-Rails/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>前幾天介紹了 Cucumber，我想大家都對 Cucumber 有了認識，那今天我們要來在 Rails 裝上 Cucumber 以及其他相關測試套件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/05/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD%E7%AC%AC29%E5%A4%A9-Cucumber-in-Rails/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1284,7 +1318,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

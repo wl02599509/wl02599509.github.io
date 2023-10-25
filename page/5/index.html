@@ -136,18 +136,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 15 - RSpec 語法 shared_example</a>
+          <a href="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-15 01:27:31 / Modified: 01:28:32" itemprop="dateCreated datePublished" datetime="2022-09-15T01:27:31+08:00">2022-09-15</time>
+      <time title="Created: 2022-09-28 00:12:47 / Modified: 00:13:33" itemprop="dateCreated datePublished" datetime="2022-09-28T00:12:47+08:00">2022-09-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
     </span>
 
   
-    <span id="/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 15 - RSpec 語法 shared_example" title="Views">
+    <span id="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 28 - Ruby Cucumber(二)" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -266,8 +266,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/15/IT邦鐵人賽Day15-RSpec語法shared-example/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/28/IT邦鐵人賽Day28-Ruby-Cucumber二/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -281,11 +281,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了整理 code 小幫手 context，幫我們組織測試內容，提高可讀性，今天我們也來認識一下其他節省空間的工具人們。</p>
-<h1 id="Shared-examples"><a href="#Shared-examples" class="headerlink" title="Shared_examples"></a>Shared_examples</h1><p>如果我有好幾個受測對象，需要測試的項目都一樣，比方說，有好幾個不同的陣列，我想知道，每個陣列裡是否含有某一個元素，勢必會看到一堆一模一樣的 examples：</p>
+          <p>昨天我們安裝了 Cucumber 套件，然後也把規格寫好後，run 一遍測試，出現了訊息告訴我們有幾個 scenario 與 step，因為我們還沒有在 step_definations 資料夾裡新增規格要測試的檔案，所以訊息也有出現測試檔案內容的雛形 (太方便了)。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/15/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay15-RSpec%E8%AA%9E%E6%B3%95shared-example/#more" rel="contents">
+              <a class="btn" href="/2022/09/28/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay28-Ruby-Cucumber%E4%BA%8C/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -316,7 +315,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -334,7 +333,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 14 - RSpec 語法 context method</a>
+          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 27 - Cucumber with Ruby</a>
         </h2>
 
         <div class="post-meta-container">
@@ -346,7 +345,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-14 10:19:36 / Modified: 10:20:22" itemprop="dateCreated datePublished" datetime="2022-09-14T10:19:36+08:00">2022-09-14</time>
+      <time title="Created: 2022-09-27 01:13:54 / Modified: 01:14:47" itemprop="dateCreated datePublished" datetime="2022-09-27T01:13:54+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -359,7 +358,7 @@
     </span>
 
   
-    <span id="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 14 - RSpec 語法 context method" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 27 - Cucumber with Ruby" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -374,8 +373,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/14/IT邦鐵人賽Day14-RSpec-語法-context-method/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day27-Cucumber_with_Ruby/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -389,11 +388,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>今天我們要來說的東西比前面幾個方法還簡單很多：context，主要是用來整理 examples 的敘述，讓 readability 直線上升！</p>
-<h1 id="在一般的情況下"><a href="#在一般的情況下" class="headerlink" title="在一般的情況下"></a>在一般的情況下</h1><p>一個 example 由 it 建構，it 後面可以加上敘述文字：</p>
+          <p>前幾天帶大家了解了 BDD 的 Cucumber 以及 Gherkin，相信大家對 BDD 的特質已有所了解。今天我們來安裝 Cucumber 套件，並寫寫看 cucumber。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay14-RSpec-%E8%AA%9E%E6%B3%95-context-method/#more" rel="contents">
+              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay27-Cucumber_with_Ruby/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -424,7 +422,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -442,7 +440,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 13 RSpec 語法 subject method</a>
+          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords</a>
         </h2>
 
         <div class="post-meta-container">
@@ -454,7 +452,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-14 10:17:37 / Modified: 10:20:24" itemprop="dateCreated datePublished" datetime="2022-09-14T10:17:37+08:00">2022-09-14</time>
+      <time title="Created: 2022-09-27 01:12:52 / Modified: 01:13:34" itemprop="dateCreated datePublished" datetime="2022-09-27T01:12:52+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -467,7 +465,7 @@
     </span>
 
   
-    <span id="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 13 RSpec 語法 subject method" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 26 - Gherkin 的 Keywords" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -482,8 +480,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/14/IT邦鐵人賽-Day-13-RSpec-語法-subject-method/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day26-Gherkin的Keywords/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -497,10 +495,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>寫程式寫到後來發現，最難的其實是「取名」，要取個一眼就知道這是在幹麻的變數名稱，實在是門藝術，像我這種思維方正又收斂的人，取名真的是一大困難，貼心如 RSpec 也聽到了大家的困擾，給大家一個不用取名的方法：</p>
+          <p>前一天介紹了 BDD 的測試框架 Cucumber，而該測試框架的規格書所使用的是 Gherkin，利用人類自己的文字，提升團隊的參與。其中 Gherkin 裡的 Keywords 正是扮演了舉足輕重的角色，今天我們就來詳細介紹這些 Keywords：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/14/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BD-Day-13-RSpec-%E8%AA%9E%E6%B3%95-subject-method/#more" rel="contents">
+              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay26-Gherkin%E7%9A%84Keywords/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -531,7 +529,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -549,7 +547,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 12 - RSpec 語法 let method</a>
+          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber</a>
         </h2>
 
         <div class="post-meta-container">
@@ -561,7 +559,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-12 02:42:35 / Modified: 02:43:27" itemprop="dateCreated datePublished" datetime="2022-09-12T02:42:35+08:00">2022-09-12</time>
+      <time title="Created: 2022-09-27 01:10:53 / Modified: 01:11:49" itemprop="dateCreated datePublished" datetime="2022-09-27T01:10:53+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -574,7 +572,7 @@
     </span>
 
   
-    <span id="/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 12 - RSpec 語法 let method" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 25 - BDD 測試框架 - Cucumber" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -589,8 +587,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/12/IT邦鐵人賽Day12-RSpec語法let-method/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day25-BDD測試框架-Cucumber/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -604,10 +602,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天介紹了 hook ，其中的 before hook 是為了不要一直做重複的事情，但這樣會造成每個 examples 都會執行，不論 examples 有沒有需要，這樣似乎有點浪費（客家精神發作），今天介紹的 let 是更方便更好用的方法。</p>
+          <p>昨天介紹了 BBD 的存在是為了讓專案開發的所有相關人，無論是否有程式背景，都能夠了解測試的內容。那麼今天我們來介紹 BDD 的測試框架：</p>
+<h1 id="Cucumber"><a href="#Cucumber" class="headerlink" title="Cucumber"></a>Cucumber</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/12/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay12-RSpec%E8%AA%9E%E6%B3%95let-method/#more" rel="contents">
+              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay25-BDD%E6%B8%AC%E8%A9%A6%E6%A1%86%E6%9E%B6-Cucumber/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -638,7 +637,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/11/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay11-RSpec%E8%AA%9E%E6%B3%95before-hook_and_after_hook/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -656,7 +655,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/11/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay11-RSpec%E8%AA%9E%E6%B3%95before-hook_and_after_hook/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 11 - RSpec 語法 before_hook & after_hook</a>
+          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！</a>
         </h2>
 
         <div class="post-meta-container">
@@ -668,7 +667,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-11 00:07:14 / Modified: 00:09:10" itemprop="dateCreated datePublished" datetime="2022-09-11T00:07:14+08:00">2022-09-11</time>
+      <time title="Created: 2022-09-27 01:07:48 / Modified: 01:09:06" itemprop="dateCreated datePublished" datetime="2022-09-27T01:07:48+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -681,7 +680,7 @@
     </span>
 
   
-    <span id="/2022/09/11/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay11-RSpec%E8%AA%9E%E6%B3%95before-hook_and_after_hook/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 11 - RSpec 語法 before_hook & after_hook" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 24 - BDD，讓我們開始說人話吧！" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -696,8 +695,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/11/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay11-RSpec%E8%AA%9E%E6%B3%95before-hook_and_after_hook/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/11/IT邦鐵人賽Day11-RSpec語法before-hook_and_after_hook/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day24-BDD，讓我們開始說人話吧！/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -711,11 +710,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在前一篇，我們介紹了 RSpec 裡基礎的語法，今天我們來介紹很好用很常用的語法：before hook, after hook。</p>
-<p>當我們需要重複測試同一個物件的不同屬性或方法時：</p>
+          <p>今天我們來介紹跟 TDD 相近的 <strong>BDD</strong>，這裡指的相近絕對不是只差一個字的相近。在 TDD 情況下，工程師們彼此間的討論與溝通是沒有問題的，但非技術人員，像是 PM、Designer 等，較難透過工程師所寫的程式碼了解並參與討論。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/11/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay11-RSpec%E8%AA%9E%E6%B3%95before-hook_and_after_hook/#more" rel="contents">
+              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay24-BDD%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E9%96%8B%E5%A7%8B%E8%AA%AA%E4%BA%BA%E8%A9%B1%E5%90%A7%EF%BC%81/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -746,7 +744,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -764,7 +762,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day10 - RSpec 基本語法</a>
+          <a href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾</a>
         </h2>
 
         <div class="post-meta-container">
@@ -774,15 +772,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-10 00:16:45" itemprop="dateCreated datePublished" datetime="2022-09-10T00:16:45+08:00">2022-09-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:45:08" itemprop="dateModified" datetime="2022-09-12T02:45:08+08:00">2022-09-12</time>
+      <time title="Created: 2022-09-27 01:05:42 / Modified: 01:08:43" itemprop="dateCreated datePublished" datetime="2022-09-27T01:05:42+08:00">2022-09-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -795,7 +787,7 @@
     </span>
 
   
-    <span id="/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day10 - RSpec 基本語法" title="Views">
+    <span id="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 23 - TDD 的不足與遺憾" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -810,8 +802,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/10/IT邦鐵人賽Day10-RSpec基本語法/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/27/IT邦鐵人賽Day23-TDD的不足與遺憾/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -825,11 +817,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>前面介紹了 <strong>RSpec</strong> 的規格與測試，讓大家都能明白 <strong>TDD</strong> 的測試流程，紅燈、綠燈、優化與重構。接下來，我們會花好幾篇來介紹 <strong>RSpec</strong> 的 語法。</p>
-<p>今天我們先來個簡單的，也是前面看過的基本語法：</p>
+          <p>經歷了好幾天的解說，終於把 TDD 的測試說完了，我們介紹了好幾個套件：RSpec, Capybara, Factory_bot，因為有太多東西可以說了，礙於時間，沒辦法講得太深入。</p>
+<p>結束了 TDD 的介紹，當然就是要進入另一個測試模式: BDD 囉！</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/10/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay10-RSpec%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2022/09/27/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay23-TDD%E7%9A%84%E4%B8%8D%E8%B6%B3%E8%88%87%E9%81%BA%E6%86%BE/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -860,7 +852,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -878,7 +870,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-title-link" itemprop="url">9-RSpec測試完成</a>
+          <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 22 - Capybara 額外補充</a>
         </h2>
 
         <div class="post-meta-container">
@@ -890,7 +882,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-09 00:16:26 / Modified: 00:20:13" itemprop="dateCreated datePublished" datetime="2022-09-09T00:16:26+08:00">2022-09-09</time>
+      <time title="Created: 2022-09-22 00:48:22 / Modified: 00:58:02" itemprop="dateCreated datePublished" datetime="2022-09-22T00:48:22+08:00">2022-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -903,7 +895,7 @@
     </span>
 
   
-    <span id="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/" class="post-meta-item leancloud_visitors" data-flag-title="9-RSpec測試完成" title="Views">
+    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 22 - Capybara 額外補充" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -918,8 +910,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/09/IT邦鐵人賽Day9-RSpec測試完成/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/22/IT邦鐵人賽Day22-Capybara額外補充/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -933,10 +925,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>不知道大家有沒有先試著自己做做看，然後自己測測看。其實可以自己玩玩看 rspec 指令所產出來的訊息，學習判斷訊息內容也是很重要的訓練，不只在測試，在任何只要是寫code的時候，都會執行出錯誤，隨之產生的錯誤訊息會告訴你錯的地方，有些甚至會說如何處理這項錯誤。</p>
+          <p>在使用 Capybara 時，雖然語法看起來就是單單純純的去哪個頁面、按什麼按鈕、填什麼表單、然後驗證。這樣聽起來似乎並不難，但只要操作到外網或是使用套件，就沒有那麼單純了。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/09/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay9-RSpec%E6%B8%AC%E8%A9%A6%E5%AE%8C%E6%88%90/#more" rel="contents">
+              <a class="btn" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay22-Capybara%E9%A1%8D%E5%A4%96%E8%A3%9C%E5%85%85/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -967,7 +959,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -985,7 +977,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈</a>
+          <a href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態</a>
         </h2>
 
         <div class="post-meta-container">
@@ -997,7 +989,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-09-08 00:17:08 / Modified: 10:58:08" itemprop="dateCreated datePublished" datetime="2022-09-08T00:17:08+08:00">2022-09-08</time>
+      <time title="Created: 2022-09-22 00:45:16 / Modified: 00:58:41" itemprop="dateCreated datePublished" datetime="2022-09-22T00:45:16+08:00">2022-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1010,7 +1002,7 @@
     </span>
 
   
-    <span id="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 8 - RSpec 的第一個綠燈" title="Views">
+    <span id="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 21 - Capybara 模式設定、Debug、登入狀態" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1025,8 +1017,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/08/IT 邦鐵人賽Day8-RSpec的第一個綠燈/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/22/IT邦鐵人賽Day21-Capybara模式設定、Debug、登入狀態 /" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1040,10 +1032,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>現在，我們已經開始進入寫測試 code 的階段了。今天要做的是在 Rspec 的規格裡，補上要測試的 code，那我們先從第一個規格描述 it 著手吧！也就是 it “軟體錢包原本有50元，扣款10元後，錢包顯示40元”</p>
+          <p>昨天介紹了 Capybara，提到這款套件是以「使用者」角度操作網頁來進行測試，所以它也可以真實呈現操作頁面的視覺畫面！</p>
+<h1 id="Capybara-測試模式"><a href="#Capybara-測試模式" class="headerlink" title="Capybara 測試模式"></a>Capybara 測試模式</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/08/IT%20%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay8-RSpec%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%A0%E7%87%88/#more" rel="contents">
+              <a class="btn" href="/2022/09/22/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay21-Capybara%E6%A8%A1%E5%BC%8F%E8%A8%AD%E5%AE%9A%E3%80%81Debug%E3%80%81%E7%99%BB%E5%85%A5%E7%8B%80%E6%85%8B%20/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1074,7 +1067,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1092,7 +1085,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義</a>
+          <a href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 20 - 水豚君的幫助 Capybara</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1102,15 +1095,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-07 23:36:23" itemprop="dateCreated datePublished" datetime="2022-09-07T23:36:23+08:00">2022-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:46:11" itemprop="dateModified" datetime="2022-09-12T02:46:11+08:00">2022-09-12</time>
+      <time title="Created: 2022-09-20 01:48:17 / Modified: 01:49:09" itemprop="dateCreated datePublished" datetime="2022-09-20T01:48:17+08:00">2022-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1123,7 +1110,7 @@
     </span>
 
   
-    <span id="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 7 - RSpec 執行的實例與含義" title="Views">
+    <span id="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 20 - 水豚君的幫助 Capybara" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1138,8 +1125,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/07/IT邦鐵人賽Day7-RSpec執行的實例與含義/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/20/IT邦鐵人賽Day20-水豚君的幫助Capybara/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1153,11 +1140,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>昨天我們在終端機上執行了指令，進行我們一直提到的「測試」。沒錯，在終端機上操作的指令與出現的訊息就是我們測試執行與結果。</p>
-<p>接下來，我們就是要寫 code，測試，沒過，修改，寫 code，測試，一步一步循環到通過為止（但其實通過測試不能算是終點，因為要進行程式碼的優化與重構）。</p>
+          <p>今天我們來介紹這款我超喜歡的測試框架：capybara。Capybara 是用來跟 Rspec-rails 搭配使用，也就是 Rspec-rails 的輔助工具，主要是以「使用者」的角度，以網頁操作進行測試。</p>
+<p>與其文字解釋，不如直接看 code，因為 capybara 的 method 非常簡單明瞭，所以一看就知道到底在幹嘛：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/07/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay7-RSpec%E5%9F%B7%E8%A1%8C%E7%9A%84%E5%AF%A6%E4%BE%8B%E8%88%87%E5%90%AB%E7%BE%A9/#more" rel="contents">
+              <a class="btn" href="/2022/09/20/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay20-%E6%B0%B4%E8%B1%9A%E5%90%9B%E7%9A%84%E5%B9%AB%E5%8A%A9Capybara/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1188,7 +1175,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.png">
@@ -1206,7 +1193,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day6 - 規格與第一個紅燈</a>
+          <a href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-title-link" itemprop="url">IT 邦鐵人賽 Day 19 - Factory_bot 幫你輕鬆測（二）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1216,15 +1203,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-09-06 10:55:00" itemprop="dateCreated datePublished" datetime="2022-09-06T10:55:00+08:00">2022-09-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-09-12 02:45:26" itemprop="dateModified" datetime="2022-09-12T02:45:26+08:00">2022-09-12</time>
+      <time title="Created: 2022-09-19 00:34:56 / Modified: 00:37:07" itemprop="dateCreated datePublished" datetime="2022-09-19T00:34:56+08:00">2022-09-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1237,7 +1218,7 @@
     </span>
 
   
-    <span id="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day6 - 規格與第一個紅燈" title="Views">
+    <span id="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/" class="post-meta-item leancloud_visitors" data-flag-title="IT 邦鐵人賽 Day 19 - Factory_bot 幫你輕鬆測（二）" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1252,8 +1233,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/06/IT邦鐵人賽Day6-規格與第一個紅燈/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/09/19/IT邦鐵人賽Day19-Factory-bot幫你輕鬆測（二）/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1267,10 +1248,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在前天講了TDD的概念與流程，昨天也安裝好Ruby語言跟RSpec測試框架，接下來要開始慢慢帶入測試的模樣，讓我們來看看測試流程到底長什麼樣子，測試到底是在測什麼，要寫什麼code。先別急，我們今天先講個測試之前需要的「<strong>規格</strong>」。</p>
+          <p>昨天介紹了超好用的測試輔助套件 factory_bot_rails，但內容太多，一天講完實在太冗長，所以我們分兩篇來講。</p>
+<p>今天我們來講一些細節的東西。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/09/06/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay6-%E8%A6%8F%E6%A0%BC%E8%88%87%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B4%85%E7%87%88/#more" rel="contents">
+              <a class="btn" href="/2022/09/19/IT%E9%82%A6%E9%90%B5%E4%BA%BA%E8%B3%BDDay19-Factory-bot%E5%B9%AB%E4%BD%A0%E8%BC%95%E9%AC%86%E6%B8%AC%EF%BC%88%E4%BA%8C%EF%BC%89/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1294,7 +1276,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
