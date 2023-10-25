@@ -1,6 +1,7 @@
 ---
 title: 2023 iT邦鐵人賽 Day 24 - 多階段Dockerfile
 date: 2023-10-25 21:47:14
+categories: 
 - [iThome]
 - [Docker]
 - [Dockerfile]

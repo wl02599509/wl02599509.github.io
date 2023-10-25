@@ -1,6 +1,7 @@
 ---
 title: 2023 iT邦鐵人賽 Day 23 - Dockerfile快取與優化
 date: 2023-10-25 21:45:47
+categories:
 - [iThome]
 - [Docker]
 - [Dockerfile]

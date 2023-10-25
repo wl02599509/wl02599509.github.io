@@ -1,6 +1,7 @@
 ---
 title: 2023 iT邦鐵人賽 Day 25 - Dockerfile 容器應用程式可靠性
 date: 2023-10-25 21:48:27
+categories: 
 - [iThome]
 - [Docker]
 - [Dockerfile]

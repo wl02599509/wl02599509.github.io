@@ -1,6 +1,7 @@
 ---
 title: 2023 iT邦鐵人賽 Day 27 - Docker Compose Services
 date: 2023-10-25 21:50:30
+categories: 
 - [iThome]
 - [Docker]
 - [Docker Compose]
