@@ -136,7 +136,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -199,6 +199,122 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/10/25/Day23-Dockerfile%E5%BF%AB%E5%8F%96%E8%88%87%E5%84%AA%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/10/25/Day23-Dockerfile%E5%BF%AB%E5%8F%96%E8%88%87%E5%84%AA%E5%8C%96/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 23 - Dockerfile快取與優化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-10-25 21:45:47 / Modified: 21:54:18" itemprop="dateCreated datePublished" datetime="2023-10-25T21:45:47+08:00">2023-10-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Dockerfile/" itemprop="url" rel="index"><span itemprop="name">Dockerfile</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2023/10/25/Day23-Dockerfile%E5%BF%AB%E5%8F%96%E8%88%87%E5%84%AA%E5%8C%96/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 23 - Dockerfile快取與優化" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/10/25/Day23-Dockerfile%E5%BF%AB%E5%8F%96%E8%88%87%E5%84%AA%E5%8C%96/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/25/Day23-Dockerfile快取與優化/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天跟前天已經將 Dockerfile 介紹完了，但學會建立後，我們再來要考慮的是效能。就像寫 code 一樣，不只能動，還要注重效能。</p>
+<p>今天我們來講解，為何連 Dockerfile 也有效能問題? Docker 是怎麼處理快取? 那我們該怎麼解決效能上的問題?</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/25/Day23-Dockerfile%E5%BF%AB%E5%8F%96%E8%88%87%E5%84%AA%E5%8C%96/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1186,118 +1302,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/09/27/Day14-%E5%AE%B9%E5%99%A8%E7%9A%84%E8%B3%87%E6%96%99%E5%84%B2%E5%AD%98-%E7%B4%84%E5%AE%9A%E6%8E%9B%E8%BC%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.png">
-      <meta itemprop="name" content="Mike">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mike Code">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" class="post-title-link" itemprop="url">2023 iT邦鐵人賽 Day 13 - 容器的生命週期</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-09-26 22:57:38 / Modified: 22:58:22" itemprop="dateCreated datePublished" datetime="2023-09-26T22:57:38+08:00">2023-09-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iThome/" itemprop="url" rel="index"><span itemprop="name">iThome</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/" class="post-meta-item leancloud_visitors" data-flag-title="2023 iT邦鐵人賽 Day 13 - 容器的生命週期" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/09/26/Day13-容器的生命週期/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我們在學任何程式語言或是框架時，都會碰到程式碼的生命週期、物件的 callback、元件的 life cycle，容器也不例外，容器也有生命週期。</p>
-<p>今天我們就來介紹容器的生命週期，並讓各位了解，容器其實就跟社畜一樣，不幹了還能再找其他人來頂替 ( 容器：嘆 )。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/26/Day13-%E5%AE%B9%E5%99%A8%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

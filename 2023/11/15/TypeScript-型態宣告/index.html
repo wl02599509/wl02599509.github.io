@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言TypeScript 是 JavaScript 的超集，用來補足 JS 在開發中，因弱型別所造成的問題。在 TypeScript 裡，寫的就是 JS，只是我們需要多做型態宣告這件事，讓所有的資料知道自己的身份，才不會像成龍一樣大喊我是誰。今天就來講講該如何進行型態的宣告。 變數在程式的世界裡，宣告一個變數是基本中的基本。我們運用變數來操作與製造我們需要的資料。宣告變數時，我們會給他各種形態的資">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 型態宣告">
+<meta property="og:url" content="https://wl02599509.github.io/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言TypeScript 是 JavaScript 的超集，用來補足 JS 在開發中，因弱型別所造成的問題。在 TypeScript 裡，寫的就是 JS，只是我們需要多做型態宣告這件事，讓所有的資料知道自己的身份，才不會像成龍一樣大喊我是誰。今天就來講講該如何進行型態的宣告。 變數在程式的世界裡，宣告一個變數是基本中的基本。我們運用變數來操作與製造我們需要的資料。宣告變數時，我們會給他各種形態的資">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-15T15:02:58.000Z">
+<meta property="article:modified_time" content="2023-11-15T15:03:30.737Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/","path":"2023/11/15/TypeScript-型態宣告/","title":"TypeScript 型態宣告"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>TypeScript 型態宣告 | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8"><span class="nav-number">2.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2%E3%80%81%E6%95%B8%E5%AD%97%E3%80%81%E5%B8%83%E6%9E%97%E5%80%BC%E3%80%81undefined%E3%80%81null%E3%80%81any"><span class="nav-number">2.1.</span> <span class="nav-text">字串、數字、布林值、undefined、null、any</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A3%E5%88%97"><span class="nav-number">2.2.</span> <span class="nav-text">陣列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">物件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC-%E4%B8%8D%E6%83%B3%E9%80%8F%E9%9C%B2%E5%B9%B4%E7%B4%80"><span class="nav-number">2.3.1.</span> <span class="nav-text">什麼? 不想透露年紀?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interface-%E8%B7%9F-type-%E6%9C%89%E4%BB%80%E9%BA%BC%E5%B7%AE%E5%88%A5%E5%91%A2"><span class="nav-number">2.3.2.</span> <span class="nav-text">interface 跟 type 有什麼差別呢?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%A3%E5%88%97%E4%B8%AD%E7%89%A9%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">陣列中物件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B8%BD%E7%B5%90"><span class="nav-number">4.</span> <span class="nav-text">總結</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="TypeScript 型態宣告 | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript 型態宣告<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2023-11-15-TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-11-15 23:02:58 / Modified: 23:03:30" itemprop="dateCreated datePublished" datetime="2023-11-15T23:02:58+08:00">2023-11-15</time>
+    </span>
+
+  
+    <span id="/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/" class="post-meta-item leancloud_visitors" data-flag-title="TypeScript 型態宣告" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2023/11/15/TypeScript-%E5%9E%8B%E6%85%8B%E5%AE%A3%E5%91%8A/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/11/15/TypeScript-型態宣告/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TypeScript 是 JavaScript 的超集，用來補足 JS 在開發中，因弱型別所造成的問題。在 TypeScript 裡，寫的就是 JS，只是我們需要多做型態宣告這件事，讓所有的資料知道自己的身份，才不會像成龍一樣大喊我是誰。今天就來講講該如何進行型態的宣告。</p>
+<h1 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h1><p>在程式的世界裡，宣告一個變數是基本中的基本。我們運用變數來操作與製造我們需要的資料。宣告變數時，我們會給他各種形態的資料，像是字串、數字、布林值、陣列、物件。</p>
+<p>在 JS 中，我們可以很輕易的就宣告共種型態的變數:</p>
+<span id="more"></span>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Jay Chou&#x27;</span></span><br><span class="line"><span class="keyword">const</span> age = <span class="number">45</span></span><br><span class="line"><span class="keyword">const</span> getMarried = <span class="literal">true</span></span><br><span class="line"><span class="keyword">const</span> song_list = [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> singer = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Jay Chou&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>: <span class="number">45</span>,</span><br><span class="line">  <span class="attr">getMarried</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">song_list</span>: [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 TS 中，我們除了宣告變數之虞，還要宣告型態，讓變數本身知道自己到底是屬於哪個世界的人。</p>
+<h2 id="字串、數字、布林值、undefined、null、any"><a href="#字串、數字、布林值、undefined、null、any" class="headerlink" title="字串、數字、布林值、undefined、null、any"></a>字串、數字、布林值、undefined、null、any</h2><p>前三項型態算是最單純且常見的宣告，我們直接看範例:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">name</span>: <span class="built_in">string</span> = <span class="string">&#x27;Jay Chou&#x27;</span> <span class="comment">// 宣告變數 name 的型態為 string</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">age</span>: <span class="built_in">number</span> = <span class="number">45</span> <span class="comment">// 宣告變數 age 的型態為 number</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">getMarried</span>: <span class="built_in">boolean</span> = <span class="literal">true</span> <span class="comment">// 宣告變數 getMarried 的型態為 boolean</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可能很少會在寫 JS 時，定義一個值為 <code>undefined</code> 或是 <code>null</code> 的變數，但這兩種型態確實是會出現的，所以有定義的必要:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">foo</span>: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">bar</span>: <span class="literal">null</span> = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>最後的 <code>any</code> 非常好用(誤)，就它字面之意，就是任意型態，也就是說當變數宣告了 <code>any</code> 型態，該變數就變成百變怪一樣，可以是任何神奇寶貝:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">whatever</span>: <span class="built_in">any</span> = <span class="string">&#x27;abc&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h2><p>我們在陣列裡，會儲放好幾個同型態的資料，所以我們要宣告這個陣列裡的資料是什麼型態:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">song_list</span>: <span class="built_in">string</span>[] = [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">body_secret</span>: <span class="built_in">number</span>[] = [<span class="number">44</span>, <span class="number">173</span>, <span class="number">15</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">truth</span>: <span class="built_in">boolean</span>[] = [<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">foo</span>: <span class="literal">undefined</span>[] = [<span class="literal">undefined</span>, <span class="literal">undefined</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">bar</span>: <span class="literal">null</span>[] = [<span class="literal">null</span>, <span class="literal">null</span>]</span><br><span class="line"></span><br><span class="line">或是</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">song_list</span>: <span class="title class_">Array</span>&lt;<span class="built_in">string</span>&gt; = [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">body_secret</span>: <span class="title class_">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">44</span>, <span class="number">173</span>, <span class="number">15</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">truth</span>: <span class="title class_">Array</span>&lt;<span class="built_in">boolean</span>&gt; = [<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">foo</span>: <span class="title class_">Array</span>&lt;<span class="literal">undefined</span>&gt; = [<span class="literal">undefined</span>, <span class="literal">undefined</span>]</span><br><span class="line"><span class="keyword">const</span> <span class="attr">bar</span>: <span class="title class_">Array</span>&lt;<span class="literal">null</span>&gt; = [<span class="literal">null</span>, <span class="literal">null</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件"><a href="#物件" class="headerlink" title="物件"></a>物件</h2><p>物件的型態宣告就比上面的還要麻煩。物件本身的結構，可以算是一個小介面。當我們要定義一個物件的型態時，會透過 <code>interface</code> 或 <code>type</code> 來定義物件的型態:</p>
+<p>首先，宣告 Singer 型態:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Singer</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">	<span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">	<span class="attr">getMarried</span>: <span class="built_in">boolean</span></span><br><span class="line">	<span class="attr">song_list</span>: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Singer</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">	<span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">	<span class="attr">getMarried</span>: <span class="built_in">boolean</span></span><br><span class="line">	<span class="attr">song_list</span>: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再來把宣告好的 Singer 型態，宣告到變數上:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">JayChou</span>: <span class="title class_">Singer</span> = &#123;</span><br><span class="line">	<span class="attr">company</span>: <span class="string">&#x27;jvrmusic&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>: <span class="number">45</span>,</span><br><span class="line">  <span class="attr">getMarried</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">song_list</span>: [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">JJ</span>: <span class="title class_">Singer</span> = &#123;</span><br><span class="line">	<span class="attr">company</span>: <span class="string">&#x27;jjlin&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>: <span class="number">42</span>,</span><br><span class="line">  <span class="attr">getMarried</span>: <span class="literal">false</span>,</span><br><span class="line">	<span class="attr">song_list</span>: [<span class="string">&#x27;小酒窩&#x27;</span>, <span class="string">&#x27;愛笑的眼睛&#x27;</span>, <span class="string">&#x27;豆漿油條&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如此一來，只要戴上了 Singer 型態的帽子，該物件就必須要依照該型態去定義屬性與值，缺一不可:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Matzka</span>: <span class="title class_">Singer</span> = &#123;</span><br><span class="line">	<span class="attr">company</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">getMarried</span>: <span class="literal">false</span>,</span><br><span class="line">	<span class="attr">song_list</span>: [<span class="string">&#x27;水災&#x27;</span>, <span class="string">&#x27;一朵花&#x27;</span>, <span class="string">&#x27;大叔Uncle&#x27;</span>]</span><br><span class="line">&#125; --&gt; company **的型態錯誤，age 屬性沒有定義**</span><br></pre></td></tr></table></figure>
+
+<h3 id="什麼-不想透露年紀"><a href="#什麼-不想透露年紀" class="headerlink" title="什麼? 不想透露年紀?"></a>什麼? 不想透露年紀?</h3><p>也沒關係，或許 <code>Matzka</code> 本人不希望被問「<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FVAsGIj5ccY">大叔 你今年貴庚</a>」，那我們就在 Singer 的型態裡，把 age 改為非必要屬性:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Singer</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">	age?: <span class="built_in">number</span></span><br><span class="line">	<span class="attr">getMarried</span>: <span class="built_in">boolean</span></span><br><span class="line">	<span class="attr">song_list</span>: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Singer</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">	age?: <span class="built_in">number</span></span><br><span class="line">	<span class="attr">getMarried</span>: <span class="built_in">boolean</span></span><br><span class="line">	<span class="attr">song_list</span>: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>像這樣在定義的屬性 <code>age</code> 後面加上 <code>?</code> 就代表，該屬性不一定需要，如此一來 <code>Matzka</code> 就不需要告訴大家年紀了:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Matzka</span>: <span class="title class_">Singer</span> = &#123;</span><br><span class="line">	<span class="attr">company</span>: <span class="string">&quot;I don&#x27;t know&quot;</span>,</span><br><span class="line">  <span class="attr">getMarried</span>: <span class="literal">false</span>,</span><br><span class="line">	<span class="attr">song_list</span>: [<span class="string">&#x27;水災&#x27;</span>, <span class="string">&#x27;一朵花&#x27;</span>, <span class="string">&#x27;大叔Uncle&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="interface-跟-type-有什麼差別呢"><a href="#interface-跟-type-有什麼差別呢" class="headerlink" title="interface 跟 type 有什麼差別呢?"></a>interface 跟 type 有什麼差別呢?</h3><p>兩者最大的差別在於嚴謹程度: <code>interface</code> 可以彈性擴充， <code>type</code> 則是比較死板、裡面定義了什麼就是什麼、不能再擴充。</p>
+<p>至於這裡指的擴充，之後讓我們再推出一篇文章為大家介紹介紹。</p>
+<h1 id="陣列中物件"><a href="#陣列中物件" class="headerlink" title="陣列中物件"></a>陣列中物件</h1><p>上面介紹的陣列與物件的宣告都算是單純情況。當我們陣列中要放物件時，就必須要把物件的型態定義出來，然後再針對陣列定義陣列的型態:</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 物件本身的型態</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Singer</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span></span><br><span class="line">	<span class="attr">age</span>: <span class="built_in">number</span></span><br><span class="line">	<span class="attr">getMarried</span>: <span class="built_in">boolean</span></span><br><span class="line">	<span class="attr">song_list</span>: <span class="built_in">string</span>[]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列的型態: 我的陣列裡面的資料型態是物件，該物件的型態是 Singer</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">singers</span>: <span class="title class_">Singer</span>[] = [</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="attr">company</span>: <span class="string">&#x27;jvrmusic&#x27;</span>,</span><br><span class="line">		<span class="attr">age</span>: <span class="number">45</span>,</span><br><span class="line">	  <span class="attr">getMarried</span>: <span class="literal">true</span>,</span><br><span class="line">		<span class="attr">song_list</span>: [<span class="string">&#x27;擱淺&#x27;</span>, <span class="string">&#x27;告白氣球&#x27;</span>, <span class="string">&#x27;愛到無命不知驚&#x27;</span>]</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="attr">company</span>: <span class="string">&#x27;jjlin&#x27;</span>,</span><br><span class="line">		<span class="attr">age</span>: <span class="number">42</span>,</span><br><span class="line">	  <span class="attr">getMarried</span>: <span class="literal">false</span>,</span><br><span class="line">		<span class="attr">song_list</span>: [<span class="string">&#x27;小酒窩&#x27;</span>, <span class="string">&#x27;愛笑的眼睛&#x27;</span>, <span class="string">&#x27;豆漿油條&#x27;</span>]</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">singers</span>: <span class="title class_">Array</span>&lt;<span class="title class_">Singer</span>&gt; = [ ...略 ] </span><br></pre></td></tr></table></figure>
+
+<h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><p>今天介紹的內容是 TS 最基本也是最主要的。我們在宣告變數時，都必須發給他們一張身分證 (宣告型態)，讓變數知道自己屬於什麼。</p>
+<p>這有利於開發者在開發時，可以在眾多變數中，點兵點將時，知道該找誰用誰，而不會拿了一個普隆貢，導致開發產生問題。</p>
+<p>這篇算是一個 TS 的基礎，其實在宣告型態時，有時我們會給與多個型態，也就是變數可以既是字串又是數字，就像我們既可以是台灣人又可以是美國人，只要沒有要選總統的話。</p>
+<p>此外，還有很多較進階的 TS 技術，如果有興趣的朋友，可以再研究研究。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TypeScript/" rel="tag"><i class="fa fa-tag"></i> TypeScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/15/TypeScript-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/" rel="prev" title="TypeScript 基本介紹">
+                  <i class="fa fa-chevron-left"></i> TypeScript 基本介紹
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
