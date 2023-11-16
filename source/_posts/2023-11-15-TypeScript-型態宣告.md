@@ -15,17 +15,16 @@ TypeScript 是 JavaScript 的超集，用來補足 JS 在開發中，因弱型�
 在 JS 中，我們可以很輕易的就宣告共種型態的變數:
 
 <!--more-->
-
 ```jsx
 const name = 'Jay Chou'
 const age = 45
 const getMarried = true
-const song_list = ['擱淺', '告白氣球', '愛到無命不知驚']
+const songList = ['擱淺', '告白氣球', '愛到無命不知驚']
 const singer = {
   name: 'Jay Chou',
 	age: 45,
   getMarried: true,
-	song_list: ['擱淺', '告白氣球', '愛到無命不知驚']
+	songList: ['擱淺', '告白氣球', '愛到無命不知驚']
 }
 ```
 
@@ -60,15 +59,15 @@ const whatever: any = 'abc'
 
 ```tsx
 const song_list: string[] = ['擱淺', '告白氣球', '愛到無命不知驚']
-const body_secret: number[] = [44, 173, 15]
+const bodySecret: number[] = [44, 173, 15]
 const truth: boolean[] = [true, false, true, false]
 const foo: undefined[] = [undefined, undefined]
 const bar: null[] = [null, null]
 
 或是
 
-const song_list: Array<string> = ['擱淺', '告白氣球', '愛到無命不知驚']
-const body_secret: Array<number> = [44, 173, 15]
+const songList: Array<string> = ['擱淺', '告白氣球', '愛到無命不知驚']
+const bodySecret: Array<number> = [44, 173, 15]
 const truth: Array<boolean> = [true, false, true, false]
 const foo: Array<undefined> = [undefined, undefined]
 const bar: Array<null> = [null, null]
@@ -85,7 +84,7 @@ interface Singer {
   name: string
 	age: number
 	getMarried: boolean
-	song_list: string[]
+	songList: string[]
 }
 
 或
@@ -94,7 +93,7 @@ type Singer = {
   name: string
 	age: number
 	getMarried: boolean
-	song_list: string[]
+	songList: string[]
 }
 ```
 
@@ -105,14 +104,14 @@ const JayChou: Singer = {
 	company: 'jvrmusic',
 	age: 45,
   getMarried: true,
-	song_list: ['擱淺', '告白氣球', '愛到無命不知驚']
+	songList: ['擱淺', '告白氣球', '愛到無命不知驚']
 }
 
 const JJ: Singer = {
 	company: 'jjlin',
 	age: 42,
   getMarried: false,
-	song_list: ['小酒窩', '愛笑的眼睛', '豆漿油條']
+	songList: ['小酒窩', '愛笑的眼睛', '豆漿油條']
 }
 ```
 
@@ -122,7 +121,7 @@ const JJ: Singer = {
 const Matzka: Singer = {
 	company: null,
   getMarried: false,
-	song_list: ['水災', '一朵花', '大叔Uncle']
+	songList: ['水災', '一朵花', '大叔Uncle']
 } --> company **的型態錯誤，age 屬性沒有定義**
 ```
 
@@ -135,7 +134,7 @@ interface Singer {
   name: string
 	age?: number
 	getMarried: boolean
-	song_list: string[]
+	songList: string[]
 }
 
 或
@@ -144,7 +143,7 @@ type Singer = {
   name: string
 	age?: number
 	getMarried: boolean
-	song_list: string[]
+	songList: string[]
 }
 ```
 
@@ -154,7 +153,7 @@ type Singer = {
 const Matzka: Singer = {
 	company: "I don't know",
   getMarried: false,
-	song_list: ['水災', '一朵花', '大叔Uncle']
+	songList: ['水災', '一朵花', '大叔Uncle']
 }
 ```
 
@@ -174,7 +173,7 @@ interface Singer {
   name: string
 	age: number
 	getMarried: boolean
-	song_list: string[]
+	songList: string[]
 }
 
 // 陣列的型態: 我的陣列裡面的資料型態是物件，該物件的型態是 Singer
@@ -183,13 +182,13 @@ const singers: Singer[] = [
 		company: 'jvrmusic',
 		age: 45,
 	  getMarried: true,
-		song_list: ['擱淺', '告白氣球', '愛到無命不知驚']
+		songList: ['擱淺', '告白氣球', '愛到無命不知驚']
 	},
 	{
 		company: 'jjlin',
 		age: 42,
 	  getMarried: false,
-		song_list: ['小酒窩', '愛笑的眼睛', '豆漿油條']
+		songList: ['小酒窩', '愛笑的眼睛', '豆漿油條']
 	}
 ]
 
