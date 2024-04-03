@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wl02599509.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：  為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebFont">
+<meta property="og:url" content="https://wl02599509.github.io/2024/04/03/WebFont/index.html">
+<meta property="og:site_name" content="Mike Code">
+<meta property="og:description" content="前言博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：  為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/810cef52-1e04-4939-8719-41bc2ca52c07/a5f60d6c-c8fb-4c15-9e6f-bc0d9ffb83a8/%E6%88%AA%E5%9C%96_2024-04-03_%E6%99%9A%E4%B8%8A10.04.44.png">
+<meta property="article:published_time" content="2024-04-03T14:54:59.000Z">
+<meta property="article:modified_time" content="2024-04-03T14:55:46.438Z">
+<meta property="article:author" content="Mike">
+<meta property="article:tag" content="前端、字型、font">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://prod-files-secure.s3.us-west-2.amazonaws.com/810cef52-1e04-4939-8719-41bc2ca52c07/a5f60d6c-c8fb-4c15-9e6f-bc0d9ffb83a8/%E6%88%AA%E5%9C%96_2024-04-03_%E6%99%9A%E4%B8%8A10.04.44.png">
+
+
+<link rel="canonical" href="https://wl02599509.github.io/2024/04/03/WebFont/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wl02599509.github.io/2024/04/03/WebFont/","path":"2024/04/03/WebFont/","title":"WebFont"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WebFont | Mike Code</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike Code</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解決方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89%E5%AD%97%E5%BA%AB"><span class="nav-number">2.1.</span> <span class="nav-text">下載字庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E5%88%B0-assets-x2F-fonts-%E8%A3%A1"><span class="nav-number">2.2.</span> <span class="nav-text">放到 assets&#x2F;fonts 裡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A-manifest-js"><span class="nav-number">2.3.</span> <span class="nav-text">設定 manifest.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A-CSS-%E7%9A%84-font-family"><span class="nav-number">2.4.</span> <span class="nav-text">設定 CSS 的 font-family</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E6%96%B0%E7%9A%84-font-family"><span class="nav-number">2.5.</span> <span class="nav-text">直接使用新的 font-family</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E7%B5%B1%E4%B8%80%E5%AD%97%E5%9E%8B"><span class="nav-number">2.6.</span> <span class="nav-text">設定統一字型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">3.</span> <span class="nav-text">結論</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mike"
+      src="/images/self.png">
+  <p class="site-author-name" itemprop="name">Mike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wl02599509" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wl02599509" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wl02599509@gmail.com" title="E-Mail → mailto:wl02599509@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100000329607158" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100000329607158" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      My iThome
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://ithelp.ithome.com.tw/users/20149089/ironman/4955" title="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;users&#x2F;20149089&#x2F;ironman&#x2F;4955" rel="noopener" target="_blank">新手也能懂的自動化測試，讓測試帶你飛！</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/wl02599509" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wl02599509.github.io/2024/04/03/WebFont/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.png">
+      <meta itemprop="name" content="Mike">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="WebFont | Mike Code">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WebFont<a href="https://github.com/wl02599509/wl02599509.github.io/edit/gp-pages/source/_posts/2024-04-03-WebFont.md" class="post-edit-link" title="Edit this post" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-04-03 22:54:59 / Modified: 22:55:46" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
+    </span>
+
+  
+    <span id="/2024/04/03/WebFont/" class="post-meta-item leancloud_visitors" data-flag-title="WebFont" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2024/04/03/WebFont/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2024/04/03/WebFont/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：</p>
+<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/810cef52-1e04-4939-8719-41bc2ca52c07/a5f60d6c-c8fb-4c15-9e6f-bc0d9ffb83a8/%E6%88%AA%E5%9C%96_2024-04-03_%E6%99%9A%E4%B8%8A10.04.44.png" alt="截圖 2024-04-03 晚上10.04.44.png"></p>
+<p>為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，有該文字的編碼，那 unicode 就會把編碼轉換成文字呈現在你眼前，所以到目前，你閱讀到這邊所看到的所有文字，都是一個又一個的編碼。 unicode 本身又分為很多種類: <code>UTF-8</code> 、 <code>UTF-16</code> 等。由於本篇重點不在 unicode，有興趣可以另外搜尋。</p>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>回歸正題，當我們在開發網頁時，如果遇到上面那種生僻字，我們該如何讓我們的網站能夠顯示出這個字呢？</p>
+<p>我們先來說說問題原因。我們的網頁上顯示不出來，有兩個原因：</p>
+<ol>
+<li>你的電腦沒有這個字的編碼</li>
+<li>在該網頁的系統中所使用的 unicode 並未涵括到該文字的編碼，導致網頁無法正確顯示出這個文字。</li>
+</ol>
+<p>要解決字顯示不出來的問題，就是解決上述兩個原因。第一個的解決方法就是在電腦中安裝有該文字的字庫。但這不是個好方法，因為不太可能要求所有使用者都去安裝，所以身為開發人員的我們就要認命地從自己的系統裡去解決問題。</p>
+<h3 id="下載字庫"><a href="#下載字庫" class="headerlink" title="下載字庫"></a>下載字庫</h3><p>可以到 <a target="_blank" rel="noopener" href="https://data.gov.tw/dataset/5961">政府資訊公開網-CNS11643中文標準交換碼全字庫(簡稱全字庫)</a> 下載政府提供的中文字字庫，裡面包含很多生僻字、古字等。</p>
+<p>解壓縮後，我們只需要 <code>TW-Kai-Ext.ttf</code> 與 <code>TW-Kai-Plus.ttf</code> 。</p>
+<h3 id="放到-assets-x2F-fonts-裡"><a href="#放到-assets-x2F-fonts-裡" class="headerlink" title="放到 assets&#x2F;fonts 裡"></a>放到 assets&#x2F;fonts 裡</h3><p>將上述兩個 <code>ttf</code> 檔放到 <code>app/assets/fonts</code> 底下，畢竟文字也算是前端資源，放在 <code>assets</code> 很合理，因為這個是跟字型有關的資源，所以目錄取為 <code>fonts</code> （當然你希望取其他名字也可以）。</p>
+<h3 id="設定-manifest-js"><a href="#設定-manifest-js" class="headerlink" title="設定 manifest.js"></a>設定 manifest.js</h3><p>在 <code>app/assets/config/manifest.js</code> 裡，把上一步的 fonts 目錄引入: <em><code>//= link_tree ../fonts</code></em> </p>
+<h3 id="設定-CSS-的-font-family"><a href="#設定-CSS-的-font-family" class="headerlink" title="設定 CSS 的 font-family"></a>設定 CSS 的 font-family</h3><p>因為本次分享經驗所使用的是 <code>tailwindCss</code> ，如果是使用其他工具的朋友，應該可以用相同概念來達到同樣的目的。</p>
+<p>到 <code>app/assets/stylesheets</code> 底下新增一個 <code>.css</code> 檔: <code>rare_words.css</code> （名字可以任你取），接著在裡面設定新的 <code>font-family</code> ，而新的 <code>font-family</code> 來源 (src) 就是來自於剛剛的檔案。也就是說，當你設定了名為 <code>TW-Kai-Ext</code> 的 <code>font-family</code> 、來源為 <code>TW-Kai-Ext.ttf</code> 檔案，在使用該字型時，它會去找 <code>TW-Kai-Ext.ttf</code> 檔案裡面的 unicode，如此一來便是擴充了系統中的文字。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@font</span>-face &#123;</span><br><span class="line">  font-<span class="symbol">family:</span> <span class="string">&quot;TW-Kai-Ext&quot;</span>;</span><br><span class="line">  <span class="symbol">src:</span> local(<span class="string">&quot;TW-Kai-Ext&quot;</span>), url(<span class="string">&quot;TW-Kai-Ext.ttf&quot;</span>) format(<span class="string">&quot;truetype&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@font</span>-face &#123;</span><br><span class="line">  font-<span class="symbol">family:</span> <span class="string">&quot;TW-Kai-Plus&quot;</span>;</span><br><span class="line">  <span class="symbol">src:</span> local(<span class="string">&quot;TW-Kai-Plus&quot;</span>), url(<span class="string">&quot;TW-Kai-Plus.ttf&quot;</span>) format(<span class="string">&quot;truetype&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="直接使用新的-font-family"><a href="#直接使用新的-font-family" class="headerlink" title="直接使用新的 font-family"></a>直接使用新的 font-family</h3><p>完成上述的建置後，我們就可以直接在前端上使用該字型：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span <span class="keyword">class</span>=<span class="string">&#x27;TW-Kai-Ext TW-Kai-Plus&#x27;</span>&gt;&lt;%= <span class="variable">@student_name</span> %&gt;&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如此一來便能將原本無法出現的字顯示出來囉！</p>
+<p>不過這邊要提醒，若此時還是沒有顯示出預期的文字，那就代表你使用的 <code>ttf</code> 檔未提供該文字的 unicode，此時就必須要想辦法找到其他 <code>ttf</code> 檔。</p>
+<h3 id="設定統一字型"><a href="#設定統一字型" class="headerlink" title="設定統一字型"></a>設定統一字型</h3><p>在上述中，我們將兩種字型都寫進 class，讓兩個 <code>ttf</code> 檔都可以被使用到，避免文字涵蓋率的問題。也就是說，當 <code>TW-Kai-Ext</code> 沒找到該字的 unicode 時，會再去 <code>TW-Kai-Plus</code> 找。</p>
+<p>但這樣寫實在不好看，所以我們可以到 <code>tailwind.config.js</code> 裡設定統一字型：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span>.exports = &#123;</span><br><span class="line">  <span class="symbol">theme:</span> &#123;</span><br><span class="line">    <span class="symbol">extend:</span> &#123;</span><br><span class="line">      <span class="symbol">fontFamily:</span> &#123;</span><br><span class="line">        <span class="string">&#x27;tw-kai&#x27;</span>: [<span class="string">&#x27;TW-Kai-Plus&#x27;</span>, <span class="string">&#x27;TW-Kai-Ext&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這樣就能夠把 <code>TW-Kai-Plus</code> 跟 <code>TW-Kai-Ext</code>  （留意有順序問題，從左邊往右邊吃）統一合併成 <code>tw-kai</code> ：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&#x27;tw-kai&#x27;</span>&gt;&lt;%= <span class="variable">@student_name</span> %&gt;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以上就是 Web font 的設定流程，這麼做是為了減少使用者額外安裝以及資料庫本身擴充字的成本。</p>
+<p>當然如果想要更換成一些藝術字型，像是什麼華康秀風體、金梅浪漫體，也都是使用同樣的步驟來設定，但當然是要下載該字體的 <code>ttf</code> 檔案囉，畢竟相同文字、不同字型，編碼就是不一樣，所以想要換造型就是要另外給她新的衣櫃 ( <code>ttf</code> )！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E3%80%81%E5%AD%97%E5%9E%8B%E3%80%81font/" rel="tag"><i class="fa fa-tag"></i> 前端、字型、font</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/05/%E9%81%A0%E7%9C%8B%E6%98%AF%20Trouble%EF%BC%8C%E8%BF%91%E7%9C%8B%E6%98%AF%20Turbo/" rel="prev" title="遠看是 Trouble，近看是 Turbo">
+                  <i class="fa fa-chevron-left"></i> 遠看是 Trouble，近看是 Turbo
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"https-wl02599509-github-io","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
