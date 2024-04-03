@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-04-03 22:54:59 / Modified: 22:58:20" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
+      <time title="Created: 2024-04-03 22:54:59 / Modified: 22:59:34" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
     </span>
 
   
@@ -273,7 +273,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：</p>
-<p><img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/810cef52-1e04-4939-8719-41bc2ca52c07/a5f60d6c-c8fb-4c15-9e6f-bc0d9ffb83a8/%E6%88%AA%E5%9C%96_2024-04-03_%E6%99%9A%E4%B8%8A10.04.44.png" alt="截圖 2024-04-03 晚上10.04.44.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cns11643.gov.tw/wordView.jsp?ID=872821">https://www.cns11643.gov.tw/wordView.jsp?ID=872821</a></p>
 <p>為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，有該文字的編碼，那 unicode 就會把編碼轉換成文字呈現在你眼前，所以到目前，你閱讀到這邊所看到的所有文字，都是一個又一個的編碼。 unicode 本身又分為很多種類: <code>UTF-8</code> 、 <code>UTF-16</code> 等。由於本篇重點不在 unicode，有興趣可以另外搜尋。</p>
 <h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>回歸正題，當我們在開發網頁時，如果遇到上面那種生僻字，我們該如何讓我們的網站能夠顯示出這個字呢？</p>
 <p>我們先來說說問題原因。我們的網頁上顯示不出來，有兩個原因：</p>
