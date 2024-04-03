@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-04-03 22:54:59 / Modified: 22:59:34" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
+      <time title="Created: 2024-04-03 22:54:59 / Modified: 23:04:25" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
     </span>
 
   
@@ -275,36 +275,14 @@
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：</p>
 <p><a target="_blank" rel="noopener" href="https://www.cns11643.gov.tw/wordView.jsp?ID=872821">https://www.cns11643.gov.tw/wordView.jsp?ID=872821</a></p>
 <p>為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，有該文字的編碼，那 unicode 就會把編碼轉換成文字呈現在你眼前，所以到目前，你閱讀到這邊所看到的所有文字，都是一個又一個的編碼。 unicode 本身又分為很多種類: <code>UTF-8</code> 、 <code>UTF-16</code> 等。由於本篇重點不在 unicode，有興趣可以另外搜尋。</p>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>回歸正題，當我們在開發網頁時，如果遇到上面那種生僻字，我們該如何讓我們的網站能夠顯示出這個字呢？</p>
-<p>我們先來說說問題原因。我們的網頁上顯示不出來，有兩個原因：</p>
-<ol>
-<li>你的電腦沒有這個字的編碼</li>
-<li>在該網頁的系統中所使用的 unicode 並未涵括到該文字的編碼，導致網頁無法正確顯示出這個文字。</li>
-</ol>
-<p>要解決字顯示不出來的問題，就是解決上述兩個原因。第一個的解決方法就是在電腦中安裝有該文字的字庫。但這不是個好方法，因為不太可能要求所有使用者都去安裝，所以身為開發人員的我們就要認命地從自己的系統裡去解決問題。</p>
-<h3 id="下載字庫"><a href="#下載字庫" class="headerlink" title="下載字庫"></a>下載字庫</h3><p>可以到 <a target="_blank" rel="noopener" href="https://data.gov.tw/dataset/5961">政府資訊公開網-CNS11643中文標準交換碼全字庫(簡稱全字庫)</a> 下載政府提供的中文字字庫，裡面包含很多生僻字、古字等。</p>
-<p>解壓縮後，我們只需要 <code>TW-Kai-Ext.ttf</code> 與 <code>TW-Kai-Plus.ttf</code> 。</p>
-<h3 id="放到-assets-x2F-fonts-裡"><a href="#放到-assets-x2F-fonts-裡" class="headerlink" title="放到 assets&#x2F;fonts 裡"></a>放到 assets&#x2F;fonts 裡</h3><p>將上述兩個 <code>ttf</code> 檔放到 <code>app/assets/fonts</code> 底下，畢竟文字也算是前端資源，放在 <code>assets</code> 很合理，因為這個是跟字型有關的資源，所以目錄取為 <code>fonts</code> （當然你希望取其他名字也可以）。</p>
-<h3 id="設定-manifest-js"><a href="#設定-manifest-js" class="headerlink" title="設定 manifest.js"></a>設定 manifest.js</h3><p>在 <code>app/assets/config/manifest.js</code> 裡，把上一步的 fonts 目錄引入: <em><code>//= link_tree ../fonts</code></em> </p>
-<h3 id="設定-CSS-的-font-family"><a href="#設定-CSS-的-font-family" class="headerlink" title="設定 CSS 的 font-family"></a>設定 CSS 的 font-family</h3><p>因為本次分享經驗所使用的是 <code>tailwindCss</code> ，如果是使用其他工具的朋友，應該可以用相同概念來達到同樣的目的。</p>
-<p>到 <code>app/assets/stylesheets</code> 底下新增一個 <code>.css</code> 檔: <code>rare_words.css</code> （名字可以任你取），接著在裡面設定新的 <code>font-family</code> ，而新的 <code>font-family</code> 來源 (src) 就是來自於剛剛的檔案。也就是說，當你設定了名為 <code>TW-Kai-Ext</code> 的 <code>font-family</code> 、來源為 <code>TW-Kai-Ext.ttf</code> 檔案，在使用該字型時，它會去找 <code>TW-Kai-Ext.ttf</code> 檔案裡面的 unicode，如此一來便是擴充了系統中的文字。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@font</span>-face &#123;</span><br><span class="line">  font-<span class="symbol">family:</span> <span class="string">&quot;TW-Kai-Ext&quot;</span>;</span><br><span class="line">  <span class="symbol">src:</span> local(<span class="string">&quot;TW-Kai-Ext&quot;</span>), url(<span class="string">&quot;TW-Kai-Ext.ttf&quot;</span>) format(<span class="string">&quot;truetype&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@font</span>-face &#123;</span><br><span class="line">  font-<span class="symbol">family:</span> <span class="string">&quot;TW-Kai-Plus&quot;</span>;</span><br><span class="line">  <span class="symbol">src:</span> local(<span class="string">&quot;TW-Kai-Plus&quot;</span>), url(<span class="string">&quot;TW-Kai-Plus.ttf&quot;</span>) format(<span class="string">&quot;truetype&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="直接使用新的-font-family"><a href="#直接使用新的-font-family" class="headerlink" title="直接使用新的 font-family"></a>直接使用新的 font-family</h3><p>完成上述的建置後，我們就可以直接在前端上使用該字型：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span <span class="keyword">class</span>=<span class="string">&#x27;TW-Kai-Ext TW-Kai-Plus&#x27;</span>&gt;&lt;%= <span class="variable">@student_name</span> %&gt;&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如此一來便能將原本無法出現的字顯示出來囉！</p>
-<p>不過這邊要提醒，若此時還是沒有顯示出預期的文字，那就代表你使用的 <code>ttf</code> 檔未提供該文字的 unicode，此時就必須要想辦法找到其他 <code>ttf</code> 檔。</p>
-<h3 id="設定統一字型"><a href="#設定統一字型" class="headerlink" title="設定統一字型"></a>設定統一字型</h3><p>在上述中，我們將兩種字型都寫進 class，讓兩個 <code>ttf</code> 檔都可以被使用到，避免文字涵蓋率的問題。也就是說，當 <code>TW-Kai-Ext</code> 沒找到該字的 unicode 時，會再去 <code>TW-Kai-Plus</code> 找。</p>
-<p>但這樣寫實在不好看，所以我們可以到 <code>tailwind.config.js</code> 裡設定統一字型：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span>.exports = &#123;</span><br><span class="line">  <span class="symbol">theme:</span> &#123;</span><br><span class="line">    <span class="symbol">extend:</span> &#123;</span><br><span class="line">      <span class="symbol">fontFamily:</span> &#123;</span><br><span class="line">        <span class="string">&#x27;tw-kai&#x27;</span>: [<span class="string">&#x27;TW-Kai-Plus&#x27;</span>, <span class="string">&#x27;TW-Kai-Ext&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這樣就能夠把 <code>TW-Kai-Plus</code> 跟 <code>TW-Kai-Ext</code>  （留意有順序問題，從左邊往右邊吃）統一合併成 <code>tw-kai</code> ：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&#x27;tw-kai&#x27;</span>&gt;&lt;%= <span class="variable">@student_name</span> %&gt;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>以上就是 Web font 的設定流程，這麼做是為了減少使用者額外安裝以及資料庫本身擴充字的成本。</p>
-<p>當然如果想要更換成一些藝術字型，像是什麼華康秀風體、金梅浪漫體，也都是使用同樣的步驟來設定，但當然是要下載該字體的 <code>ttf</code> 檔案囉，畢竟相同文字、不同字型，編碼就是不一樣，所以想要換造型就是要另外給她新的衣櫃 ( <code>ttf</code> )！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/03/WebFont/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

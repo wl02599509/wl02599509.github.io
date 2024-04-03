@@ -28,7 +28,7 @@
 <meta property="og:description" content="前言博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是： https:&#x2F;&#x2F;www.cns11643.gov.tw&#x2F;wordView.jsp?ID&#x3D;872821 為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-03T14:54:59.000Z">
-<meta property="article:modified_time" content="2024-04-03T14:59:34.818Z">
+<meta property="article:modified_time" content="2024-04-03T15:04:25.550Z">
 <meta property="article:author" content="Mike">
 <meta property="article:tag" content="前端、字型、font">
 <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-04-03 22:54:59 / Modified: 22:59:34" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
+      <time title="Created: 2024-04-03 22:54:59 / Modified: 23:04:25" itemprop="dateCreated datePublished" datetime="2024-04-03T22:54:59+08:00">2024-04-03</time>
     </span>
 
   
@@ -281,10 +281,12 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博大精深的中文字裡，有很多古代使用，但現在不太使用的文字，比方說：「󼚹」，看不到對不對? 這個字是：</p>
 <p><a target="_blank" rel="noopener" href="https://www.cns11643.gov.tw/wordView.jsp?ID=872821">https://www.cns11643.gov.tw/wordView.jsp?ID=872821</a></p>
 <p>為何顯示不出來？這就必須從 unicode 說起。我們在電腦上所有肉眼看得到的文字，都是透過 unicode 翻譯出來的，包含我們在資料庫裡的資料，也都是 unicode。 unicode 其實就是編碼表，每個文字都有一個特定獨立的編碼，當你的電腦，或是系統中所使用的 unicode 中，有該文字的編碼，那 unicode 就會把編碼轉換成文字呈現在你眼前，所以到目前，你閱讀到這邊所看到的所有文字，都是一個又一個的編碼。 unicode 本身又分為很多種類: <code>UTF-8</code> 、 <code>UTF-16</code> 等。由於本篇重點不在 unicode，有興趣可以另外搜尋。</p>
+<span id="more"></span>
+
 <h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><p>回歸正題，當我們在開發網頁時，如果遇到上面那種生僻字，我們該如何讓我們的網站能夠顯示出這個字呢？</p>
 <p>我們先來說說問題原因。我們的網頁上顯示不出來，有兩個原因：</p>
 <ol>
-<li>你的電腦沒有這個字的編碼</li>
+<li>你的電腦沒有這個字的編碼。</li>
 <li>在該網頁的系統中所使用的 unicode 並未涵括到該文字的編碼，導致網頁無法正確顯示出這個文字。</li>
 </ol>
 <p>要解決字顯示不出來的問題，就是解決上述兩個原因。第一個的解決方法就是在電腦中安裝有該文字的字庫。但這不是個好方法，因為不太可能要求所有使用者都去安裝，所以身為開發人員的我們就要認命地從自己的系統裡去解決問題。</p>
